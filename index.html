@@ -13,6 +13,9 @@
 <body>
   <h1>Post Profile Chart</h1>
   <div id="post-charts">
+    <div class="engagement-summary">
+      <div id="post-engagement-summary" class="post-engagement-summary" ></div>
+    </div>
     <div class="total-read-time">
       <div class="total-readed-time chart">
         <div id="readed-time-chart" class="total-readed-time-chart" style="width: 700px; height: 500px"></div>
@@ -26,17 +29,18 @@
         style="width: 700px; height: 500px"></div>
     </div>
     <div class="interaction-graphs">
-    <div class="interaction-type-count-with-interaction-name-for-article">
-      <div id="interaction-type-count-with-name" class="interaction-type-count-with-interaction-name-for-article-chart"
-        style="width: 700px; height: 500px"></div>
-    </div>
-    <div class="interaction-score-by-audience-type-article">
-      <div id="article-interaction-score-by-audience-type" class="interaction-score-by-audience-type-article-chart"
-        style="width: 700px; height: 500px">
+      <div class="interaction-type-count-with-interaction-name-for-article">
+        <div id="interaction-type-count-with-name"
+          class="interaction-type-count-with-interaction-name-for-article-chart" style="width: 700px; height: 500px">
+        </div>
+      </div>
+      <div class="interaction-score-by-audience-type-article">
+        <div id="article-interaction-score-by-audience-type" class="interaction-score-by-audience-type-article-chart"
+          style="width: 700px; height: 500px">
+        </div>
       </div>
     </div>
-  </div>
-    
+
     <div class="audience-level-peoples-choice-percentages-for-article">
       <div id="audience-level-peoples-choice-percentages"
         class="audience-level-peoples-choice-percentages-for-article-chart" style="width: 900px; height: 500px"></div>
@@ -50,6 +54,13 @@
         style="width: 700px; height: 500px">
       </div>
     </div>
+
+    <div class="engagement-popularity">
+      <div id="article-engagement-popularity" class="article-engagement-popularity" style="width: 700px; height: 500px">
+      </div>
+    </div>
+
+
   </div>
   <h1>User Profile Chart</h1>
   <div id="user-charts">
@@ -205,10 +216,10 @@
         series: [],
       },
       interactionTypeCountWithNameOption: {
-        title:{
-          text:'Interaction type count with interaction name',
-          textStyle:{
-            color:'#ffffff'
+        title: {
+          text: 'Interaction type count with interaction name',
+          textStyle: {
+            color: '#ffffff'
           }
         },
         tooltip: {
@@ -297,6 +308,12 @@
       sentimentByAudienceType: document.getElementById("article-sentiment-breakdown-by-Audience-type"),
       completionRateForArticleChart: document.getElementById(
         "completion-rate-for-article-chart"
+      ),
+      articleEngagement: document.getElementById(
+        "article-engagement-popularity"
+      ),
+      engagementSummary: document.getElementById(
+        "post-engagement-summary"
       ),
       interactionTypeCountWithName: document.getElementById(
         "interaction-type-count-with-name"
@@ -624,7 +641,88 @@
         series: { ...series, data: dataa },
       });
     };
+    const initEngagementSummary = (data) => {
+      const chart = echarts.init(selectors.engagementSummary, null, {
+        height: 150
+      });
+      const datas = data.percentages
+      const categories = Object.keys(datas["Total interaction in Percentages"]);
+      const values = Object.values(datas["Total interaction in Percentages"]);
 
+      const colors = ['#FFC107', '#4CAF50', '#2196F3', '#F44336']; // Yellow, Green, Blue, Red
+
+      option = {
+        title: {
+          text: 'Engagement Summary',
+          textStyle: {
+            color: '#ffffff'
+          }
+        },
+        
+        grid: {
+          top: '5%',
+          left: '3%',
+          right: '3%',
+          bottom: '20%',
+          containLabel: true
+        },
+        legend: {
+          orient: 'horizontal',
+          bottom: 0,
+          left: 'center',
+          itemGap: 25,
+          icon: 'circle',
+          textStyle: {
+            color: '#ffffff',
+            fontSize: 14
+          },
+          formatter: function (name) {
+            const index = categories.findIndex(cat => cat.charAt(0).toUpperCase() + cat.slice(1) === name);
+
+            const roundedValue = Math.round(values[index]);
+            return `${name}: ${roundedValue}%`;
+          }
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { type: 'shadow' }
+        },
+
+
+        xAxis: {
+          type: 'value',
+          splitLine: { show: false },
+          axisLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: { show: false }
+        },
+        yAxis: {
+          type: 'category',
+          data: ['Total Interaction'],
+          splitLine: { show: false },
+          axisLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: { show: false }
+        },
+        series: categories.map((category, index) => ({
+          name: category.charAt(0).toUpperCase() + category.slice(1),
+          type: 'bar',
+          stack: 'total',
+          itemStyle: { color: colors[index] },
+          data: [values[index]],
+          barWidth: '60px',
+          emphasis: {
+            focus: 'series'
+          },
+        }))
+
+      };
+      chart.setOption(option)
+    }
+    const initArticleEngagement = (data) => {
+      const chart = echarts.init(selectors.articleEngagement);
+
+    }
     const initCompletionRateForArticleChart = (data) => {
       const chart = echarts.init(selectors.completionRateForArticleChart);
       const breakdown =
@@ -752,9 +850,9 @@
     };
     const initSentimentByAudienceType = (data) => {
       const chart = echarts.init(selectors.sentimentByAudienceType);
-      
+
       const datas = data.percentages
-      
+
       var xAxisData = Object.keys(datas["Total Interaction Counts"].total_positive_interaction_breakdown);
       var positiveData = Object.values(datas["Total Interaction Counts"].total_positive_interaction_breakdown);
       var negativeData = Object.values(datas["Total Interaction Counts"].total_negative_interaction_breakdown);
@@ -794,14 +892,14 @@
         title: {
           text: 'Sentiment Breakdown by Audience type(positive and negative)',
           left: 'center',
-          textStyle:{
-            color:'#ffffff'
+          textStyle: {
+            color: '#ffffff'
           }
         },
         tooltip: {
           trigger: 'axis',
           axisPointer: {
-            type: 'shadow' 
+            type: 'shadow'
           },
           formatter: function (params) {
             let content = params[0].axisValue + '<br/>';
@@ -814,8 +912,8 @@
         legend: {
           data: ['Positive Interactions', 'Negative Interactions'],
           bottom: 10,
-          textStyle:{
-            color:'#fff'
+          textStyle: {
+            color: '#fff'
           }
         },
         xAxis: {
@@ -837,7 +935,7 @@
         },
         series: series
       };
-     
+
       chart.setOption(option);
 
     }
@@ -923,11 +1021,13 @@
           console.log(data);
           initArticleReadTimeChart(data.read_time);
           initArticleTotalReadTimeChart(data);
-          initReadTimeChart(data);
+          // initReadTimeChart(data);
           initCompletionRateForArticleChart(data);
           initInteractionTypeCountWithName(data);
           initArticleInteractionScoreByAudienceType(data);
           initSentimentByAudienceType(data);
+          initArticleEngagement(data);
+          initEngagementSummary(data);
           // Update the charts with the fetched data
           // updateReadedChart(data.read_time);
           // updateArticleChartData(data); // Call without postId
