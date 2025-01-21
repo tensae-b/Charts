@@ -1,103 +1,962 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <h1>Post Profile Chart</h1>
-    <div id="post-charts">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="src/style.css">
+  <script src=" https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js "></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+</head>
+
+<body>
+  <h1>Post Profile Chart</h1>
+  <div id="post-charts">
+    <div class="total-read-time">
       <div class="total-readed-time chart">
-        <div
-          id="readed-time-chart"
-          class="total-readed-time-chart"
-          style="width: 700px; height: 500px"
-        ></div>
+        <div id="readed-time-chart" class="total-readed-time-chart" style="width: 700px; height: 500px"></div>
       </div>
       <div class="article-total-read-time-completion-rate chart">
-        <div
-          id="article-read-time-chart"
-          class="article-total-read-time"
-          style="width: 700px; height: 500px"
-        ></div>
-      </div>
-      <div class="completion-rate-audience-breakdown-for-article">
-        <div
-          id="completion-rate-for-article-chart"
-          class="completion-rate-audience-breakdown-for-article-chart"
-          style="width: 700px; height: 500px"
-        ></div>
-      </div>
-      <div class="interaction-type-count-with-interaction-name-for-article">
-        <div
-          id="interaction-type-count-with-name"
-          class="interaction-type-count-with-interaction-name-for-article-chart"
-          style="width: 700px; height: 500px"
-        ></div>
-      </div>
-      <div class="interaction-score-by-audience-type-article">
-        <divgit 
-          id="article-interaction-score-by-audience-type"
-          class="interaction-score-by-audience-type-article-chart"
-          style="width: 700px; height: 500px"
-        ></div>
-      </div>
-      <div class="audience-level-peoples-choice-percentages-for-article">
-        <div
-          id="audience-level-peoples-choice-percentages"
-          class="audience-level-peoples-choice-percentages-for-article-chart"
-          style="width: 900px; height: 500px"
-        ></div>
-      </div>
-      <div class="article-engagement-popularity-sentiment">
-        <div
-          id="article-engagement-popularity"
-          class="article-engagement-popularity-sentiment-chart"
-          style="width: 900px; height: 500px"
-        ></div>
+        <div id="article-read-time-chart" class="article-total-read-time" style="width: 700px; height: 500px"></div>
       </div>
     </div>
-    <h1>User Profile Chart</h1>
-    <div id="user-charts">
-      <div class="user-catergorical-reputation-data-chart">
-        <div
-          id="user-catergorical-reputation-data"
-          style="width: 700px; height: 500px"
-        ></div>
-      </div>
-      <div class="network-analysis-reputation-score-percentage-for-user">
-        <div
-          id="network-analysis-reputation-score-percentage"
-          style="width: 700px; height: 500px"
-        ></div>
-      </div>
-      <div class="user-expertise-level-and-user-nature-for-user-chart">
-        <div
-          id="user-expertise-level-and-user-nature-for-user"
-          style="padding-left: 10px; width: 700px; height: 500px"
-        ></div>
-      </div>
-      <div class="interaction-breakdown-in-numbers-users-favorite-chart">
-        <div
-          id="interaction-breakdown-in-numbers-users-favorite"
-          style="width: 700px; height: 500px"
-        ></div>
-      </div>
-      <div class="number-Of-MPXR-from-publication-for-user-chart">
-        <div
-          id="number-of-MPXR-from-publication-for-user"
-          style="width: 700px; height: 500px"
-        ></div>
-      </div>
-      <div class="MPXR-from-interaction-percentage-user-chart">
-        <div
-          class="MPXR-from-interaction-percentage-user"
-          style="width: 700px; height: 500px"
-        ></div>
+    <div class="completion-rate-audience-breakdown-for-article">
+      <div id="completion-rate-for-article-chart" class="completion-rate-audience-breakdown-for-article-chart"
+        style="width: 700px; height: 500px"></div>
+    </div>
+    <div class="interaction-graphs">
+    <div class="interaction-type-count-with-interaction-name-for-article">
+      <div id="interaction-type-count-with-name" class="interaction-type-count-with-interaction-name-for-article-chart"
+        style="width: 700px; height: 500px"></div>
+    </div>
+    <div class="interaction-score-by-audience-type-article">
+      <div id="article-interaction-score-by-audience-type" class="interaction-score-by-audience-type-article-chart"
+        style="width: 700px; height: 500px">
       </div>
     </div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  </div>
+    
+    <div class="audience-level-peoples-choice-percentages-for-article">
+      <div id="audience-level-peoples-choice-percentages"
+        class="audience-level-peoples-choice-percentages-for-article-chart" style="width: 900px; height: 500px"></div>
+    </div>
+    <div class="article-engagement-popularity-sentiment">
+      <div id="article-engagement-popularity" class="article-engagement-popularity-sentiment-chart"
+        style="width: 900px; height: 500px"></div>
+    </div>
+    <div class="sentiment-breakdown-by-Audience-type">
+      <div id="article-sentiment-breakdown-by-Audience-type" class="article-sentiment-breakdown-by-Audience-type"
+        style="width: 700px; height: 500px">
+      </div>
+    </div>
+  </div>
+  <h1>User Profile Chart</h1>
+  <div id="user-charts">
+    <div class="user-catergorical-reputation-data-chart">
+      <div id="user-catergorical-reputation-data" style="width: 700px; height: 500px"></div>
+    </div>
+    <div class="network-analysis-reputation-score-percentage-for-user">
+      <div id="network-analysis-reputation-score-percentage" style="width: 700px; height: 500px"></div>
+    </div>
+    <div class="user-expertise-level-and-user-nature-for-user-chart">
+      <div id="user-expertise-level-and-user-nature-for-user" style="padding-left: 10px; width: 700px; height: 500px">
+      </div>
+    </div>
+    <div class="interaction-breakdown-in-numbers-users-favorite-chart">
+      <div id="interaction-breakdown-in-numbers-users-favorite" style="width: 700px; height: 500px"></div>
+    </div>
+    <div class="number-Of-MPXR-from-publication-for-user-chart">
+      <div id="number-of-MPXR-from-publication-for-user" style="width: 700px; height: 500px"></div>
+    </div>
+    <div class="MPXR-from-interaction-percentage-user-chart">
+      <div class="MPXR-from-interaction-percentage-user" style="width: 700px; height: 500px"></div>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript">
+    const options = {
+      articleReadTimeChartOptions: {
+        tooltip: {
+          formatter: "{a} <br/>{b} : {c} mins",
+        },
+        title: {
+          text: "Total articles read time by audience ",
+          textStyle: {
+            color: "#ffffff",
+
+          },
+        },
+        series: [
+          {
+            name: "",
+            type: "gauge",
+            color: ['#ffffff'],
+
+            detail: {
+              formatter: "{value} read time",
+              color: '#ffffff',
+            },
+            data: [
+              {
+                value: 50,
+
+                name: "total read time",
+              },
+            ],
+          },
+        ],
+      },
+      ArticleTotalReadTimeChartOption: {
+        title: {
+          text: 'Total article read time Completion Rate',
+          textStyle: {
+            color: "#ffffff",
+
+          },
+        },
+        series: [
+          {
+
+            type: "gauge",
+            startAngle: 90,
+            endAngle: -270,
+            pointer: {
+              show: false,
+            },
+            progress: {
+              show: true,
+              overlap: false,
+              roundCap: true,
+
+              clip: false,
+              itemStyle: {
+                borderWidth: 1,
+                borderColor: "#464646",
+              },
+            },
+            axisLine: {
+              lineStyle: {
+                width: 40,
+                color: '#032c43'
+              },
+
+              roundCap: true
+            },
+            splitLine: {
+              show: false,
+              distance: 0,
+              length: 10,
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              show: false,
+              distance: 50,
+            },
+            title: {
+              fontSize: 14,
+              color: '#fff'
+            },
+            detail: {
+              width: 50,
+              height: 14,
+              fontSize: 14,
+              color: "inherit",
+              borderColor: "inherit",
+              borderRadius: 20,
+              borderWidth: 1,
+              formatter: "{value}%",
+            },
+          },
+        ],
+      },
+      totalReadedTimeChartOption: {
+        tooltip: {
+          formatter: "{a} <br/>{b} : {c}%",
+        },
+        series: [
+          {
+            name: "Pressure",
+            type: "gauge",
+            progress: {
+              show: true,
+            },
+            detail: {
+              valueAnimation: true,
+              formatter: "{value}",
+            },
+            data: [
+              {
+                value: 10,
+                name: "SCORE",
+              },
+            ],
+          },
+        ],
+      },
+      completionRateForArticleOption: {
+        legend: {},
+        tooltip: {},
+        dataset: {},
+        series: [],
+      },
+      interactionTypeCountWithNameOption: {
+        title:{
+          text:'Interaction type count with interaction name',
+          textStyle:{
+            color:'#ffffff'
+          }
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow",
+          },
+        },
+        grid: {
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
+          containLabel: true,
+        },
+        xAxis: [],
+        yAxis: [
+          {
+            type: "value",
+          },
+        ],
+        series: [],
+      },
+      articleInteractionScoreByAudienceTypeOption: {
+        // backgroundColor: {
+        //   image: [],
+        //   repeat: "repeat",
+        // },
+        title: {
+          text: "Interaction Score By Audience Type",
+          textStyle: {
+            color: "#ffffff",
+          },
+        },
+        tooltip: {},
+        // xAxis: {
+        //   type: 'category',
+        //   data: ["Average Audience", "Intermediate Audience", "Advanced Audience", "Expert Audience"],
+        //   axisTick: {
+        //     alignWithLabel: true,
+        //   },
+        //   axisLabel: {
+        //     interval: 0,
+
+        //     textStyle: {
+        //       color: "#ffffff",
+        //     },
+        //   },
+        // },
+        // yAxis: {
+        //   type: 'value',
+        //   axisLabel: {
+        //     interval: 0,
+
+        //     textStyle: {
+        //       color: "#ffffff",
+        //     },
+        //   },
+        // },
+        series: [
+          {
+            name: "pie",
+            type: "pie",
+            selectedMode: "single",
+            selectedOffset: 30,
+            clockwise: true,
+            center: "50%",
+            label: {
+              fontSize: 18,
+              color: "#fff",
+            },
+            labelLine: {
+              lineStyle: {
+                color: "#fff",
+              },
+            },
+            data: [],
+
+          },
+        ],
+      },
+    }
+    let selectors = {
+      articleTotalReadTimeChart: document.getElementById("readed-time-chart"),
+      articleReadTimeChart: document.getElementById("article-read-time-chart"),
+      readTimeChart: document.getElementById("article-engagement-popularity"),
+      sentimentByAudienceType: document.getElementById("article-sentiment-breakdown-by-Audience-type"),
+      completionRateForArticleChart: document.getElementById(
+        "completion-rate-for-article-chart"
+      ),
+      interactionTypeCountWithName: document.getElementById(
+        "interaction-type-count-with-name"
+      ),
+      articleInteractionScoreByAudienceType: document.getElementById(
+        "article-interaction-score-by-audience-type"
+      ),
+      audienceLevelPeoplesChoicePercentages: document.getElementById(
+        "audience-level-peoples-choice-percentages"
+      ),
+    };
+
+    let posts = [
+      {
+        post_id: 1,
+        community: "test",
+        content_type: "post",
+        author: 1,
+        editors: [],
+        peoples_choice: 0,
+        post_source: "",
+        read_time: 5.6,
+        categories: [],
+        tags: [],
+        post_rep: 0.0,
+        deleted_post: false,
+        feed_status: false,
+        read_count: 7,
+        post_slug: "test",
+        percentages: {
+          "Total Interaction Counts": {
+            total_interaction: 7,
+            total_positive_interaction: 5,
+            total_positive_interaction_breakdown: {
+              "Average Audience": 40.0,
+              "Intermediate Audience": 40.0,
+              "Advanced Audience": 0.0,
+              "Expert Audience": 20.0,
+            },
+            total_negative_interaction: 2,
+            total_negative_interaction_breakdown: {
+              "Average Audience": 50.0,
+              "Intermediate Audience": 0.0,
+              "Advanced Audience": 0.0,
+              "Expert Audience": 50.0,
+            },
+            emoji: {
+              count: 21,
+            },
+            react: {
+              count: 12,
+            },
+            time_spent: {
+              count: 4,
+            },
+            comment: {
+              count: 5,
+            },
+          },
+          "Total interaction in Percentages": {
+            emoji: 14.285714285714285,
+            react: 14.285714285714285,
+            time_spent: 57.14285714285714,
+            comment: 14.285714285714285,
+          },
+          "Total Read Completion Rate": {
+            "Total completion_rate": 88.75,
+            "Total Completion rate breakdown": {
+              Average: 0.0,
+              Good: 25.0,
+              Best: 75.0,
+            },
+            "Total Audience Completion rate Breakdown": {
+              "Average Audience": {
+                Average: 0.0,
+                Good: 50.0,
+                Best: 50.0,
+              },
+              "Intermediate Audience": {
+                Average: 0.0,
+                Good: 0.0,
+                Best: 100.0,
+              },
+              "Advanced Audience": {
+                Average: 0,
+                Good: 0,
+                Best: 0,
+              },
+              "Expert Audience": {
+                Average: 0.0,
+                Good: 0.0,
+                Best: 100.0,
+              },
+            },
+          },
+          "Audience Level interaction percentages": {
+            "Average Audience": 42.857142857142854,
+            "Intermediate Audience": 28.57142857142857,
+            "Advanced Audience": 0.0,
+            "Expert Audience": 28.57142857142857,
+          },
+          "Article Sentiment Popularity Breakdown": {
+            Popularity: "Not Popular",
+          },
+          "Article Sentiment Likability Breakdown": {
+            likability: "Unlikable",
+          },
+          "Article Sentiment Engagement Breakdown": {
+            engagement: "Less Engaging",
+            engagement_percentage: 42.857142857142854,
+          },
+          "Audience Level Peoples Choice Percentages": {
+            "Average Audience": 0,
+            "Intermediate Audience": 0,
+            "Advanced Audience": 0,
+            "Expert Audience": 0,
+          },
+        },
+      },
+      {
+        post_id: 2,
+        community: "test",
+        content_type: "post",
+        author: 1,
+        editors: [],
+        peoples_choice: 0,
+        post_source: "",
+        read_time: 5.6,
+        categories: [],
+        tags: [],
+        post_rep: 0.0,
+        deleted_post: false,
+        feed_status: false,
+        read_count: 7,
+        post_slug: "test",
+        percentages: {
+          "Total Interaction Counts": {
+            total_interaction: 7,
+            total_positive_interaction: 5,
+            total_positive_interaction_breakdown: {
+              "Average Audience": 40.0,
+              "Intermediate Audience": 40.0,
+              "Advanced Audience": 0.0,
+              "Expert Audience": 20.0,
+            },
+            total_negative_interaction: 2,
+            total_negative_interaction_breakdown: {
+              "Average Audience": 50.0,
+              "Intermediate Audience": 0.0,
+              "Advanced Audience": 0.0,
+              "Expert Audience": 50.0,
+            },
+            emoji: {
+              count: 21,
+            },
+            react: {
+              count: 12,
+            },
+            time_spent: {
+              count: 4,
+            },
+            comment: {
+              count: 5,
+            },
+          },
+          "Total interaction in Percentages": {
+            emoji: 14.285714285714285,
+            react: 14.285714285714285,
+            time_spent: 57.14285714285714,
+            comment: 14.285714285714285,
+          },
+          "Total Read Completion Rate": {
+            "Total completion_rate": 88.75,
+            "Total Completion rate breakdown": {
+              Average: 0.0,
+              Good: 25.0,
+              Best: 75.0,
+            },
+            "Total Audience Completion rate Breakdown": {
+              "Average Audience": {
+                Average: 0.0,
+                Good: 50.0,
+                Best: 50.0,
+              },
+              "Intermediate Audience": {
+                Average: 0.0,
+                Good: 0.0,
+                Best: 100.0,
+              },
+              "Advanced Audience": {
+                Average: 0,
+                Good: 0,
+                Best: 0,
+              },
+              "Expert Audience": {
+                Average: 0.0,
+                Good: 0.0,
+                Best: 100.0,
+              },
+            },
+          },
+          "Audience Level interaction percentages": {
+            "Average Audience": 42.857142857142854,
+            "Intermediate Audience": 28.57142857142857,
+            "Advanced Audience": 10.058421684555,
+            "Expert Audience": 28.57142857142857,
+          },
+          "Article Sentiment Popularity Breakdown": {
+            Popularity: "Not Popular",
+          },
+          "Article Sentiment Likability Breakdown": {
+            likability: "Unlikable",
+          },
+          "Article Sentiment Engagement Breakdown": {
+            engagement: "Less Engaging",
+            engagement_percentage: 42.857142857142854,
+          },
+          "Audience Level Peoples Choice Percentages": {
+            "Average Audience": 15,
+            "Intermediate Audience": 40,
+            "Advanced Audience": 25,
+            "Expert Audience": 20,
+          },
+        },
+      },
+    ];
+
+
+    //functions
+    const initArticleReadTimeChart = (readTime) => {
+      let chart = echarts.init(selectors.articleTotalReadTimeChart);
+      let series = {
+        name: "Total read time",
+        type: "gauge",
+        axisLine: {
+          color: '#fff'
+
+        },
+
+        axisLabel: {
+          color: '#fff'
+
+        },
+        axisTick: {
+          lineStyle: {
+            color: '#fff'
+          }
+
+
+        },
+
+        splitLine: {
+          lineStyle: {
+            color: '#fff'
+          }
+
+
+        },
+
+        detail: {
+          formatter: "{value} mins read",
+          textStyle: {
+            fontSize: 18,
+            color: '#fff'
+          }
+        },
+        data: [
+          {
+            value: readTime,
+            name: "",
+
+          },
+        ],
+      };
+
+      chart.setOption({ ...options.articleReadTimeChartOptions, series });
+    };
+    const initArticleTotalReadTimeChart = (data) => {
+      let chart = echarts.init(selectors.articleReadTimeChart);
+
+      function structureData(data) {
+        data = Object.entries(data);
+        let tempValue = [];
+        data.forEach((element, index) => {
+          tempValue.push({
+            value: element[1],
+            name: element[0],
+            title: {
+              offsetCenter: ["-20%", `-${index * 15}%`],
+            },
+            detail: {
+              valueAnimation: true,
+              offsetCenter: ["15%", `-${index * 15} % `],
+            },
+          });
+        });
+
+        return tempValue;
+      }
+
+      let structuredData = structureData(
+        data.percentages["Total Read Completion Rate"][
+        "Total Completion rate breakdown"
+        ]
+      );
+
+      const series = options.ArticleTotalReadTimeChartOption.series[0];
+      chart.setOption({
+        ...options.ArticleTotalReadTimeChartOption,
+        series: { ...series, data: structuredData },
+      });
+    };
+
+    const initReadTimeChart = (data) => {
+      const chart = echarts.init(selectors.readTimeChart);
+      let dataa = [
+        {
+          value: 100,
+          name: "SCORE",
+        },
+      ];
+      const series = options.totalReadedTimeChartOption.series[0];
+      chart.setOption({
+        ...options.totalReadedTimeChartOption,
+        series: { ...series, data: dataa },
+      });
+    };
+
+    const initCompletionRateForArticleChart = (data) => {
+      const chart = echarts.init(selectors.completionRateForArticleChart);
+      const breakdown =
+        data.percentages["Total Read Completion Rate"][
+        "Total Audience Completion rate Breakdown"
+        ];
+      let title = [];
+      let series = [];
+      const audienceTypes = Object.keys(breakdown);
+
+      const source = [["Audience Type", "Average", "Good", "Best"]];
+      audienceTypes.forEach((audienceType, index) => {
+        const audienceData = breakdown[audienceType];
+        const pieData = [
+          { value: audienceData.Average, name: "Average" },
+          { value: audienceData.Good, name: "Good" },
+          { value: audienceData.Best, name: "Best" },
+        ];
+
+        title.push({
+          text: "",
+        });
+
+        series.push({
+          type: "pie",
+
+          radius: "40%",
+          center: [index % 2 === 0 ? "30%" : "85%", index < 2 ? "22%" : "77%"],
+          top: 60,
+          data: pieData,
+          label: {
+            show: true,
+            color: "#ffffff",
+            borderWidth: 0,
+            borderColor: "transparent",
+          },
+
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: "rgba(0, 0, 0, 0.5)",
+            },
+          },
+        });
+
+        // Add the audience type data to the source
+        source.push([
+          audienceType,
+          audienceData.Average,
+          audienceData.Good,
+          audienceData.Best,
+        ]);
+      });
+      const chartTitle = audienceTypes.map((audienceType, index) => {
+        return {
+          text: `Completion By ${audienceType}`,
+          left: index % 2 === 0 ? "25%" : "75%",
+          top: index < 2 ? "5%" : "53%", // Adjust top position as per your layout
+          textAlign: "center",
+
+          textStyle: {
+            fontSize: 14,
+            fontWeight: "bold",
+            color: "#ffffff", // Customize the color as needed
+          },
+        };
+      });
+
+      // Set the updated options for the chart with the dynamically created series and source
+      chart.setOption({
+        ...options.completionRateForArticleOption,
+        title: chartTitle,
+        dataset: {
+          source: source,
+
+        },
+        series: series,
+        legend: {
+          textStyle: {
+            color: "#ffffff",
+          },
+
+        },
+      });
+    };
+    const initInteractionTypeCountWithName = (data) => {
+      const chart = echarts.init(selectors.interactionTypeCountWithName);
+      const interactionData = data.percentages["Total Interaction Counts"];
+      const includedKeys = ["emoji", "react", "time_spent", "comment"];
+      const categories = [];
+      const seriesData = [];
+
+      for (const key of includedKeys) {
+        if (interactionData[key]) {
+          categories.push(key);
+          seriesData.push(interactionData[key].count);
+        }
+      }
+
+      let xAxis = [
+        {
+          type: "category",
+          data: categories,
+          axisTick: {
+            alignWithLabel: true,
+          },
+        },
+      ];
+
+      let series = [
+        {
+          name: "Count",
+          type: "bar",
+          barWidth: "60%",
+          data: seriesData,
+        },
+      ];
+
+      chart.setOption({
+        ...options.interactionTypeCountWithNameOption,
+        xAxis: xAxis,
+        series: series,
+      });
+    };
+    const initSentimentByAudienceType = (data) => {
+      const chart = echarts.init(selectors.sentimentByAudienceType);
+      
+      const datas = data.percentages
+      
+      var xAxisData = Object.keys(datas["Total Interaction Counts"].total_positive_interaction_breakdown);
+      var positiveData = Object.values(datas["Total Interaction Counts"].total_positive_interaction_breakdown);
+      var negativeData = Object.values(datas["Total Interaction Counts"].total_negative_interaction_breakdown);
+
+      var series = [
+        {
+          name: 'Positive Interactions',
+          type: 'bar',
+          stack: 'interactions',
+          data: positiveData.map((value) => ({
+            value,
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0] // Rounded corners for positive bars
+            }
+          })),
+          itemStyle: {
+            color: '#000000' // Green for positive interactions
+          }
+        },
+        {
+          name: 'Negative Interactions',
+          type: 'bar',
+          stack: 'interactions',
+          data: negativeData.map((value) => ({
+            value: -value, // Negative values to stack above positive
+            itemStyle: {
+              borderRadius: [0, 0, 10, 10] // Rounded corners for negative bars
+            }
+          })),
+          itemStyle: {
+            color: '#f44336' // Red for negative interactions
+          }
+        }
+      ];
+
+      var option = {
+        title: {
+          text: 'Sentiment Breakdown by Audience type(positive and negative)',
+          left: 'center',
+          textStyle:{
+            color:'#ffffff'
+          }
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow' 
+          },
+          formatter: function (params) {
+            let content = params[0].axisValue + '<br/>';
+            params.forEach(param => {
+              content += `${param.seriesName}: ${Math.abs(param.value)}%<br/>`;
+            });
+            return content;
+          }
+        },
+        legend: {
+          data: ['Positive Interactions', 'Negative Interactions'],
+          bottom: 10,
+          textStyle:{
+            color:'#fff'
+          }
+        },
+        xAxis: {
+          type: 'category',
+          data: xAxisData
+        },
+        yAxis: {
+          type: 'value',
+          axisLabel: {
+            formatter: '{value}%'
+          },
+          axisLabel: {
+            interval: 0,
+
+            textStyle: {
+              color: "#ffffff",
+            },
+          },
+        },
+        series: series
+      };
+     
+      chart.setOption(option);
+
+    }
+    //trouble with the images
+    // const initArticleInteractionScoreByAudienceType = (data) => {
+
+    //   const chart = echarts.init(selectors.articleInteractionScoreByAudienceType);
+    //   const interactionData =
+    //     data.percentages["Audience Level interaction percentages"];
+    //   console.log(interactionData, 'here');
+    //   const audienceLevels = Object.keys(interactionData);
+    //   const seriesData = audienceLevels.map((audience) => ({
+    //     value: interactionData[audience],
+    //     name: audience,
+    //   }));
+    //   console.log(seriesData);
+    //   const series = options.articleInteractionScoreByAudienceTypeOption.series[0];
+
+    //   chart.setOption({
+    //     ...options.articleInteractionScoreByAudienceTypeOption,
+    //     /*backgroundColor: { ...backgroundColor, image: bgPatternSrc },*/
+    //     series: {
+    //       ...series,
+    //       data: seriesData,
+    //       /*itemStyle: { ...itemStyle, color: { ...color, image: piePatternSrc } },*/
+    //     },
+    //   });
+    // };
+    const initAudienceLevelPeoplesChoicePercentages = (data) => {
+      const chart = echarts.init(selectors.articleInteractionScoreByAudienceType);
+    };
+    const initArticleInteractionScoreByAudienceType = (data) => {
+
+      const chart = echarts.init(selectors.articleInteractionScoreByAudienceType);
+      const interactionData =
+        data.percentages["Audience Level interaction percentages"];
+      console.log(interactionData);
+      const audienceLevels = Object.keys(interactionData);
+      const seriesData = audienceLevels.map((audience) => ({
+        value: interactionData[audience],
+        name: audience,
+      }));
+      console.log(seriesData);
+      const series = options.articleInteractionScoreByAudienceTypeOption.series[0];
+
+      chart.setOption({
+        ...options.articleInteractionScoreByAudienceTypeOption,
+        /*backgroundColor: { ...backgroundColor, image: bgPatternSrc },*/
+        series: {
+          ...series,
+          data: seriesData,
+          /*itemStyle: { ...itemStyle, color: { ...color, image: piePatternSrc } },*/
+        },
+
+      });
+    };
+    async function fetchedPostById(postId) {
+      // const url = `http://localhost:3000/post/${postId}`; // Construct the URL using the postId
+      // console.log(`Fetching post with post_id: ${postId}`);
+
+      try {
+        // const response = await fetch(url);
+
+        // if (!response.ok) {
+        //   throw new Error(`HTTP error! Status: ${response.status}`);
+        // }
+        let data
+        if (postId != undefined) {
+          const post = posts.find((u) => u.post_id == parseInt(postId));
+
+          if (!post) {
+            console.log("post not found");
+          } else {
+            data = post;
+
+          }
+        } else {
+          console.log("id is undefined");
+        }
+
+        if (data) {
+          console.log(`Fetched read_time: ${data.read_time}`);
+          console.log(data);
+          initArticleReadTimeChart(data.read_time);
+          initArticleTotalReadTimeChart(data);
+          initReadTimeChart(data);
+          initCompletionRateForArticleChart(data);
+          initInteractionTypeCountWithName(data);
+          initArticleInteractionScoreByAudienceType(data);
+          initSentimentByAudienceType(data);
+          // Update the charts with the fetched data
+          // updateReadedChart(data.read_time);
+          // updateArticleChartData(data); // Call without postId
+          // updateCompletionRateForArticleChartData(data);
+          // updateInteractionChart(data);
+          // updateArticleInteractionScoreChart(data);
+          // updateAudienceLevelPeoplesChoicePercentagesChart(data);
+          //updateArticleEngagementPopularityChart(data);
+        } else {
+          console.log("Fetched data is not valid or 'read_time' is not defined.");
+        }
+      } catch (error) {
+        console.error("Error when fetching the data:", error);
+      }
+    }
+
+    fetchedPostById(2)
+      .then((data) => {
+        if (data) {
+          console.log("Fetched data:", data);
+        } else {
+          console.log("No data fetched due to error.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  </script>
+  <!-- <script type="module" src="/src/main.js"></script> -->
+</body>
+
 </html>

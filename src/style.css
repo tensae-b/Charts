@@ -94,18 +94,40 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
-.body {
-  background-color: black;
+
+* {
+
+  margin: 0;
+  padding: 0;
+  
 }
+body {
+  width: fit-content;
+  padding:0 30px;
+  background-color: #032c43;
+}
+h1{
+ margin:10px 0px 20px 0px;
+
+}
+
 #post-charts {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+   width:100%;
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr); */
 }
 #post-charts .chart {
   width: 700px;
   height: 500px;
-  background-color: white;
+  
 }
+.completion-rate-audience-breakdown-for-article{
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #user-charts {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -113,5 +135,18 @@ button:focus-visible {
 #user-charts .chart {
   width: 700px;
   height: 500px;
-  background-color: white;
+  
+}
+
+.total-read-time{
+  display: flex;
+  align-items: center;
+ 
+}
+
+.interaction-graphs{
+  margin-top:100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
