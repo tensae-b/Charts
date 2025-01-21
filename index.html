@@ -129,6 +129,7 @@
           },
         },
         series: [
+       
           {
 
             type: "gauge",
@@ -865,11 +866,11 @@
           data: positiveData.map((value) => ({
             value,
             itemStyle: {
-              borderRadius: [10, 10, 0, 0] // Rounded corners for positive bars
+              borderRadius: [0, 0, 0, 0] // Rounded corners for positive bars
             }
           })),
           itemStyle: {
-            color: '#000000' // Green for positive interactions
+            color: '#000000' 
           }
         },
         {
@@ -877,9 +878,9 @@
           type: 'bar',
           stack: 'interactions',
           data: negativeData.map((value) => ({
-            value: -value, // Negative values to stack above positive
+            value: value, // Negative values to stack above positive
             itemStyle: {
-              borderRadius: [0, 0, 10, 10] // Rounded corners for negative bars
+              borderRadius: [10, 0, 0, 0] // Rounded corners for negative bars
             }
           })),
           itemStyle: {
