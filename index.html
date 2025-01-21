@@ -105,6 +105,15 @@
             name: "",
             type: "gauge",
             color: ['#ffffff'],
+            splitLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: false
+                    },
 
             detail: {
               formatter: "{value} read time",
@@ -283,12 +292,19 @@
           {
             name: "pie",
             type: "pie",
+            radius: ['40%', '70%'],
             selectedMode: "single",
             selectedOffset: 30,
             clockwise: true,
             center: "50%",
+            color:[
+              '#8979FF',
+              '#57C2CE',
+              '#79FF8D',
+              '#FF9B5C',
+            ],
             label: {
-              fontSize: 18,
+              fontSize: 14,
               color: "#fff",
             },
             labelLine: {
@@ -548,39 +564,56 @@
       let chart = echarts.init(selectors.articleTotalReadTimeChart);
       let series = {
         name: "Total read time",
-        type: "gauge",
-        axisLine: {
-          color: '#fff'
-
-        },
-
-        axisLabel: {
-          color: '#fff'
-
-        },
-        axisTick: {
-          lineStyle: {
-            color: '#fff'
-          }
-
-
-        },
-
-        splitLine: {
-          lineStyle: {
-            color: '#fff'
-          }
-
-
-        },
-
-        detail: {
-          formatter: "{value} mins read",
-          textStyle: {
-            fontSize: 18,
-            color: '#fff'
-          }
-        },
+        type: 'gauge',
+                    startAngle: -1,
+                    endAngle: 10,
+                    radius: '70%',
+                    progress: {
+                        show: true,
+                        overlap: false,
+                        roundCap: true,
+                        clip: false,
+                        itemStyle: {
+                            color: '#00FF99'
+                        }
+                    },
+                    pointer: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            width: 30,
+                            color: [[1, '#303A52']]
+                        }
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: false
+                    },
+                    detail: {
+                      valueAnimation: true,
+                        formatter: function (value) {
+                            return `{value|${value}}\n{unit|mins read}`;
+                        },
+                        rich: {
+                            value: {
+                                fontSize: 40, 
+                                fontWeight: 'bold',
+                                color: '#fff'
+                            },
+                            unit: {
+                                fontSize: 16,
+                                fontWeight: 'bold',
+                                color: '#fff'
+                            }
+                        },
+                        offsetCenter: [0, 0] 
+                    },
         data: [
           {
             value: readTime,
@@ -755,12 +788,17 @@
           top: 60,
           data: pieData,
           label: {
-            show: true,
+            show: false,
             color: "#ffffff",
             borderWidth: 0,
             borderColor: "transparent",
           },
-
+          color:[
+              '#8979FF',
+              
+              '#79FF8D',
+              '#FF9B5C',
+            ],
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -870,7 +908,7 @@
             }
           })),
           itemStyle: {
-            color: '#000000' 
+            color: '#8979FF' 
           }
         },
         {
@@ -878,13 +916,13 @@
           type: 'bar',
           stack: 'interactions',
           data: negativeData.map((value) => ({
-            value: value, // Negative values to stack above positive
+            value: value, 
             itemStyle: {
               borderRadius: [10, 0, 0, 0] // Rounded corners for negative bars
             }
           })),
           itemStyle: {
-            color: '#f44336' // Red for negative interactions
+            color: '#FF9B5C' 
           }
         }
       ];
