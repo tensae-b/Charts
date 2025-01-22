@@ -1094,6 +1094,30 @@
       .catch((error) => {
         console.error("Error:", error);
       });
+
+      //user profile charts 
+      // PIE CHART - Categorical Reputation Breakdown
+    const categoryPieChart = echarts.init(document.getElementById('user-catergorical-reputation-data'));
+
+    categoryPieChart.setOption({
+      title: { text: 'Categorical Reputation Breakdown', left: 'center', textStyle: { color: '#fff' } },
+      tooltip: { trigger: 'item' },
+      series: [
+        {
+          name: 'Reputation',
+          type: 'pie',
+          radius: '50%',
+          data: [
+            { value: 0.8333333333333333, name: '3D Printing' },
+            { value: 0.8333333333333333, name: 'Aged Care' },
+            { value: 0.83333333, name: 'AI' }
+          ],
+          emphasis: {
+            itemStyle: { shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0, 0, 0, 0.5)' }
+          }
+        }
+      ]
+    });
   </script>
   <!-- <script type="module" src="/src/main.js"></script> -->
 </body>
