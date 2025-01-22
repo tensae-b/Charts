@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src=" https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js "></script>
+    <style>
+       
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+      
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #015240;
+            color: white;
+            
+            padding: 50px 70px 0px 70px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            max-width: 1000px;
+            width: 90%;
+        }
+
+      
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            background: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        
+        .modal-header {
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        
+        .modal-body {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            width:100%
+
+        }
+
+        .modal-body h3{
+            font-size: 47px;
+        }
+
+        .modal p{
+            font-size: 47px;
+            width: 100%;
+            text-align: center;
+            
+        }
+
+        
+        .open-modal-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .open-modal-btn:hover {
+            background: #0056b3;
+        }
+        
+        #post-engagement-summary {
+            width: 500px;
+            min-height: 500px;
+            background-color: transparent;
+        }
+       
+        
+    </style>
+</head>
+<body>
+    
+    <button class="open-modal-btn" onclick="openModal()">Open Modal</button>
+
+  
+    <div class="modal-overlay" id="modalOverlay">
+       
+        <div class="modal">
+            <button class="close-button" onclick="closeModal()">&times;</button>
+           
+            <div class="modal-body" id="modal-body">
+                <h3>513 MPXR</h3>
+                
+                    <div class="engagement-summary">
+                        <div id="post-engagement-summary" class="post-engagement-summary" ></div>
+                      </div>
+                
+                
+            </div>
+            <p>expand or see more</p>
+        </div>
+    </div>
+
+    <script>
+let selectors = {
+      
+      engagementSummary: document.getElementById(
+        "post-engagement-summary"
+      ),
+      
+    };
+    let posts = [
+      {
+        post_id: 1,
+        community: "test",
+        content_type: "post",
+        author: 1,
+        editors: [],
+        peoples_choice: 0,
+        post_source: "",
+        read_time: 5.6,
+        categories: [],
+        tags: [],
+        post_rep: 0.0,
+        deleted_post: false,
+        feed_status: false,
+        read_count: 7,
+        post_slug: "test",
+        percentages: {
+          "Total Interaction Counts": {
+            total_interaction: 7,
+            total_positive_interaction: 5,
+            total_positive_interaction_breakdown: {
+              "Average Audience": 40.0,
+              "Intermediate Audience": 40.0,
+              "Advanced Audience": 0.0,
+              "Expert Audience": 20.0,
+            },
+            total_negative_interaction: 2,
+            total_negative_interaction_breakdown: {
+              "Average Audience": 50.0,
+              "Intermediate Audience": 0.0,
+              "Advanced Audience": 0.0,
+              "Expert Audience": 50.0,
+            },
+            emoji: {
+              count: 21,
+            },
+            react: {
+              count: 12,
+            },
+            time_spent: {
+              count: 4,
+            },
+            comment: {
+              count: 5,
+            },
+          },
+          "Total interaction in Percentages": {
+            emoji: 14.285714285714285,
+            react: 14.285714285714285,
+            time_spent: 57.14285714285714,
+            comment: 14.285714285714285,
+          },
+          "Total Read Completion Rate": {
+            "Total completion_rate": 88.75,
+            "Total Completion rate breakdown": {
+              Average: 0.0,
+              Good: 25.0,
+              Best: 75.0,
+            },
+            "Total Audience Completion rate Breakdown": {
+              "Average Audience": {
+                Average: 0.0,
+                Good: 50.0,
+                Best: 50.0,
+              },
+              "Intermediate Audience": {
+                Average: 0.0,
+                Good: 0.0,
+                Best: 100.0,
+              },
+              "Advanced Audience": {
+                Average: 0,
+                Good: 0,
+                Best: 0,
+              },
+              "Expert Audience": {
+                Average: 0.0,
+                Good: 0.0,
+                Best: 100.0,
+              },
+            },
+          },
+          "Audience Level interaction percentages": {
+            "Average Audience": 42.857142857142854,
+            "Intermediate Audience": 28.57142857142857,
+            "Advanced Audience": 0.0,
+            "Expert Audience": 28.57142857142857,
+          },
+          "Article Sentiment Popularity Breakdown": {
+            Popularity: "Not Popular",
+          },
+          "Article Sentiment Likability Breakdown": {
+            likability: "Unlikable",
+          },
+          "Article Sentiment Engagement Breakdown": {
+            engagement: "Less Engaging",
+            engagement_percentage: 42.857142857142854,
+          },
+          "Audience Level Peoples Choice Percentages": {
+            "Average Audience": 0,
+            "Intermediate Audience": 0,
+            "Advanced Audience": 0,
+            "Expert Audience": 0,
+          },
+        },
+      },
+      {
+        post_id: 2,
+        community: "test",
+        content_type: "post",
+        author: 1,
+        editors: [],
+        peoples_choice: 0,
+        post_source: "",
+        read_time: 5.6,
+        categories: [],
+        tags: [],
+        post_rep: 0.0,
+        deleted_post: false,
+        feed_status: false,
+        read_count: 7,
+        post_slug: "test",
+        percentages: {
+          "Total Interaction Counts": {
+            total_interaction: 7,
+            total_positive_interaction: 5,
+            total_positive_interaction_breakdown: {
+              "Average Audience": 40.0,
+              "Intermediate Audience": 40.0,
+              "Advanced Audience": 0.0,
+              "Expert Audience": 20.0,
+            },
+            total_negative_interaction: 2,
+            total_negative_interaction_breakdown: {
+              "Average Audience": 50.0,
+              "Intermediate Audience": 0.0,
+              "Advanced Audience": 0.0,
+              "Expert Audience": 50.0,
+            },
+            emoji: {
+              count: 21,
+            },
+            react: {
+              count: 12,
+            },
+            time_spent: {
+              count: 4,
+            },
+            comment: {
+              count: 5,
+            },
+          },
+          "Total interaction in Percentages": {
+            emoji: 14.285714285714285,
+            react: 14.285714285714285,
+            time_spent: 57.14285714285714,
+            comment: 14.285714285714285,
+          },
+          "Total Read Completion Rate": {
+            "Total completion_rate": 88.75,
+            "Total Completion rate breakdown": {
+              Average: 0.0,
+              Good: 25.0,
+              Best: 75.0,
+            },
+            "Total Audience Completion rate Breakdown": {
+              "Average Audience": {
+                Average: 0.0,
+                Good: 50.0,
+                Best: 50.0,
+              },
+              "Intermediate Audience": {
+                Average: 0.0,
+                Good: 0.0,
+                Best: 100.0,
+              },
+              "Advanced Audience": {
+                Average: 0,
+                Good: 0,
+                Best: 0,
+              },
+              "Expert Audience": {
+                Average: 0.0,
+                Good: 0.0,
+                Best: 100.0,
+              },
+            },
+          },
+          "Audience Level interaction percentages": {
+            "Average Audience": 42.857142857142854,
+            "Intermediate Audience": 28.57142857142857,
+            "Advanced Audience": 10.058421684555,
+            "Expert Audience": 28.57142857142857,
+          },
+          "Article Sentiment Popularity Breakdown": {
+            Popularity: "Not Popular",
+          },
+          "Article Sentiment Likability Breakdown": {
+            likability: "Unlikable",
+          },
+          "Article Sentiment Engagement Breakdown": {
+            engagement: "Less Engaging",
+            engagement_percentage: 42.857142857142854,
+          },
+          "Audience Level Peoples Choice Percentages": {
+            "Average Audience": 15,
+            "Intermediate Audience": 40,
+            "Advanced Audience": 25,
+            "Expert Audience": 20,
+          },
+        },
+      },
+    ];
+const initEngagementSummary = (data) => {
+      const chart = echarts.init(selectors.engagementSummary, null, {
+        height: 110
+      });
+      console.log('here',data)
+      const datas = data.percentages
+      const categories = Object.keys(datas["Total interaction in Percentages"]);
+      const values = Object.values(datas["Total interaction in Percentages"]);
+
+      const colors = ['#FFC107', '#4CAF50', '#2196F3', '#F44336']; // Yellow, Green, Blue, Red
+
+      option = {
+        title: {
+          text: 'Engagement Summary',
+          textStyle: {
+            color: '#ffffff',
+            fontSize:20
+          }
+        },
+        
+        grid: {
+          top: '5%',
+          left: '3%',
+          right: '3%',
+          bottom: '20%',
+          containLabel: true
+        },
+        legend: {
+          orient: 'horizontal',
+          bottom: 0,
+          left: 'center',
+          itemGap: 10,
+          icon: 'circle',
+          textStyle: {
+            color: '#ffffff',
+            fontSize: 14
+          },
+          formatter: function (name) {
+            const index = categories.findIndex(cat => cat.charAt(0).toUpperCase() + cat.slice(1) === name);
+
+            const roundedValue = Math.round(values[index]);
+            return `${name}: ${roundedValue}%`;
+          }
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: { type: 'shadow' }
+        },
+
+
+        xAxis: {
+          type: 'value',
+          splitLine: { show: false },
+          axisLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: { show: false }
+        },
+        yAxis: {
+          type: 'category',
+          data: ['Total Interaction'],
+          splitLine: { show: false },
+          axisLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: { show: false }
+        },
+        series: categories.map((category, index) => ({
+          name: category.charAt(0).toUpperCase() + category.slice(1),
+          type: 'bar',
+          stack: 'total',
+          itemStyle: { color: colors[index] },
+          data: [values[index]],
+          barWidth: '20px',
+          emphasis: {
+            focus: 'series'
+          },
+        }))
+
+      };
+      
+      chart.setOption(option)
+    }
+        
+        function openModal() {
+            const data = posts.find((u) => u.post_id == parseInt(2));
+            initEngagementSummary(data)
+            document.getElementById('modalOverlay').style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        
+        function closeModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+
+       
+        document.getElementById('modalOverlay').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+
+       
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
