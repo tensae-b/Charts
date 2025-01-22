@@ -289,6 +289,7 @@ let selectors = {
             react: 14.285714285714285,
             time_spent: 57.14285714285714,
             comment: 14.285714285714285,
+           
           },
           "Total Read Completion Rate": {
             "Total completion_rate": 88.75,
@@ -347,7 +348,7 @@ let selectors = {
     ];
 const initEngagementSummary = (data) => {
       const chart = echarts.init(selectors.engagementSummary, null, {
-        height: 110
+        height: 130
       });
       console.log('here',data)
       const datas = data.percentages
@@ -378,6 +379,7 @@ const initEngagementSummary = (data) => {
           left: 'center',
           itemGap: 10,
           icon: 'circle',
+          padding:0,
           textStyle: {
             color: '#ffffff',
             fontSize: 14
@@ -448,11 +450,7 @@ const initEngagementSummary = (data) => {
         });
 
        
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
-        });
+       
     </script>
 </body>
 </html>
