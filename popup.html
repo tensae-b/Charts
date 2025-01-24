@@ -96,7 +96,15 @@
             min-height: 500px;
             background-color: transparent;
         }
-       
+       .modal-graph{
+        display:flex;
+        flex-direction:column;
+       }
+
+       /* .total-readed-time {
+        max-width: 30%;
+        max-height: 30%;
+       } */
         
     </style>
 </head>
@@ -111,7 +119,13 @@
             <button class="close-button" onclick="closeModal()">&times;</button>
            
             <div class="modal-body" id="modal-body">
+              <div class="modal-graph">
                 <h3>513 MPXR</h3>
+                <div class="total-readed-time chart">
+                  <div id="readed-time-chart" class="total-readed-time-chart" ></div>
+                </div>
+              </div>
+                
                 
                     <div class="engagement-summary">
                         <div id="post-engagement-summary" class="post-engagement-summary" ></div>
@@ -124,11 +138,56 @@
     </div>
 
     <script>
+
+const options = {
+      articleReadTimeChartOptions: {
+        tooltip: {
+          formatter: "{a} <br/>{b} : {c} mins",
+        },
+        title: {
+          text: " ",
+          textStyle: {
+            color: "#ffffff",
+
+          },
+        },
+        series: [
+          {
+            name: "",
+            type: "gauge",
+            color: ['#ffffff'],
+            splitLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: false
+                    },
+
+            detail: {
+              formatter: "{value} read time",
+              color: '#ffffff',
+            },
+            data: [
+              {
+                value: 50,
+
+                name: "total read time",
+              },
+            ],
+          },
+        ],
+      },
+    }
 let selectors = {
       
       engagementSummary: document.getElementById(
         "post-engagement-summary"
       ),
+
+      articleTotalReadTimeChart: document.getElementById("readed-time-chart"),
       
     };
     let posts = [
@@ -346,6 +405,79 @@ let selectors = {
         },
       },
     ];
+
+    const initArticleReadTimeChart = (data) => {
+      let chart = echarts.init(selectors.articleTotalReadTimeChart, null, {
+        height: 350,
+        width:350
+
+      });
+     const readTime=data.read_time
+      
+     
+      let series = {
+        name: "",
+        type: 'gauge',
+                    startAngle: -1,
+                    endAngle: 10,
+                    radius: '70%',
+                    progress: {
+                        show: true,
+                        overlap: false,
+                        roundCap: true,
+                        clip: false,
+                        itemStyle: {
+                            color: '#00FF99'
+                        }
+                    },
+                    pointer: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            width: 30,
+                            color: [[1, '#303A52']]
+                        }
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: false
+                    },
+                    detail: {
+                      valueAnimation: true,
+                        formatter: function (value) {
+                            return `{value|${value}}\n{unit|mins read}`;
+                        },
+                        rich: {
+                            value: {
+                                fontSize: 40, 
+                                fontWeight: 'bold',
+                                color: '#fff'
+                            },
+                            unit: {
+                                fontSize: 16,
+                                fontWeight: 'bold',
+                                color: '#fff'
+                            }
+                        },
+                        offsetCenter: [0, 0] 
+                    },
+        data: [
+          {
+            value: readTime,
+            name: "",
+
+          },
+        ],
+      };
+
+      chart.setOption({ ...options.articleReadTimeChartOptions, series } );
+    };
 const initEngagementSummary = (data) => {
       const chart = echarts.init(selectors.engagementSummary, null, {
         height: 130
@@ -428,10 +560,11 @@ const initEngagementSummary = (data) => {
       
       chart.setOption(option)
     }
-        
+       
         function openModal() {
             const data = posts.find((u) => u.post_id == parseInt(2));
             initEngagementSummary(data)
+            initArticleReadTimeChart(data)
             document.getElementById('modalOverlay').style.display = 'block';
             document.body.style.overflow = 'hidden'; 
         }
