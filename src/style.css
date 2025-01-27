@@ -99,12 +99,21 @@ button:focus-visible {
 
   margin: 0;
   padding: 0;
+  box-sizing: border-box; 
   
+}
+
+canvas{
+  
+  width:100% !important;
+  /* height: 0px !important; */
 }
 body {
   width: fit-content;
   padding:0 30px;
   background-color: #032c43;
+ 
+  width:100%;
 }
 h1{
  margin:10px 0px 20px 0px;
@@ -113,20 +122,26 @@ h1{
 
 #post-charts {
    width:100%;
+   display: flex;
+   flex-direction: column;
+   gap: 100px;
   /* display: grid;
   grid-template-columns: repeat(2, 1fr); */
 }
 #post-charts .chart {
   width: 700px;
-  height: 500px;
+  height: 400px;
   
 }
 .completion-rate-audience-breakdown-for-article{
   width:100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+ 
 }
+
 
 #user-charts {
   display: grid;
@@ -141,13 +156,120 @@ h1{
 .total-read-time{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
  
 }
 
 .interaction-graphs{
-  margin-top:100px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
+.post-engagement-summary{
+  width:50% !important;
+}
+
+.engagement-summary{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.post-engagement-summary > div > canvas {
+  width:100% !important;
+  
+}
+
+.interaction-type-count-with-interaction-name-for-article-chart > div > canvas {
+  width:100% !important;
+  
+}
+
+#readed-time-chart > div > canvas {
+ 
+ width:100% !important;
+
+ 
+}
+
+.article-total-read-time > div > canvas {
+ 
+  width:100% !important;
+ 
+ }
+
+ .interaction-score-by-audience-type-article-chart > div > canvas {
+ 
+  width:100% !important;
+ 
+  
+ }
+
+ .audience-level-peoples-choice-percentages-for-article-chart> div > canvas {
+ 
+  width:100% !important;
+ 
+  
+ }
+ .article-sentiment-breakdown-by-Audience-type > div > canvas {
+ 
+  width:100% !important;
+ 
+  
+ }
+
+ .completion-rate-audience-breakdown-for-article-chart > div > canvas{
+  width:100% !important;
+  
+ 
+}
+@media (max-width: 768px) {
+  .engagement-summary{
+    justify-self: start;
+  }
+  .post-engagement-summary{
+    width:100% !important;
+  }
+  #readed-time-chart > div > canvas {
+ 
+    width:90% !important;
+    height: 300px !important;
+   }
+   
+   .article-total-read-time > div > canvas {
+    
+     width:90% !important;
+     height: 300px !important;
+    }
+
+    .completion-rate-audience-breakdown-for-article-chart > div > canvas{
+      width:90% !important;
+      
+     
+    }
+    
+
+    .interaction-type-count-with-interaction-name-for-article-chart > div > canvas {
+      width:50% !important;
+      
+    }
+    .interaction-score-by-audience-type-article-chart > div > canvas {
+ 
+      width:60% !important;
+    
+     }
+     .audience-level-peoples-choice-percentages-for-article-chart> div > canvas {
+ 
+      width:50% !important;
+     
+      
+     }
+     .article-sentiment-breakdown-by-Audience-type > div > canvas {
+ 
+      width:50% !important;
+     
+      
+     }
+}

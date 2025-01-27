@@ -21,54 +21,54 @@
   <h1>Post Profile Chart</h1>
   <div id="post-charts">
     <div class="engagement-summary">
-      <div id="post-engagement-summary" class="post-engagement-summary" ></div>
+      <div id="post-engagement-summary" class="post-engagement-summary"  ></div>
     </div>
     <div class="total-read-time">
-      <div class="total-readed-time chart">
-        <div id="readed-time-chart" class="total-readed-time-chart" style="width: 700px; height: 500px"></div>
+      <div class="total-readed-time ">
+        <div id="readed-time-chart" class="total-readed-time-chart chart" ></div>
       </div>
-      <div class="article-total-read-time-completion-rate chart">
-        <div id="article-read-time-chart" class="article-total-read-time" style="width: 700px; height: 500px"></div>
+      <div class="article-total-read-time-completion-rate ">
+        <div id="article-read-time-chart" class="article-total-read-time chart" ></div>
       </div>
     </div>
     <div class="completion-rate-audience-breakdown-for-article">
-      <div id="completion-rate-for-article-chart" class="completion-rate-audience-breakdown-for-article-chart"
-        style="width: 700px; height: 500px"></div>
+      <div id="completion-rate-for-article-chart" class="completion-rate-audience-breakdown-for-article-chart chart"
+        ></div>
     </div>
     <div class="interaction-graphs">
       <div class="interaction-type-count-with-interaction-name-for-article">
         <div id="interaction-type-count-with-name"
-          class="interaction-type-count-with-interaction-name-for-article-chart" style="width: 700px; height: 500px">
+          class="interaction-type-count-with-interaction-name-for-article-chart chart">
         </div>
       </div>
       <div class="interaction-score-by-audience-type-article">
-        <div id="article-interaction-score-by-audience-type" class="interaction-score-by-audience-type-article-chart"
-          style="width: 700px; height: 500px">
+        <div id="article-interaction-score-by-audience-type" class="interaction-score-by-audience-type-article-chart chart"
+        >
         </div>
       </div>
     </div>
 
     <div class="audience-level-peoples-choice-percentages-for-article">
       <div id="audience-level-peoples-choice-percentages"
-        class="audience-level-peoples-choice-percentages-for-article-chart" style="width: 900px; height: 500px"></div>
+        class="audience-level-peoples-choice-percentages-for-article-chart chart" ></div>
     </div>
-    <div class="article-engagement-popularity-sentiment">
+    <!-- <div class="article-engagement-popularity-sentiment">
       <div id="article-engagement-popularity" class="article-engagement-popularity-sentiment-chart"
         style="width: 900px; height: 500px"></div>
-    </div>
+    </div> -->
     <div class="sentiment-breakdown-by-Audience-type">
-      <div id="article-sentiment-breakdown-by-Audience-type" class="article-sentiment-breakdown-by-Audience-type"
+      <div id="article-sentiment-breakdown-by-Audience-type" class="article-sentiment-breakdown-by-Audience-type chart"
         style="width: 700px; height: 500px">
       </div>
     </div>
 
     <div class="engagement-popularity">
-      <div id="article-engagement-popularity" class="article-engagement-popularity" style="width: 700px; height: 500px">
+      <div id="article-engagement-popularity" class="article-engagement-popularity chart" >
       </div>
     </div>
   </div>
 
-  <h1>User Profile Chart</h1>
+  <!-- <h1>User Profile Chart</h1>
   <div id="user-charts">
     <div class="user-catergorical-reputation-data-chart">
       <div id="user-catergorical-reputation-data" style="width: 700px; height: 500px"></div>
@@ -88,7 +88,7 @@
     <div class="MPXR-from-interaction-percentage-user-chart">
       <div id="MPXR-from-interaction-percentage-user" style="width: 700px; height: 500px"></div>
     </div>
-  </div>
+  </div> -->
 
 
   <script type="text/javascript">
@@ -109,6 +109,7 @@
             name: "",
             type: "gauge",
             color: ['#ffffff'],
+            center:['30%', '60%'],
             splitLine: {
                         show: false
                     },
@@ -148,6 +149,7 @@
             type: "gauge",
             startAngle: 90,
             endAngle: -270,
+            center:['30%', '60%'],
             pointer: {
               show: false,
             },
@@ -165,7 +167,7 @@
             axisLine: {
               lineStyle: {
                 width: 40,
-                color: '#032c43'
+                color: '#032c46'
               },
 
               roundCap: true
@@ -297,10 +299,11 @@
             name: "pie",
             type: "pie",
             radius: ['40%', '70%'],
+            center:['40%', '60%'],
             selectedMode: "single",
             selectedOffset: 30,
             clockwise: true,
-            center: "50%",
+       
             color:[
               '#8979FF',
               '#57C2CE',
@@ -607,6 +610,7 @@
       let series = {
         name: "Total read time",
         type: 'gauge',
+        center:['30%', '60%'],
                     startAngle: -1,
                     endAngle: 10,
                     radius: '70%',
@@ -677,12 +681,13 @@
           tempValue.push({
             value: element[1],
             name: element[0],
+            
             title: {
-              offsetCenter: ["-20%", `-${index * 15}%`],
+              offsetCenter: ["-25%", `-${index * 20}%`],
             },
             detail: {
               valueAnimation: true,
-              offsetCenter: ["15%", `-${index * 15} % `],
+              offsetCenter: ["25%", `-${index * 20} % `],
             },
           });
         });
@@ -725,7 +730,7 @@
       const categories = Object.keys(datas["Total interaction in Percentages"]);
       const values = Object.values(datas["Total interaction in Percentages"]);
 
-      const colors = ['#FFC107', '#4CAF50', '#2196F3', '#F44336']; // Yellow, Green, Blue, Red
+      const colors = ['#16B1FF', '#79FF8D', '#FF9B5C', '#7F6DFF']; // Yellow, Green, Blue, Red
 
       option = {
         title: {
@@ -744,7 +749,7 @@
         },
         legend: {
           orient: 'horizontal',
-          bottom: 0,
+          bottom: '10%',
           left: 'center',
           itemGap: 25,
           icon: 'circle',
@@ -786,7 +791,7 @@
           stack: 'total',
           itemStyle: { color: colors[index] },
           data: [values[index]],
-          barWidth: '60px',
+          barWidth: '20px',
           emphasis: {
             focus: 'series'
           },
@@ -826,7 +831,7 @@
           type: "pie",
 
           radius: "40%",
-          center: [index % 2 === 0 ? "30%" : "85%", index < 2 ? "22%" : "77%"],
+          center: [index % 2 === 0 ? "30%" : "80%", index < 2 ? "22%" : "77%"],
           top: 60,
           data: pieData,
           label: {
@@ -861,14 +866,14 @@
       const chartTitle = audienceTypes.map((audienceType, index) => {
         return {
           text: `Completion By ${audienceType}`,
-          left: index % 2 === 0 ? "25%" : "75%",
-          top: index < 2 ? "5%" : "53%", // Adjust top position as per your layout
-          textAlign: "center",
-
+          left: index % 2 === 0 ? "10%" : "75%",
+          top: index < 2 ? "5%" : "53%", 
+          textalign: "center",
+          
           textStyle: {
-            fontSize: 14,
+            fontSize: 12,
             fontWeight: "bold",
-            color: "#ffffff", // Customize the color as needed
+            color: "#ffffff", 
           },
         };
       });
@@ -911,14 +916,28 @@
           axisTick: {
             alignWithLabel: true,
           },
+          axisLabel:{
+            textStyle:{
+              color:'#fff'
+            }
+          }
         },
       ];
+
+      let yAxis=[
+     { axisLabel:{
+            textStyle:{
+              color:'#fff'
+            }
+          },}
+      ]
 
       let series = [
         {
           name: "Count",
           type: "bar",
           barWidth: "60%",
+          
           data: seriesData,
         },
       ];
@@ -926,6 +945,7 @@
       chart.setOption({
         ...options.interactionTypeCountWithNameOption,
         xAxis: xAxis,
+        yAxis:yAxis,
         series: series,
       });
     };
@@ -987,6 +1007,7 @@
             params.forEach(param => {
               content += `${param.seriesName}: ${Math.abs(param.value)}%<br/>`;
             });
+            
             return content;
           }
         },
@@ -999,7 +1020,15 @@
         },
         xAxis: {
           type: 'category',
-          data: xAxisData
+          data: xAxisData,
+          axisLabel: {
+    interval: 0, 
+    color: '#ffffff', 
+    rotate: 0, 
+    textStyle: {
+      fontSize: 12, 
+    },
+  },
         },
         yAxis: {
           type: 'value',
@@ -1063,7 +1092,8 @@
           return ((param.value / bodyMax) * 100).toFixed(0) + '%';
         },
         fontSize: 18,
-        fontFamily: 'Arial'
+        fontFamily: 'Arial',
+        color:'#fff',
       };
       const color = ['#2196F3']
       const markLineSetting = {
@@ -1103,12 +1133,20 @@
             data: ['Average Audience', 'Intermediate Audience', 'Advanced Audience', 'Expert Audience'],
             axisTick: { show: true },
             axisLine: { show: true },
-            axisLabel: { show: true }
+            axisLabel: { show: true,
+            interval:0,
+              textStyle:{
+              color:'#fff',
+              
+            }
+             },
+            
           },
         yAxis: {
           max: bodyMax,
           offset: 20,
-          splitLine: { show: false }
+          splitLine: { show: false },
+          
         },
 
         series : [{
@@ -1127,7 +1165,7 @@
           symbolBoundingData: bodyMax,
           animationDuration: 0,
           itemStyle: {
-            color: '#ccc'
+            color: '#fff'
           },
           data: [
             {
@@ -1164,6 +1202,7 @@
       const seriesData = audienceLevels.map((audience) => ({
         value: interactionData[audience],
         name: audience,
+
       }));
       console.log(seriesData);
       const series = options.articleInteractionScoreByAudienceTypeOption.series[0];
