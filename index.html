@@ -8,6 +8,13 @@
   <script src=" https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js "></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
+  <style>
+    h1 {
+      color: #fff;
+      margin: 40px auto;
+      font-size: 50px;
+    }
+  </style>
 </head>
 
 <body>
@@ -59,23 +66,21 @@
       <div id="article-engagement-popularity" class="article-engagement-popularity" style="width: 700px; height: 500px">
       </div>
     </div>
-
-
   </div>
+
   <h1>User Profile Chart</h1>
   <div id="user-charts">
     <div class="user-catergorical-reputation-data-chart">
       <div id="user-catergorical-reputation-data" style="width: 700px; height: 500px"></div>
     </div>
     <div class="network-analysis-reputation-score-percentage-for-user">
-      <div id="network-analysis-reputation-score-percentage" style="width: 700px; height: 500px"></div>
+      <div id="network-analysis-reputation-score-percentage" style="width: 700px; height: 750px; margin: 0px 0;"></div>
     </div>
     <div class="user-expertise-level-and-user-nature-for-user-chart">
-      <div id="user-expertise-level-and-user-nature-for-user" style="padding-left: 10px; width: 800px; height: 500px">
-      </div>
-    </div><br>
+      <div id="user-expertise-level-and-user-nature-for-user" style="padding-left: 10px; width: 800px; height: 500px"></div>
+    </div><br><br>
     <div class="interaction-breakdown-in-numbers-users-favorite-chart">
-      <div id="interaction-breakdown-in-numbers-users-favorite" style="width: 860px; height: 500px"></div>
+      <div id="interaction-breakdown-in-numbers-users-favorite" style="width: 1200px; height: 500px; margin: 100px 0;"></div>
     </div><br>
     <div class="number-Of-MPXR-from-publication-for-user-chart">
       <div id="number-of-MPXR-from-publication-for-user" style="width: 700px; height: 500px"></div>
@@ -84,7 +89,6 @@
       <div id="MPXR-from-interaction-percentage-user" style="width: 700px; height: 500px"></div>
     </div>
   </div>
-
 
 
   <script type="text/javascript">
@@ -317,6 +321,38 @@
           },
         ],
       },
+      audienceLevelPeoplesChoicePercentagesOption:{
+       tooltip: {},
+        legend: {
+          data: ['Audience Level Peoples Choice Percentages'],
+          selectedMode: 'single'
+        },
+        grid: {
+          top: 'center',
+          height: 230
+        },
+        markLine: {
+          z: -100
+        },
+        series: [
+          {
+            name: 'typeA',
+            type: 'pictorialBar',
+            data: [],
+            z: 10
+          },
+          
+          {
+            name: 'TypeB',
+            type: 'pictorialBar',
+            animationDuration: 0,
+            itemStyle: {
+              color: '#ccc'
+            },
+            data: []
+          }
+        ]
+      },
     }
     let selectors = {
       articleTotalReadTimeChart: document.getElementById("readed-time-chart"),
@@ -363,7 +399,7 @@
         percentages: {
           "Total Interaction Counts": {
             total_interaction: 7,
-            total_positive_interaction: 5,
+            total_positive_interaction: 5, 
             total_positive_interaction_breakdown: {
               "Average Audience": 40.0,
               "Intermediate Audience": 40.0,
@@ -398,27 +434,32 @@
           },
           "Total Read Completion Rate": {
             "Total completion_rate": 88.75,
+            // this is for the total article rad time completion rate grapgh 
             "Total Completion rate breakdown": {
               Average: 0.0,
               Good: 25.0,
               Best: 75.0,
             },
+            // this is for the completion by average audience grapgh
             "Total Audience Completion rate Breakdown": {
               "Average Audience": {
                 Average: 0.0,
                 Good: 50.0,
                 Best: 50.0,
               },
+              // this is for the grapgh complettion itermidiate  audieance grapgh
               "Intermediate Audience": {
                 Average: 0.0,
                 Good: 0.0,
                 Best: 100.0,
               },
+              // this si for the completion by advanced audience grapgh
               "Advanced Audience": {
                 Average: 0,
                 Good: 0,
                 Best: 0,
               },
+              // this is for the completion expert audience grapgh
               "Expert Audience": {
                 Average: 0.0,
                 Good: 0.0,
@@ -432,6 +473,7 @@
             "Advanced Audience": 0.0,
             "Expert Audience": 28.57142857142857,
           },
+
           "Article Sentiment Popularity Breakdown": {
             Popularity: "Not Popular",
           },
@@ -1004,7 +1046,113 @@
     //   });
     // };
     const initAudienceLevelPeoplesChoicePercentages = (data) => {
-      const chart = echarts.init(selectors.articleInteractionScoreByAudienceType);
+      const chart = echarts.init(selectors.audienceLevelPeoplesChoicePercentages);
+      const symbols = [
+        "path://M36.7,102.84c-1.17,2.54-2.99,4.98-3.39,7.63c-1.51,9.89-3.31,19.58-1.93,29.95 c0.95,7.15-2.91,14.82-3.57,22.35c-0.64,7.36-0.2,14.86,0.35,22.25c0.12,1.68,2.66,3.17,4.67,5.4c-0.6,0.82-1.5,2.22-2.58,3.48 c-0.96,1.12-1.96,2.35-3.21,3.04c-1.71,0.95-3.71,2.03-5.51,1.9c-1.18-0.08-3.04-2.13-3.16-3.43c-0.44-4.72,0-9.52-0.41-14.25 c-0.94-10.88-2.32-21.72-3.24-32.61c-0.49-5.84-1.63-12.01-0.35-17.54c3.39-14.56,2.8-28.84,0.36-43.4 c-2.71-16.16-1.06-32.4,0.54-48.59c0.91-9.22,4.62-17.36,8.53-25.57c1.32-2.77,1.88-6.84,0.87-9.62C21.89-3.77,18.09-11,14.7-18.38 c-0.56,0.1-1.13,0.21-1.69,0.31C10.17-11.52,6.29-5.2,4.71,1.65C2.05,13.21-4.42,22.3-11.43,31.28c-1.32,1.69-2.51,3.5-3.98,5.04 c-4.85,5.08-3.25,10.98-2.32,16.82c0.25,1.53,0.52,3.06,0.77,4.59c-0.53,0.22-1.07,0.43-1.6,0.65c-1.07-2.09-2.14-4.19-3.28-6.44 c-6.39,2.91-2.67,9.6-5.23,15.16c-1.61-3.31-2.77-5.68-3.93-8.06c0-0.33,0-0.67,0-1c6.96-16.08,14.63-31.9,20.68-48.31 C-5.24-4.07-2.03-18.55,2-32.73c0.36-1.27,0.75-2.53,0.98-3.82c1.36-7.75,4.19-10.23,11.88-10.38c1.76-0.04,3.52-0.21,5.76-0.35 c-0.55-3.95-1.21-7.3-1.45-10.68c-0.61-8.67,0.77-16.69,7.39-23.19c2.18-2.14,4.27-4.82,5.25-7.65c2.39-6.88,11.66-9,16.94-8.12 c5.92,0.99,12.15,7.93,12.16,14.12c0.01,9.89-5.19,17.26-12.24,23.68c-2.17,1.97-5.35,4.77-5.17,6.94c0.31,3.78,4.15,5.66,8.08,6.04 c1.82,0.18,3.7,0.37,5.49,0.1c5.62-0.85,8.8,2.17,10.85,6.73C73.38-27.19,78.46-14.9,84.2-2.91c1.52,3.17,4.52,5.91,7.41,8.09 c7.64,5.77,15.57,11.16,23.45,16.61c2.28,1.58,4.64,3.23,7.21,4.14c5.18,1.84,8.09,5.63,9.82,10.46c0.45,1.24,0.19,3.71-0.6,4.18 c-1.06,0.63-3.15,0.27-4.44-0.38c-7.05-3.54-12.84-8.88-19.14-13.5c-3.5-2.57-7.9-4-12.03-5.6c-9.44-3.66-17.73-8.42-22.5-18.09 c-2.43-4.94-6.09-9.27-9.69-14.61c-1.2,10.98-4.46,20.65,1.14,31.19c6.62,12.47,5.89,26.25,1.21,39.49 c-2.52,7.11-6.5,13.74-8.67,20.94c-1.91,6.33-2.2,13.15-3.23,19.75c-0.72,4.63-0.84,9.48-2.36,13.84 c-2.49,7.16-6.67,13.83-5.84,21.82c0.42,4.02,1.29,7.99,2.1,12.8c-3.74-0.49-7.47-0.4-10.67-1.66c-1.33-0.53-2.43-4.11-2.07-6.01 c1.86-9.94,3.89-19.69,0.07-29.74C34.55,108.63,36.19,105.52,36.7,102.84c1.25-8.45,2.51-16.89,3.71-24.9 c-0.83-0.58-0.85-0.59-0.87-0.61c-0.03,0.16-0.07,0.32-0.09,0.48C38.53,86.15,37.62,94.5,36.7,102.84z",
+        "path://M36.7,102.84c-1.17,2.54-2.99,4.98-3.39,7.63c-1.51,9.89-3.31,19.58-1.93,29.95 c0.95,7.15-2.91,14.82-3.57,22.35c-0.64,7.36-0.2,14.86,0.35,22.25c0.12,1.68,2.66,3.17,4.67,5.4c-0.6,0.82-1.5,2.22-2.58,3.48 c-0.96,1.12-1.96,2.35-3.21,3.04c-1.71,0.95-3.71,2.03-5.51,1.9c-1.18-0.08-3.04-2.13-3.16-3.43c-0.44-4.72,0-9.52-0.41-14.25 c-0.94-10.88-2.32-21.72-3.24-32.61c-0.49-5.84-1.63-12.01-0.35-17.54c3.39-14.56,2.8-28.84,0.36-43.4 c-2.71-16.16-1.06-32.4,0.54-48.59c0.91-9.22,4.62-17.36,8.53-25.57c1.32-2.77,1.88-6.84,0.87-9.62C21.89-3.77,18.09-11,14.7-18.38 c-0.56,0.1-1.13,0.21-1.69,0.31C10.17-11.52,6.29-5.2,4.71,1.65C2.05,13.21-4.42,22.3-11.43,31.28c-1.32,1.69-2.51,3.5-3.98,5.04 c-4.85,5.08-3.25,10.98-2.32,16.82c0.25,1.53,0.52,3.06,0.77,4.59c-0.53,0.22-1.07,0.43-1.6,0.65c-1.07-2.09-2.14-4.19-3.28-6.44 c-6.39,2.91-2.67,9.6-5.23,15.16c-1.61-3.31-2.77-5.68-3.93-8.06c0-0.33,0-0.67,0-1c6.96-16.08,14.63-31.9,20.68-48.31 C-5.24-4.07-2.03-18.55,2-32.73c0.36-1.27,0.75-2.53,0.98-3.82c1.36-7.75,4.19-10.23,11.88-10.38c1.76-0.04,3.52-0.21,5.76-0.35 c-0.55-3.95-1.21-7.3-1.45-10.68c-0.61-8.67,0.77-16.69,7.39-23.19c2.18-2.14,4.27-4.82,5.25-7.65c2.39-6.88,11.66-9,16.94-8.12 c5.92,0.99,12.15,7.93,12.16,14.12c0.01,9.89-5.19,17.26-12.24,23.68c-2.17,1.97-5.35,4.77-5.17,6.94c0.31,3.78,4.15,5.66,8.08,6.04 c1.82,0.18,3.7,0.37,5.49,0.1c5.62-0.85,8.8,2.17,10.85,6.73C73.38-27.19,78.46-14.9,84.2-2.91c1.52,3.17,4.52,5.91,7.41,8.09 c7.64,5.77,15.57,11.16,23.45,16.61c2.28,1.58,4.64,3.23,7.21,4.14c5.18,1.84,8.09,5.63,9.82,10.46c0.45,1.24,0.19,3.71-0.6,4.18 c-1.06,0.63-3.15,0.27-4.44-0.38c-7.05-3.54-12.84-8.88-19.14-13.5c-3.5-2.57-7.9-4-12.03-5.6c-9.44-3.66-17.73-8.42-22.5-18.09 c-2.43-4.94-6.09-9.27-9.69-14.61c-1.2,10.98-4.46,20.65,1.14,31.19c6.62,12.47,5.89,26.25,1.21,39.49 c-2.52,7.11-6.5,13.74-8.67,20.94c-1.91,6.33-2.2,13.15-3.23,19.75c-0.72,4.63-0.84,9.48-2.36,13.84 c-2.49,7.16-6.67,13.83-5.84,21.82c0.42,4.02,1.29,7.99,2.1,12.8c-3.74-0.49-7.47-0.4-10.67-1.66c-1.33-0.53-2.43-4.11-2.07-6.01 c1.86-9.94,3.89-19.69,0.07-29.74C34.55,108.63,36.19,105.52,36.7,102.84c1.25-8.45,2.51-16.89,3.71-24.9 c-0.83-0.58-0.85-0.59-0.87-0.61c-0.03,0.16-0.07,0.32-0.09,0.48C38.53,86.15,37.62,94.5,36.7,102.84z",
+        "path://M36.7,102.84c-1.17,2.54-2.99,4.98-3.39,7.63c-1.51,9.89-3.31,19.58-1.93,29.95 c0.95,7.15-2.91,14.82-3.57,22.35c-0.64,7.36-0.2,14.86,0.35,22.25c0.12,1.68,2.66,3.17,4.67,5.4c-0.6,0.82-1.5,2.22-2.58,3.48 c-0.96,1.12-1.96,2.35-3.21,3.04c-1.71,0.95-3.71,2.03-5.51,1.9c-1.18-0.08-3.04-2.13-3.16-3.43c-0.44-4.72,0-9.52-0.41-14.25 c-0.94-10.88-2.32-21.72-3.24-32.61c-0.49-5.84-1.63-12.01-0.35-17.54c3.39-14.56,2.8-28.84,0.36-43.4 c-2.71-16.16-1.06-32.4,0.54-48.59c0.91-9.22,4.62-17.36,8.53-25.57c1.32-2.77,1.88-6.84,0.87-9.62C21.89-3.77,18.09-11,14.7-18.38 c-0.56,0.1-1.13,0.21-1.69,0.31C10.17-11.52,6.29-5.2,4.71,1.65C2.05,13.21-4.42,22.3-11.43,31.28c-1.32,1.69-2.51,3.5-3.98,5.04 c-4.85,5.08-3.25,10.98-2.32,16.82c0.25,1.53,0.52,3.06,0.77,4.59c-0.53,0.22-1.07,0.43-1.6,0.65c-1.07-2.09-2.14-4.19-3.28-6.44 c-6.39,2.91-2.67,9.6-5.23,15.16c-1.61-3.31-2.77-5.68-3.93-8.06c0-0.33,0-0.67,0-1c6.96-16.08,14.63-31.9,20.68-48.31 C-5.24-4.07-2.03-18.55,2-32.73c0.36-1.27,0.75-2.53,0.98-3.82c1.36-7.75,4.19-10.23,11.88-10.38c1.76-0.04,3.52-0.21,5.76-0.35 c-0.55-3.95-1.21-7.3-1.45-10.68c-0.61-8.67,0.77-16.69,7.39-23.19c2.18-2.14,4.27-4.82,5.25-7.65c2.39-6.88,11.66-9,16.94-8.12 c5.92,0.99,12.15,7.93,12.16,14.12c0.01,9.89-5.19,17.26-12.24,23.68c-2.17,1.97-5.35,4.77-5.17,6.94c0.31,3.78,4.15,5.66,8.08,6.04 c1.82,0.18,3.7,0.37,5.49,0.1c5.62-0.85,8.8,2.17,10.85,6.73C73.38-27.19,78.46-14.9,84.2-2.91c1.52,3.17,4.52,5.91,7.41,8.09 c7.64,5.77,15.57,11.16,23.45,16.61c2.28,1.58,4.64,3.23,7.21,4.14c5.18,1.84,8.09,5.63,9.82,10.46c0.45,1.24,0.19,3.71-0.6,4.18 c-1.06,0.63-3.15,0.27-4.44-0.38c-7.05-3.54-12.84-8.88-19.14-13.5c-3.5-2.57-7.9-4-12.03-5.6c-9.44-3.66-17.73-8.42-22.5-18.09 c-2.43-4.94-6.09-9.27-9.69-14.61c-1.2,10.98-4.46,20.65,1.14,31.19c6.62,12.47,5.89,26.25,1.21,39.49 c-2.52,7.11-6.5,13.74-8.67,20.94c-1.91,6.33-2.2,13.15-3.23,19.75c-0.72,4.63-0.84,9.48-2.36,13.84 c-2.49,7.16-6.67,13.83-5.84,21.82c0.42,4.02,1.29,7.99,2.1,12.8c-3.74-0.49-7.47-0.4-10.67-1.66c-1.33-0.53-2.43-4.11-2.07-6.01 c1.86-9.94,3.89-19.69,0.07-29.74C34.55,108.63,36.19,105.52,36.7,102.84c1.25-8.45,2.51-16.89,3.71-24.9 c-0.83-0.58-0.85-0.59-0.87-0.61c-0.03,0.16-0.07,0.32-0.09,0.48C38.53,86.15,37.62,94.5,36.7,102.84z",
+        "path://M36.7,102.84c-1.17,2.54-2.99,4.98-3.39,7.63c-1.51,9.89-3.31,19.58-1.93,29.95 c0.95,7.15-2.91,14.82-3.57,22.35c-0.64,7.36-0.2,14.86,0.35,22.25c0.12,1.68,2.66,3.17,4.67,5.4c-0.6,0.82-1.5,2.22-2.58,3.48 c-0.96,1.12-1.96,2.35-3.21,3.04c-1.71,0.95-3.71,2.03-5.51,1.9c-1.18-0.08-3.04-2.13-3.16-3.43c-0.44-4.72,0-9.52-0.41-14.25 c-0.94-10.88-2.32-21.72-3.24-32.61c-0.49-5.84-1.63-12.01-0.35-17.54c3.39-14.56,2.8-28.84,0.36-43.4 c-2.71-16.16-1.06-32.4,0.54-48.59c0.91-9.22,4.62-17.36,8.53-25.57c1.32-2.77,1.88-6.84,0.87-9.62C21.89-3.77,18.09-11,14.7-18.38 c-0.56,0.1-1.13,0.21-1.69,0.31C10.17-11.52,6.29-5.2,4.71,1.65C2.05,13.21-4.42,22.3-11.43,31.28c-1.32,1.69-2.51,3.5-3.98,5.04 c-4.85,5.08-3.25,10.98-2.32,16.82c0.25,1.53,0.52,3.06,0.77,4.59c-0.53,0.22-1.07,0.43-1.6,0.65c-1.07-2.09-2.14-4.19-3.28-6.44 c-6.39,2.91-2.67,9.6-5.23,15.16c-1.61-3.31-2.77-5.68-3.93-8.06c0-0.33,0-0.67,0-1c6.96-16.08,14.63-31.9,20.68-48.31 C-5.24-4.07-2.03-18.55,2-32.73c0.36-1.27,0.75-2.53,0.98-3.82c1.36-7.75,4.19-10.23,11.88-10.38c1.76-0.04,3.52-0.21,5.76-0.35 c-0.55-3.95-1.21-7.3-1.45-10.68c-0.61-8.67,0.77-16.69,7.39-23.19c2.18-2.14,4.27-4.82,5.25-7.65c2.39-6.88,11.66-9,16.94-8.12 c5.92,0.99,12.15,7.93,12.16,14.12c0.01,9.89-5.19,17.26-12.24,23.68c-2.17,1.97-5.35,4.77-5.17,6.94c0.31,3.78,4.15,5.66,8.08,6.04 c1.82,0.18,3.7,0.37,5.49,0.1c5.62-0.85,8.8,2.17,10.85,6.73C73.38-27.19,78.46-14.9,84.2-2.91c1.52,3.17,4.52,5.91,7.41,8.09 c7.64,5.77,15.57,11.16,23.45,16.61c2.28,1.58,4.64,3.23,7.21,4.14c5.18,1.84,8.09,5.63,9.82,10.46c0.45,1.24,0.19,3.71-0.6,4.18 c-1.06,0.63-3.15,0.27-4.44-0.38c-7.05-3.54-12.84-8.88-19.14-13.5c-3.5-2.57-7.9-4-12.03-5.6c-9.44-3.66-17.73-8.42-22.5-18.09 c-2.43-4.94-6.09-9.27-9.69-14.61c-1.2,10.98-4.46,20.65,1.14,31.19c6.62,12.47,5.89,26.25,1.21,39.49 c-2.52,7.11-6.5,13.74-8.67,20.94c-1.91,6.33-2.2,13.15-3.23,19.75c-0.72,4.63-0.84,9.48-2.36,13.84 c-2.49,7.16-6.67,13.83-5.84,21.82c0.42,4.02,1.29,7.99,2.1,12.8c-3.74-0.49-7.47-0.4-10.67-1.66c-1.33-0.53-2.43-4.11-2.07-6.01 c1.86-9.94,3.89-19.69,0.07-29.74C34.55,108.63,36.19,105.52,36.7,102.84c1.25-8.45,2.51-16.89,3.71-24.9 c-0.83-0.58-0.85-0.59-0.87-0.61c-0.03,0.16-0.07,0.32-0.09,0.48C38.53,86.15,37.62,94.5,36.7,102.84z",
+
+      ]
+      const bodyMax = 150;
+      const labelSetting = {
+        show: true,
+        position: 'top',
+        offset: [0, -20],
+        formatter: function (param) {
+          return ((param.value / bodyMax) * 100).toFixed(0) + '%';
+        },
+        fontSize: 18,
+        fontFamily: 'Arial'
+      };
+      const color = ['#2196F3']
+      const markLineSetting = {
+        symbol: 'none',
+        lineStyle: {
+          opacity: 0.3
+        },
+        data: [
+          {
+            type: 'max',
+            label: {
+              formatter: 'max: {c}'
+            }
+          },
+          {
+            type: 'min',
+            label: {
+              formatter: 'min: {c}'
+            }
+          }
+        ]
+      };
+      const dataSet= data.percentages['Audience Level Peoples Choice Percentages'];
+      const audienceData = Object.entries(dataSet).map(([key, value], index) => ({
+        value: value, 
+        name: key, 
+        symbol: symbols[index % symbols.length] 
+      }));
+
+      option = {
+        tooltip:{},
+        legend: {
+          data: ['Audience Level Peoples Choice Percentages'],
+          selectedMode: 'single'
+        },
+        xAxis: {
+            data: ['Average Audience', 'Intermediate Audience', 'Advanced Audience', 'Expert Audience'],
+            axisTick: { show: true },
+            axisLine: { show: true },
+            axisLabel: { show: true }
+          },
+        yAxis: {
+          max: bodyMax,
+          offset: 20,
+          splitLine: { show: false }
+        },
+
+        series : [{
+          name: 'typeA',
+          type: 'pictorialBar',
+          symbolClip: true,
+          symbolBoundingData: bodyMax,
+          label: labelSetting,
+          data: audienceData,
+          markLine: markLineSetting,
+          z: 10
+        },
+        {
+          name: 'TypeB',
+          type: 'pictorialBar',
+          symbolBoundingData: bodyMax,
+          animationDuration: 0,
+          itemStyle: {
+            color: '#ccc'
+          },
+          data: [
+            {
+              value: 1,
+              symbol: symbols[0]
+            },
+            {
+              value: 1,
+              symbol: symbols[1]
+            },
+            {
+              value: 1,
+              symbol: symbols[2]
+            },
+            {
+              value: 1,
+              symbol: symbols[3]
+            },
+          ]
+        }
+        ]
+      
+      }
+      
+      chart.setOption(option)
     };
     const initArticleInteractionScoreByAudienceType = (data) => {
 
@@ -1067,6 +1215,7 @@
           initSentimentByAudienceType(data);
           initArticleEngagement(data);
           initEngagementSummary(data);
+          initAudienceLevelPeoplesChoicePercentages(data)
           // Update the charts with the fetched data
           // updateReadedChart(data.read_time);
           // updateArticleChartData(data); // Call without postId
@@ -1095,230 +1244,202 @@
         console.error("Error:", error);
       });
 
-      //user profile charts 
-      // PIE CHART - Categorical Reputation Breakdown
-    const categoryPieChart = echarts.init(document.getElementById('user-catergorical-reputation-data'));
 
-    categoryPieChart.setOption({
-      title: { text: 'Categorical Reputation Breakdown', left: 'center', textStyle: { color: '#fff' } },
+      
+     // User profile chart functions
+    const userSelectors = {
+      userCategoricalReputationChart: document.getElementById('user-catergorical-reputation-data'),
+      networkAnalysisReputationChart: document.getElementById('network-analysis-reputation-score-percentage'),
+      userExpertiseLevelChart: document.getElementById('user-expertise-level-and-user-nature-for-user'),
+      interactionBreakdownChart: document.getElementById('interaction-breakdown-in-numbers-users-favorite'),
+      mpxrFromPublicationChart: document.getElementById('number-of-MPXR-from-publication-for-user'),
+      mpxrFromInteractionChart: document.getElementById('MPXR-from-interaction-percentage-user')
+    };
+
+
+  // Initialize Categorical Reputation Chart
+  const initUserCategoricalReputationChart = (data) => {
+    const chart = echarts.init(userSelectors.userCategoricalReputationChart);
+    chart.setOption({
+      title: { 
+        text: 'Categorical Reputation Breakdown', 
+        left: 'center', 
+        textStyle: { color: '#fff' } 
+      },
       tooltip: { trigger: 'item' },
       series: [
         {
           name: 'Reputation',
           type: 'pie',
-          radius: '50%',
-          data: [
-            { value: 0.8333333333333333, name: '3D Printing' },
-            { value: 0.8333333333333333, name: 'Aged Care' },
-            { value: 0.83333333, name: 'AI' }
-          ],
+          radius: '80%',
+          data: data.categoricalReputation,
+          label: {
+            fontSize: 16,
+            color: '#fff',
+            borderWidth: 0,
+          },
           emphasis: {
             itemStyle: { shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0, 0, 0, 0.5)' }
           }
         }
       ]
     });
+  };
 
-    // network-analysis-reputation-score-percentage
-    const networkPolarChart = echarts.init(document.getElementById('network-analysis-reputation-score-percentage'));
-
-networkPolarChart.setOption({
-  title: { text: 'Network Analysis Breakdown', left: 'center', textStyle: {color: '#fff'}},
-  polar: { radius: [35, '90%'], top: '50%'},
-  angleAxis: { max: 100, startAngle: 75 },
-  radiusAxis: {
-    type: 'category',
-    data: ['Expert Audience', 'Advanced Audience', 'Intermediate Audience', 'Average Audience']
-  },
-  tooltip: {},
-  series: [
-    {
-      name: 'Source of Positive Reputation',
-      type: 'bar',
-      data: [0, 0, 0, 0],
-      coordinateSystem: 'polar',
-      stack: 'total',
-      itemStyle: { color: '#5470C6' },
-      label: {
-        show: true,
-        position: 'middle',
-        formatter: '{b}: {c}'
-      }
-    },
-    {
-      name: 'Source of Negative Reputation',
-      type: 'bar',
-      data: [0, 0, 0, 0],
-      coordinateSystem: 'polar',
-      stack: 'total',
-      itemStyle: { color: '#91cc75' },
-      label: {
-        show: true,
-        position: 'middle',
-        formatter: '{b}: {c}'
-      }
-    }
-  ]
-});
-
-// user-expertise-level-and-user-nature-for-user
-const treeChart = echarts.init(document.getElementById('user-expertise-level-and-user-nature-for-user'));
-
-const treeData = [
-  {
-    name: "User Profile",
-    children: [
-      {
-        name: "User Nature",
-        children: [
-          { name: "Nature: Audience User" },
-          { name: "Published Articles: 0" }
-        ]
+  // Initialize Network Analysis Chart
+  const initNetworkAnalysisReputationChart = (data) => {
+    const chart = echarts.init(userSelectors.networkAnalysisReputationChart);
+    chart.setOption({
+      title: { 
+        text: 'Network Analysis Breakdown', 
+        left: 'center', 
+        textStyle: { color: '#fff' } 
       },
-      { name: "User Level: Average Audience" }
-    ]
-  }
-];
-
-treeChart.setOption({
-  title: { text: 'User Profile Tree', left: 'center', textStyle: {color: '#fff'} },
-  tooltip: { trigger: 'item', formatter: '{b}' },
-  series: [
-    {
-      type: 'tree',
-      data: treeData,
-      top: '10%',
-      left: '15%',
-      bottom: '10%',
-      right: '15%',
-      symbol: 'circle',
-      symbolSize: 10,
-      label: {
-        position: 'top',
-        verticalAlign: 'middle',
-        align: 'right',
-        fontSize: 14
+      polar: { 
+        center: ['50%', '60%'], 
+        radius: [35, '90%'] 
       },
-      leaves: {
-        label: {
-          position: 'bottom',
-          verticalAlign: 'middle',
-          align: 'left'
+      angleAxis: { max: 100, startAngle: 75 },
+      radiusAxis: {
+        type: 'category',
+        data: data.networkAnalysis.categories
+      },
+      tooltip: {},
+      series: [
+        {
+          name: 'Source of Positive Reputation',
+          type: 'bar',
+          data: data.networkAnalysis.positiveData,
+          coordinateSystem: 'polar',
+          stack: 'total',
+          itemStyle: { color: '#5470C6' },
+          label: {
+            show: true,
+            position: 'middle',
+            formatter: '{b}: {c}',
+            fontSize: 16,
+            color: '#fff',
+          }
+        },
+        {
+          name: 'Source of Negative Reputation',
+          type: 'bar',
+          data: data.networkAnalysis.negativeData,
+          coordinateSystem: 'polar',
+          stack: 'total',
+          itemStyle: { color: '#91cc75' },
+          label: {
+            show: true,
+            position: 'middle',
+            formatter: '{b}: {c}',
+            fontSize: 16,
+            color: '#fff',
+          }
         }
-      },
-      expandAndCollapse: true,
-      animationDuration: 750,
-      animationEasing: 'quinticInOut'
-    }
-  ]
-});
+      ]
+    });
+  };
 
-// interaction-breakdown-in-numbers-users-favorite
-const interactionTreeChart = echarts.init(document.getElementById('interaction-breakdown-in-numbers-users-favorite'));
-
-const interactionData = [
-  {
-    name: "Interaction Breakdown",
-    children: [
-      {
-        name: "User Emoji Interaction",
-        children: [
-          { name: "Positive Reactions", children: [
-            { name: "Perfect: 0" },
-            { name: "Excellent: 0" },
-            { name: "Very Good: 0" },
-            { name: "Well Done: 0" },
-            { name: "Interesting: 0" },
-            { name: "Not Bad: 0" }
-          ] },
-          { name: "Negative Reactions", children: [
-            { name: "Useless: 0" },
-            { name: "So Bad: 0" },
-            { name: "Errors: 0" },
-            { name: "Provocative: 0" },
-            { name: "Boring: 0" },
-            { name: "Badly Presented: 0" }
-          ] }
-        ]
+  // Initialize User Expertise Level Chart
+  const initUserExpertiseLevelChart = (data) => {
+    const chart = echarts.init(userSelectors.userExpertiseLevelChart);
+    chart.setOption({
+      title: { 
+        text: 'User Profile Tree', 
+        left: 'center', 
+        textStyle: { color: '#fff' } 
       },
-      {
-        name: "User Comment Interaction",
-        children: [
-          { name: "Best: 33.33%" },
-          { name: "Good: 0%" },
-          { name: "Average: 0%" },
-          { name: "Expedient: 16.67%" },
-          { name: "Hate Speech: 0%" },
-          { name: "Bullying: 33.33%" },
-          { name: "Spamming: 16.67%" }
-        ]
-      },
-      {
-        name: "User Like Interaction",
-        children: [
-          { name: "Thumbs Up: 60%", children: [
-            { name: "Best Quality: 2" },
-            { name: "Good Quality: 0" },
-            { name: "Average Quality: 0" },
-            { name: "Low Quality: 1" }
-          ] },
-          { name: "Thumbs Down: 40%", children: [
-            { name: "Best Quality: 1" },
-            { name: "Good Quality: 0" },
-            { name: "Average Quality: 0" },
-            { name: "Low Quality: 1" }
-          ] }
-        ]
-      }
-    ]
-  }
-];
-
-interactionTreeChart.setOption({
-  title: { text: 'Interaction Breakdown Tree', left: 'center', textStyle: {
-    color: '#fff',
-  } },
-  tooltip: { trigger: 'item', formatter: '{b}' },
-  series: [
-    {
-      type: 'tree',
-      data: interactionData,
-      top: '5%',
-      left: '15%',
-      bottom: '5%',
-      right: '15%',
-      symbol: 'circle',
-      symbolSize: 10,
-      label: {
-        position: 'top',
-        verticalAlign: 'middle',
-        align: 'right',
-        fontSize: 12
-      },
-      leaves: {
-        label: {
-          position: 'bottom',
-          verticalAlign: 'middle',
-          align: 'left'
+      tooltip: { trigger: 'item', formatter: '{b}' },
+      series: [
+        {
+          type: 'tree',
+          data: data.userExpertiseTree,
+          top: '10%',
+          left: '15%',
+          bottom: '10%',
+          right: '15%',
+          symbol: 'circle',
+          symbolSize: 10,
+          label: {
+            position: 'top',
+            verticalAlign: 'middle',
+            align: 'right',
+            fontSize: 14,
+            color: '#fff',
+          },
+          leaves: {
+            label: {
+              position: 'bottom',
+              verticalAlign: 'middle',
+              align: 'left',
+              color: '#fff',
+            }
+          },
+          expandAndCollapse: true,
+          animationDuration: 750,
+          animationEasing: 'quinticInOut'
         }
+      ]
+    });
+  };
+
+  // Initialize Interaction Breakdown Chart
+    const initInteractionBreakdownChart = (data) => {
+      const chart = echarts.init(userSelectors.interactionBreakdownChart);
+      chart.setOption({
+        title: { 
+          text: 'Interaction Breakdown Tree', 
+          left: 'center', 
+          textStyle: { color: '#fff' } 
+        },
+        tooltip: { trigger: 'item', formatter: '{b}' },
+        series: [
+          {
+            type: 'tree',
+            data: data.interactionTree,
+            top: '5%',
+            left: '15%',
+            bottom: '5%',
+            right: '15%',
+            symbol: 'circle',
+            symbolSize: 10,
+            label: {
+              position: 'top',
+              verticalAlign: 'middle',
+              align: 'right',
+              fontSize: 12,
+              color: '#fff',
+            },
+            leaves: {
+              label: {
+                position: 'bottom',
+                verticalAlign: 'middle',
+                align: 'left',
+                color: '#fff',
+              }
+            },
+            expandAndCollapse: true,
+            animationDuration: 750,
+            animationEasing: 'quinticInOut'
+          }
+        ]
+      });
+    };
+
+  // Initialize MPXR From Publication Chart
+  const initMPXRFromPublicationChart = (data) => {
+    const chart = echarts.init(userSelectors.mpxrFromPublicationChart);
+    chart.setOption({
+      title: { 
+        text: 'No. of MPXR From Publication', 
+        left: 'center', 
+        textStyle: { color: '#fff' } 
       },
-      expandAndCollapse: true,
-      animationDuration: 750,
-      animationEasing: 'quinticInOut'
-    }
-  ]
-});
-
-    // number-of-MPXR-from-publication-for-user
-    const mpxrChart = echarts.init(document.getElementById('number-of-MPXR-from-publication-for-user'));
-
-    mpxrChart.setOption({
-      title: { text: 'No. of MPXR From publication', left: 'center', textStyle: {color: '#fff'} },
       tooltip: { trigger: 'axis' },
       grid: { left: '20%' },
       yAxis: {
         type: 'category',
-        data: ['MPXR From Comment', 'MPXR From Social Post']
+        data: data.mpxrFromPublication.categories
       },
       xAxis: { type: 'value' },
       series: [
@@ -1328,9 +1449,11 @@ interactionTreeChart.setOption({
           stack: 'Total',
           label: {
             show: true,
-            position: 'inside'
+            position: 'inside',
+            fontSize: 14,
+            color: '#fff',
           },
-          data: [0.00055665, 0.0],
+          data: data.mpxrFromPublication.rewardData,
           itemStyle: { color: '#5470C6' }
         },
         {
@@ -1339,39 +1462,42 @@ interactionTreeChart.setOption({
           stack: 'Total',
           label: {
             show: true,
-            position: 'inside'
+            position: 'inside',
+            fontSize: 14,
+            color: '#fff',
           },
-          data: [0.0003711, 0.0],
+          data: data.mpxrFromPublication.scoreData,
           itemStyle: { color: '#91cc75' }
         }
       ]
     });
+  };
 
-    // MPXR-from-interaction-percentage-user
-    const mpxrChart2 = echarts.init(document.getElementById('MPXR-from-interaction-percentage-user'));
-
-    mpxrChart2.setOption({
-      title: { text: 'MPXR From Interaction Percentage', left: 'center', textStyle: { color: '#fff' } },
-      tooltip: { trigger: 'item' }, 
+  // Initialize MPXR From Interaction Chart
+  const initMPXRFromInteractionChart = (data) => {
+    const chart = echarts.init(userSelectors.mpxrFromInteractionChart);
+    chart.setOption({
+      title: { 
+        text: 'MPXR From Interaction Percentage', 
+        left: 'center', 
+        textStyle: { color: '#fff' } 
+      },
+      tooltip: { trigger: 'item' },
       legend: {
         orient: 'vertical',
         left: 'left',
-        textStyle: {
-          color: '#fff'
-        }
+        textStyle: { color: '#fff' }
       },
       series: [
         {
           name: 'Access From',
           type: 'pie',
           radius: '50%',
-          data: [
-            { value: 42.857142857142854, name: 'Time-spent' },
-            { value: 14.285714285714285, name: 'Peoples Choice' },
-            { value: 14.285714285714285, name: 'Comment' },
-            { value: 14.285714285714285, name: 'Like' },
-            { value: 14.285714285714285, name: 'Dislike' }
-          ],
+          data: data.mpxrFromInteraction,
+          label: {
+            fontSize: 14,
+            color: '#fff',
+          },
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -1382,7 +1508,113 @@ interactionTreeChart.setOption({
         }
       ]
     });
+  };
 
+    // User profile data
+    const userProfileData = {
+      categoricalReputation: [
+        { value: 0.8333333333333333, name: '3D Printing' },
+        { value: 0.8333333333333333, name: 'Aged Care' },
+        { value: 0.83333333, name: 'AI' }
+      ],
+      networkAnalysis: {
+        categories: ['Expert Audience', 'Advanced Audience', 'Intermediate Audience', 'Average Audience'],
+        positiveData: [0, 0, 0, 0],
+        negativeData: [0, 0, 0, 0]
+      },
+      userExpertiseTree: [
+        {
+          name: "User Profile",
+          children: [
+            {
+              name: "User Nature",
+              children: [
+                { name: "Nature: Audience User" },
+                { name: "Published Articles: 0" }
+              ]
+            },
+            { name: "User Level: Average Audience" }
+          ]
+        }
+      ],
+      interactionTree: [
+        {
+          name: "Interaction Breakdown",
+          children: [
+            {
+              name: "User Emoji Interaction",
+              children: [
+                { name: "Positive Reactions", children: [
+                  { name: "Perfect: 0" },
+                  { name: "Excellent: 0" },
+                  { name: "Very Good: 0" },
+                  { name: "Well Done: 0" },
+                  { name: "Interesting: 0" },
+                  { name: "Not Bad: 0" }
+                ] },
+                { name: "Negative Reactions", children: [
+                  { name: "Useless: 0" },
+                  { name: "So Bad: 0" },
+                  { name: "Errors: 0" },
+                  { name: "Provocative: 0" },
+                  { name: "Boring: 0" },
+                  { name: "Badly Presented: 0" }
+                ] }
+              ]
+            },
+            {
+              name: "User Comment Interaction",
+              children: [
+                { name: "Best: 33.33%" },
+                { name: "Good: 0%" },
+                { name: "Average: 0%" },
+                { name: "Expedient: 16.67%" },
+                { name: "Hate Speech: 0%" },
+                { name: "Bullying: 33.33%" },
+                { name: "Spamming: 16.67%" }
+              ]
+            },
+            {
+              name: "User Like Interaction",
+              children: [
+                { name: "Thumbs Up: 60%", children: [
+                  { name: "Best Quality: 2" },
+                  { name: "Good Quality: 0" },
+                  { name: "Average Quality: 0" },
+                  { name: "Low Quality: 1" }
+                ] },
+                { name: "Thumbs Down: 40%", children: [
+                  { name: "Best Quality: 1" },
+                  { name: "Good Quality: 0" },
+                  { name: "Average Quality: 0" },
+                  { name: "Low Quality: 1" }
+                ] }
+              ]
+            }
+          ]
+        }
+      ],
+      mpxrFromPublication: {
+        categories: ['MPXR From Comment', 'MPXR From Social Post'],
+        rewardData: [0.00055665, 0.0],
+        scoreData: [0.0003711, 0.0]
+      },
+      mpxrFromInteraction: [
+        { value: 42.857142857142854, name: 'Time-spent' },
+        { value: 14.285714285714285, name: 'Peoples Choice' },
+        { value: 14.285714285714285, name: 'Comment' },
+        { value: 14.285714285714285, name: 'Like' },
+        { value: 14.285714285714285, name: 'Dislike' }
+      ]
+    };
+
+    // Initialize user profile charts
+    initUserCategoricalReputationChart(userProfileData);
+    initNetworkAnalysisReputationChart(userProfileData);
+    initUserExpertiseLevelChart(userProfileData);
+    initInteractionBreakdownChart(userProfileData);
+    initMPXRFromPublicationChart(userProfileData);
+    initMPXRFromInteractionChart(userProfileData);
 
 
   </script>

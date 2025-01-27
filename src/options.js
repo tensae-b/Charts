@@ -171,120 +171,57 @@ export const articleInteractionScoreByAudienceTypeOption = {
 // export const audienceLevelPeoplesChoicePercentagesOption = {
 //   tooltip: {},
 //   legend: {
-//     data: ["typeA", "typeB"],
-//     selectedMode: "single",
+//     data: ['Audience Level Peoples Choice Percentages'],
+//     selectedMode: 'single'
 //   },
 //   xAxis: {
-//     data: ["a", "b", "c", "d", "e"],
-//     axisTick: { show: false },
-//     axisLine: { show: false },
-//     axisLabel: { show: false },
+//     data: ['Average Audience', 'Intermediate Audience', 'Advanced Audience', 'Expert Audience'],
+//     axisTick: { show: true },
+//     axisLine: { show: true },
+//     axisLabel: { show: true }
 //   },
 //   yAxis: {
 //     max: bodyMax,
 //     offset: 20,
-//     splitLine: { show: false },
+//     splitLine: { show: false }
 //   },
 //   grid: {
-//     top: "center",
-//     height: 230,
+//     top: 'center',
+//     height: 230
 //   },
 //   markLine: {
-//     z: -100,
+//     z: -100
 //   },
 //   series: [
 //     {
-//       name: "typeA",
-//       type: "pictorialBar",
+//       name: 'typeA',
+//       type: 'pictorialBar',
 //       symbolClip: true,
 //       symbolBoundingData: bodyMax,
 //       label: labelSetting,
-//       data: [
-//         {
-//           value: 123,
-//           symbol: symbols[0],
-//         },
-//         {
-//           value: 34,
-//           symbol: symbols[1],
-//         },
-//         {
-//           value: 101,
-//           symbol: symbols[2],
-//         },
-//         {
-//           value: 89,
-//           symbol: symbols[3],
-//         },
-//         {
-//           value: 72,
-//           symbol: symbols[4],
-//         },
-//       ],
+//       data: [],
 //       markLine: markLineSetting,
-//       z: 10,
+//       z: 10
 //     },
 //     {
-//       name: "typeB",
-//       type: "pictorialBar",
+//       name: 'typeB',
+//       type: 'pictorialBar',
 //       symbolClip: true,
 //       symbolBoundingData: bodyMax,
 //       label: labelSetting,
-//       data: [
-//         {
-//           value: 12,
-//           symbol: symbols[0],
-//         },
-//         {
-//           value: 44,
-//           symbol: symbols[1],
-//         },
-//         {
-//           value: 131,
-//           symbol: symbols[2],
-//         },
-//         {
-//           value: 33,
-//           symbol: symbols[3],
-//         },
-//         {
-//           value: 142,
-//           symbol: symbols[4],
-//         },
-//       ],
+//       data: [],
 //       markLine: markLineSetting,
-//       z: 10,
+//       z: 10
 //     },
 //     {
-//       name: "full",
-//       type: "pictorialBar",
+//       name: 'full',
+//       type: 'pictorialBar',
 //       symbolBoundingData: bodyMax,
 //       animationDuration: 0,
 //       itemStyle: {
-//         color: "#ccc",
+//         color: '#ccc'
 //       },
-//       data: [
-//         {
-//           value: 1,
-//           symbol: symbols[0],
-//         },
-//         {
-//           value: 1,
-//           symbol: symbols[1],
-//         },
-//         {
-//           value: 1,
-//           symbol: symbols[2],
-//         },
-//         {
-//           value: 1,
-//           symbol: symbols[3],
-//         },
-//         {
-//           value: 1,
-//           symbol: symbols[4],
-//         },
-//       ],
-//     },
-//   ],
-// };
+//       data: []
+//     }
+//   ]
+// }
