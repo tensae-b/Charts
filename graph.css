@@ -1,0 +1,134 @@
+body {
+    background-color: #032c43;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 150px;
+    font-family: Arial, sans-serif;
+
+}
+
+#post-charts {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+h1 {
+    color: #fff;
+    margin: 40px auto;
+    font-size: 50px;
+}
+
+
+
+.total-read-time {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    width: 100%;
+    /* justify-content: space-between; */
+}
+
+.total-readed-time {
+    /* display: flex;
+    justify-content: start; */
+    width: 100%
+}
+
+.article-total-read-time-completion-rate {
+    width: 100%;
+}
+
+.completion-rate-audience-breakdown-for-article-chart {
+    width: 100%;
+}
+
+.completion-rate-audience-breakdown-for-article {
+    width: 100%
+}
+
+.interaction-type-count-with-interaction-name-for-article-chart {
+    width: 100%;
+}
+
+.interaction-type-count-with-interaction-name-for-article {
+    width: 100%;
+}
+
+.interaction-score-by-audience-type-article-chart {
+    width: 100%;
+}
+
+.interaction-score-by-audience-type-article {
+    width: 100%
+}
+
+.interaction-graphs {
+    width: 100%;
+}
+
+.article-sentiment-breakdown-by-Audience-type .sentiment-breakdown-by-Audience-type{
+    width:100%
+}
+
+.audience-level-peoples-choice-percentages-for-article-chart .audience-level-peoples-choice-percentages-for-article{
+    width:100%
+}
+
+/* .post-engagement-summary .total-readed-time-chart .article-total-read-time{
+    width: 100%;
+  } */
+
+@media (min-width: 480px) {
+    .post-engagement-summary {
+        width: 100%;
+    }
+
+    .total-read-time {
+        flex-direction: column;
+        gap: 100px;
+    }
+    .interaction-graphs {
+        width: 100%;
+    }
+ 
+
+}
+
+@media (min-width: 768px) {
+    .engagement-summary {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .post-engagement-summary {
+        width: 50%;
+    }
+
+    .total-read-time {
+        flex-direction: row;
+    }
+
+    .interaction-graphs {
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    
+
+}
+
+@media (min-width:1024px) {
+    .completion-rate-audience-breakdown-for-article-chart {
+        width: 50%;
+    }
+
+    .completion-rate-audience-breakdown-for-article {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+    }
+}
