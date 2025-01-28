@@ -1,8 +1,8 @@
 body {
     background-color: #032c43;
     margin: 0;
-    padding: 0;
-    padding-bottom: 150px;
+    /* padding: 0; */
+    padding: 0px 0px 150px 0px;
     font-family: Arial, sans-serif;
 
 }
@@ -14,9 +14,9 @@ body {
 }
 
 h1 {
-    color: #fff;
+    color: #61FFD5;
     margin: 40px auto;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 
@@ -24,14 +24,13 @@ h1 {
 .total-read-time {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
+   
     width: 100%;
-    /* justify-content: space-between; */
+    
 }
 
 .total-readed-time {
-    /* display: flex;
-    justify-content: start; */
+   
     width: 100%
 }
 
@@ -93,7 +92,9 @@ h1 {
         width: 100%;
     }
  
-
+   body {
+    padding: 0px 30px 150px 30px;
+   }
 }
 
 @media (min-width: 768px) {
@@ -117,7 +118,9 @@ h1 {
         
     }
 
-    
+    body {
+        padding: 0px 50px 150px 50px;
+       } 
 
 }
 
@@ -132,4 +135,7 @@ h1 {
         justify-content: center;
 
     }
+    body {
+        padding: 0px 50px 150px 50px;
+       }
 }

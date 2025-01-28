@@ -100,19 +100,21 @@ button:focus-visible {
   margin: 0;
   padding: 0;
   box-sizing: border-box; 
+  overflow-x: hidden
   
 }
 
 canvas{
   
   width:100% !important;
+  overflow-x: hidden !important;
   /* height: 0px !important; */
 }
 body {
   width: fit-content;
   padding:0 30px;
   background-color: #032c43;
- 
+ overflow-x: hidden;
   width:100%;
 }
 h1{

@@ -68,7 +68,7 @@
     </div>
   </div>
 
-  <!-- <h1>User Profile Chart</h1>
+  <h1>User Profile Chart</h1>
   <div id="user-charts">
     <div class="user-catergorical-reputation-data-chart">
       <div id="user-catergorical-reputation-data" style="width: 700px; height: 500px"></div>
@@ -88,7 +88,7 @@
     <div class="MPXR-from-interaction-percentage-user-chart">
       <div id="MPXR-from-interaction-percentage-user" style="width: 700px; height: 500px"></div>
     </div>
-  </div> -->
+  </div>
 
 
   <script type="text/javascript">
@@ -141,6 +141,7 @@
             color: "#ffffff",
 
           },
+          center:['30%', '60%'],
         },
         series: [
        
@@ -245,12 +246,14 @@
           },
         },
         grid: {
-          left: "3%",
-          right: "4%",
+          left: "10%",
+          right: "0%",
           bottom: "3%",
           containLabel: true,
         },
-        xAxis: [],
+        xAxis: [
+
+        ],
         yAxis: [
           {
             type: "value",
@@ -822,6 +825,7 @@
           { value: audienceData.Good, name: "Good" },
           { value: audienceData.Best, name: "Best" },
         ];
+        
 
         title.push({
           text: "",
@@ -869,7 +873,7 @@
           left: index % 2 === 0 ? "10%" : "75%",
           top: index < 2 ? "5%" : "53%", 
           textalign: "center",
-          
+          rotate:10,
           textStyle: {
             fontSize: 12,
             fontWeight: "bold",
@@ -894,6 +898,9 @@
 
         },
       });
+      window.addEventListener('resize', () => {
+    chart.resize();
+});
     };
     const initInteractionTypeCountWithName = (data) => {
       const chart = echarts.init(selectors.interactionTypeCountWithName);
@@ -917,9 +924,13 @@
             alignWithLabel: true,
           },
           axisLabel:{
+            rotate:10,
             textStyle:{
-              color:'#fff'
-            }
+              color:'#fff',
+              fontSize:14,
+            
+            },
+            interval:0,
           }
         },
       ];
@@ -993,6 +1004,8 @@
         title: {
           text: 'Sentiment Breakdown by Audience type(positive and negative)',
           left: 'center',
+          width:'2',
+          overflow: "break",
           textStyle: {
             color: '#ffffff'
           }
@@ -1002,6 +1015,7 @@
           axisPointer: {
             type: 'shadow'
           },
+          left:0,
           formatter: function (params) {
             let content = params[0].axisValue + '<br/>';
             params.forEach(param => {
@@ -1015,7 +1029,8 @@
           data: ['Positive Interactions', 'Negative Interactions'],
           bottom: 10,
           textStyle: {
-            color: '#fff'
+            color: '#fff',
+            fontSize:14
           }
         },
         xAxis: {
@@ -1024,9 +1039,9 @@
           axisLabel: {
     interval: 0, 
     color: '#ffffff', 
-    rotate: 0, 
+    rotate: 10, 
     textStyle: {
-      fontSize: 12, 
+      fontSize: 14, 
     },
   },
         },
@@ -1124,10 +1139,24 @@
       }));
 
       option = {
+        title: {
+          text: 'Audience Level Peoples Choice Percentages',
+          left: 'center',
+          top:0,
+          textStyle: {
+            color: '#ffffff'
+          }
+        },
+
+        grid:{
+          top:90,
+        },
+        
         tooltip:{},
         legend: {
           data: ['Audience Level Peoples Choice Percentages'],
-          selectedMode: 'single'
+          selectedMode: 'single',
+         
         },
         xAxis: {
             data: ['Average Audience', 'Intermediate Audience', 'Advanced Audience', 'Expert Audience'],
@@ -1135,9 +1164,10 @@
             axisLine: { show: true },
             axisLabel: { show: true,
             interval:0,
+            rotate:10,
               textStyle:{
               color:'#fff',
-              
+              fontSize:14,
             }
              },
             
