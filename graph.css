@@ -71,15 +71,56 @@ h1 {
 }
 
 .audience-level-peoples-choice-percentages-for-article-chart .audience-level-peoples-choice-percentages-for-article{
-    width:100%
-
+    width:100%;
 }
 
+.mpxr-from-interaction-percentage-chart #mpxr-from-interaction-percentage{
+    width: 100%;
+}
+
+.mpxr-from-rewards-chart #mpxr-from-rewards{
+    width: 100%;
+}
 /* .post-engagement-summary .total-readed-time-chart .article-total-read-time{
     width: 100%;
   } */
 
+
+  /* user style */
+  #user-charts{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .user-catergorical-reputation-data-chart{
+    width:100%;
+  }
+  
+  #user-catergorical-reputation-data{
+    width:100%;
+  }
+  
+    .network-analysis-reputation-score-percentage-for-user{
+        width:100%;
+      }
+    
+    #network-analysis-reputation-score-percentage{
+        width:100%;
+    }
+  
+  /* .reputation-chart{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+ } */
+
+
+
 @media (min-width: 480px) {
+    body {
+        padding: 0px 30px 150px 30px;
+       }
     .post-engagement-summary {
         width: 100%;
     }
@@ -91,13 +132,18 @@ h1 {
     .interaction-graphs {
         width: 100%;
     }
+   
+     /* user style */
  
-   body {
-    padding: 0px 30px 150px 30px;
-   }
+   
 }
 
 @media (min-width: 768px) {
+    
+    body {
+        padding: 0px 50px 150px 50px;
+       } 
+
     .engagement-summary {
         width: 100%;
         display: flex;
@@ -117,14 +163,22 @@ h1 {
         flex-direction: row;
         
     }
-
-    body {
-        padding: 0px 50px 150px 50px;
-       } 
+  
+     /* user style */
+     .reputation-chart{
+        display:flex;
+        flex-direction: row;
+        width: 100%;
+        gap:20px;
+     }
 
 }
 
 @media (min-width:1024px) {
+    body {
+        padding: 0px 50px 150px 50px;
+       }
+
     .completion-rate-audience-breakdown-for-article-chart {
         width: 50%;
     }
@@ -135,7 +189,7 @@ h1 {
         justify-content: center;
 
     }
-    body {
-        padding: 0px 50px 150px 50px;
-       }
+    
+     /* user style */
+    
 }

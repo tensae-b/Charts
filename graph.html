@@ -45,16 +45,55 @@
         </div>
         <div class="sentiment-breakdown-by-Audience-type">
             <div id="article-sentiment-breakdown-by-Audience-type" class="article-sentiment-breakdown-by-Audience-type"
-              style="height: 500px">
+                style="height: 500px">
             </div>
-         </div>
-            <div class="audience-level-peoples-choice-percentages-for-article">
-                <div id="audience-level-peoples-choice-percentages"
-                  class="audience-level-peoples-choice-percentages-for-article-chart " style="height: 400px"></div>
-              </div>
-</div>
+        </div>
+        <div class="audience-level-peoples-choice-percentages-for-article">
+            <div id="audience-level-peoples-choice-percentages"
+                class="audience-level-peoples-choice-percentages-for-article-chart " style="height: 400px"></div>
+        </div>
+    </div>
+    </div>
 
+    <h1>User Profile Chart</h1>
+    <div id="user-charts">
+        <div class="reputation-chart">
+            <div class="user-catergorical-reputation-data-chart">
+                <div id="user-catergorical-reputation-data" style="height: 500px"></div>
+            </div>
+            <div class="network-analysis-reputation-score-percentage-for-user">
+                <div id="network-analysis-reputation-score-percentage" style=" height: 500px;">
 
+                </div>
+            </div>
+        </div>
+        <div class="number-Of-MPXR-from-publication-for-user-chart">
+            <div id="number-of-MPXR-from-publication-for-user" style="width: 700px; height: 500px"></div>
+        </div>
+        <div class="mpxr-from-interaction-percentage-chart">
+            <div id="mpxr-from-interaction-percentage" style="height: 500px;"></div>
+        </div>
+        <div class="mpxr-from-rewards-chart">
+            <div id="mpxr-from-rewards" style="height: 500px;"> </div>
+        </div>
+        <!-- <div class="number-Of-MPXR-from-publication-for-user-chart">
+            <div id="number-of-MPXR-from-publication-for-user" style="width: 700px; height: 500px"></div>
+          </div> -->
+        <!-- <div class="network-analysis-reputation-score-percentage-for-user">
+      <div id="network-analysis-reputation-score-percentage" style="width: 700px; height: 750px; margin: 0px 0;"></div>
+    </div>
+    <div class="user-expertise-level-and-user-nature-for-user-chart">
+      <div id="user-expertise-level-and-user-nature-for-user" style="padding-left: 10px; width: 800px; height: 500px"></div>
+    </div><br><br>
+    <div class="interaction-breakdown-in-numbers-users-favorite-chart">
+      <div id="interaction-breakdown-in-numbers-users-favorite" style="width: 1200px; height: 500px; margin: 100px 0;"></div>
+    </div><br>
+    <div class="number-Of-MPXR-from-publication-for-user-chart">
+      <div id="number-of-MPXR-from-publication-for-user" style="width: 700px; height: 500px"></div>
+    </div>
+    <div class="MPXR-from-interaction-percentage-user-chart">
+      <div id="MPXR-from-interaction-percentage-user" style="width: 700px; height: 500px"></div>
+    </div> -->
     </div>
     <script>
         let selectors = {
@@ -75,10 +114,30 @@
             sentimentByAudienceType: document.getElementById("article-sentiment-breakdown-by-Audience-type"),
 
             audienceLevelPeoplesChoicePercentages: document.getElementById(
-        "audience-level-peoples-choice-percentages"
-      ),
+                "audience-level-peoples-choice-percentages"
+            ),
         };
 
+        let userSelectors = {
+            categoricalReputationBreakdown: document.getElementById(
+                "user-catergorical-reputation-data"
+            ),
+            networkReputationScore: document.getElementById(
+                "network-analysis-reputation-score-percentage"
+            ),
+            numberMpxrPublication: document.getElementById(
+                "number-of-MPXR-from-publication-for-user"
+            ),
+            interactionBreakdownNumbers: document.getElementById(
+                "interaction-breakdown-in-numbers-users-favorite"
+            ),
+            mpxrFromInteractionPercentage: document.getElementById(
+                "mpxr-from-interaction-percentage"
+            ),
+            mpxrFromRewards: document.getElementById(
+                "mpxr-from-rewards"
+            ),
+        }
         let posts = [
             {
                 post_id: 1,
@@ -300,6 +359,222 @@
             },
         ];
 
+        let users = [
+            {
+                "user": 2,
+                "mpxr": 3.50056,
+                "vote_rep_availabe": 3.50055665,
+                "public_address": null,
+                "shared_rep": 0.0,
+                "categories": [
+                    {
+                        "category": "3D Printing",
+                        "rep": 0.8333333333333333
+                    },
+                    {
+                        "category": "Aged Care",
+                        "rep": 0.8333333333333333
+                    },
+                    {
+                        "category": "AI",
+                        "rep": 0.83333333
+                    }
+                ],
+                "user_read_time": 12.0,
+                "read_count": 3,
+                "User Nature": {
+                    "user nature": "Audience user",
+                    "number of published articles": 0
+                },
+                "Total User Interaction Breakdown": {
+                    "Total User Number of Interactions": {
+                        "Total Interaction": 7,
+                        "Total Positive Interactions": 5,
+                        "Total Negative Interactions": 2,
+                        "Total Neutral Interactions": 0
+                    },
+                    "Total User Percentage of Interactions": {
+                        "time_spent": 42.857142857142854,
+                        "peoples_choise": 14.285714285714285,
+                        "comment": 14.285714285714285,
+                        "like": 14.285714285714285,
+                        "dislike": 14.285714285714285
+                    }
+                },
+                "User Level": "Average Audience",
+                "Association Breakdown": {
+                    "Friend Relationship": {
+                        "Immediate MPXR score By friend": 0.0,
+                        "Monthly MPXR score By friend": 0.0
+                    },
+                    "Follow Relationship": {
+                        "Monthly MPXR score By Follow": 0.0
+                    }
+                },
+                "Reputation Score Breakdown by number": {
+                    "MPXR Total From Interaction": 2.5,
+                    "MPXR Total From Profile Completion": 0.8,
+                    "MPXR From Time Spent": 1.5,
+                    "MPXR From people's Choice": 1.0,
+                    "MPXR From Comment": {
+                        "MPXR Reward By Comment": 0.00055665,
+                        "MPXR Reward From Comment": 0.0003711
+                    },
+                    "MPXR From Publication": {},
+                    "MPXR From Social Post": {
+                        "MPXR score from user interaction": 0.3,
+                        "MPXR reward for publication": 0.5
+                    },
+                    "MPXR From Login": {
+                        "From Daily Login": 0.55,
+                        "Straight Login Bonus": 0.3
+                    }
+                },
+                "Network Breakdown": {
+                    "Source of Positive MPXR Score": {
+                        "Expert Audience": 10,
+                        "Advanced Audience": 50,
+                        "Intermediate Audience": 50,
+                        "Average Audience": 30
+                    },
+                    "Source of Negative MPXR Score": {
+                        "Expert Audience": 20,
+                        "Advanced Audience": 80,
+                        "Intermediate Audience": 40,
+                        "Average Audience": 5,
+                    }
+                },
+                "Content Consumption Breakdown": {
+                    "articles/text": {
+                        "total": 3,
+                        "completed": 0,
+                        "more_than_half": 3,
+                        "less_than_half": 0,
+                        "completed_percentage": 0.0,
+                        "more_than_half_percentage": 100.0,
+                        "less_than_half_percentage": 0.0
+                    },
+                    "podcasts/audio": {
+                        "total": 0,
+                        "completed": 0,
+                        "more_than_half": 0,
+                        "less_than_half": 0,
+                        "completed_percentage": 0,
+                        "more_than_half_percentage": 0,
+                        "less_than_half_percentage": 0
+                    },
+                    "video": {
+                        "total": 0,
+                        "completed": 0,
+                        "more_than_half": 0,
+                        "less_than_half": 0,
+                        "completed_percentage": 0,
+                        "more_than_half_percentage": 0,
+                        "less_than_half_percentage": 0
+                    }
+                },
+                "User Categorical read time Breakdown": [
+                    {
+                        "category": "3D Printing",
+                        "percentage of spent time": 33.33333337777778
+                    },
+                    {
+                        "category": "Aged Care",
+                        "percentage of spent time": 33.33333337777778
+                    },
+                    {
+                        "category": "AI",
+                        "percentage of spent time": 33.33333324444445
+                    }
+                ],
+                "User Categorical Reputation from Time-Spent interaction": [
+                    {
+                        "category": "3D Printing",
+                        "reputation": 1.5,
+                        "percentage": 33.33333337777778
+                    },
+                    {
+                        "category": "Aged Care",
+                        "reputation": 1.5,
+                        "percentage": 33.33333337777778
+                    },
+                    {
+                        "category": "AI",
+                        "reputation": 1.5,
+                        "percentage": 33.33333324444445
+                    }
+                ],
+                "User Emoji Interaction By Type Percentage Breakdown": {
+                    "Emoji Reaction Breakdown": {
+                        "Positive Reaction": {
+                            "This content is perfect!": 0,
+                            "This content is excellent!": 0,
+                            "This Content is very good.": 0,
+                            "This content is well done.": 0,
+                            "This content is at least interesting.": 0,
+                            "This content is not bad.": 0
+                        },
+                        "Negative Reaction": {
+                            "This content is useless and mostly wrong": 0,
+                            "This content is so bad.": 0,
+                            "This content has some errors.": 0,
+                            "This content is provocative and might be factually and logically wrong.": 0,
+                            "This content is boring.": 0,
+                            "This content is badly presented.": 0
+                        }
+                    }
+                },
+                "User Comment Interaction By Type Percentage Breakdown": {
+                    "User Comment Interaction Percentages Breakdown": {
+                        "Percentage of Comment": {
+                            "Percentage of All Best": 33.33333333333333,
+                            "Percentage of All Good": 0.0,
+                            "Percentage of All Average": 0.0,
+                            "Percentage of All Expedient": 16.666666666666664,
+                            "Percentage of Hate Speech": 0.0,
+                            "Percentage of Bullying": 33.33333333333333,
+                            "Percentage of Vulgar": 0.0,
+                            "Percentage of Spamming": 16.666666666666664
+                        }
+                    }
+                },
+
+                "User Like Interaction By Type Breakdown": {
+                    "User Like Interaction By Type": {
+                        "Percentages": {
+                            "Percentage of Thumbs Up": 60.0,
+                            "Percentage of Thumbs Down": 40.0
+                        },
+                        "Breakdown by Quality": {
+                            "Percentage of Thumbs Up": {
+                                "No. of Best Quality Int.": 2,
+                                "No. of Good Quality Int.": 0,
+                                "No. of Average Quality Int.": 0,
+                                "No. of Low Quality Int.": 1
+                            },
+                            "Percentage of Thumbs Down": {
+                                "No. of Best Quality Int.": 1,
+                                "No. of Good Quality Int.": 0,
+                                "No. of Average Quality Int.": 0,
+                                "No. of Low Quality Int.": 1
+                            }
+                        }
+                    }
+                },
+                "User Interaction by Quality Breakdown": {
+                    "User Interaction by Quality": {
+                        "No. of Best Quality Int.": 5,
+                        "No. of Good Quality Int.": 1,
+                        "No. of Average Quality Int.": 0,
+                        "No. of Low Quality Int.": 6
+                    }
+                }
+
+            }
+        ]
+
+
+        // functions for post graphs//
         const initEngagementSummary = (data) => {
             const chart = echarts.init(selectors.engagementSummary);
             const datas = data.percentages
@@ -400,7 +675,6 @@
                 chart.resize();
             });
         }
-
         const initArticleReadTimeChart = (readTime) => {
             let chart = echarts.init(selectors.articleTotalReadTimeChart);
             option = {
@@ -644,7 +918,7 @@
                     },
                 });
 
-             
+
                 source.push([
                     audienceType,
                     audienceData.Average,
@@ -748,7 +1022,7 @@
                     text: 'Interaction type count with interaction name',
                     textStyle: {
                         color: '#ffffff',
-                       fontSize:16,
+                        fontSize: 16,
                     }
                 },
                 tooltip: {
@@ -791,76 +1065,76 @@
                 name: audience,
 
             }));
-            let options= {
-        
-        title: {
-          text: "Interaction Score By Audience Type",
-          textStyle: {
-            color: "#ffffff",
-            fontSize:16,
-          },
-        },
-        tooltip: {
-           
-            position: function (point, params, dom, rect, size) {
-               
-                return [size.viewSize[0] / 2 - dom.offsetWidth / 2, size.viewSize[1] / 2 - dom.offsetHeight / 2];
-            },
-            
-        },
-        legend:{
-                show:true,
-                bottom:0,
-                textStyle:{
-                    color:'#fff'
-                }
-            },
-        series: [
-          {
-            name: "interaction  Score",
-            type: "pie",
-            radius: ['40%', '70%'],
-            // center:['40%', '60%'],
-            selectedMode: "single",
-            selectedOffset: 30,
-            clockwise: true,
-            bottom:25,
-            color:[
-              '#8979FF',
-              '#57C2CE',
-              '#79FF8D',
-              '#FF9B5C',
-            ],
-            label:{
-                show:false,
-            },
-            // label: {
-            //   fontSize: 12,
-            //   width:50,
-            //   overflow:'break',
-            //   color: "#fff",
-            // },
-            
-            // labelLine: {
-            //   lineStyle: {
-            //     color: "#fff",
-            //   },
-            // },
-            data: [],
+            let options = {
 
-          },
-        ],
-      }
+                title: {
+                    text: "Interaction Score By Audience Type",
+                    textStyle: {
+                        color: "#ffffff",
+                        fontSize: 16,
+                    },
+                },
+                tooltip: {
+
+                    position: function (point, params, dom, rect, size) {
+
+                        return [size.viewSize[0] / 2 - dom.offsetWidth / 2, size.viewSize[1] / 2 - dom.offsetHeight / 2];
+                    },
+
+                },
+                legend: {
+                    show: true,
+                    bottom: 0,
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                series: [
+                    {
+                        name: "interaction  Score",
+                        type: "pie",
+                        radius: ['40%', '70%'],
+                        // center:['40%', '60%'],
+                        selectedMode: "single",
+                        selectedOffset: 30,
+                        clockwise: true,
+                        bottom: 25,
+                        color: [
+                            '#8979FF',
+                            '#57C2CE',
+                            '#79FF8D',
+                            '#FF9B5C',
+                        ],
+                        label: {
+                            show: false,
+                        },
+                        // label: {
+                        //   fontSize: 12,
+                        //   width:50,
+                        //   overflow:'break',
+                        //   color: "#fff",
+                        // },
+
+                        // labelLine: {
+                        //   lineStyle: {
+                        //     color: "#fff",
+                        //   },
+                        // },
+                        data: [],
+
+                    },
+                ],
+            }
             console.log(seriesData);
             const series = options.series[0];
 
             chart.setOption({
                 ...options,
-                
+
                 series: {
                     ...series,
                     data: seriesData,
-                  
+
                 },
 
             });
@@ -869,265 +1143,662 @@
             });
         };
         const initSentimentByAudienceType = (data) => {
-      const chart = echarts.init(selectors.sentimentByAudienceType);
+            const chart = echarts.init(selectors.sentimentByAudienceType);
 
-      const datas = data.percentages
+            const datas = data.percentages
 
-      var xAxisData = Object.keys(datas["Total Interaction Counts"].total_positive_interaction_breakdown).map(key => key.replace(/audience/gi, '').trim());
-      var positiveData = Object.values(datas["Total Interaction Counts"].total_positive_interaction_breakdown);
-      var negativeData = Object.values(datas["Total Interaction Counts"].total_negative_interaction_breakdown);
+            var xAxisData = Object.keys(datas["Total Interaction Counts"].total_positive_interaction_breakdown).map(key => key.replace(/audience/gi, '').trim());
+            var positiveData = Object.values(datas["Total Interaction Counts"].total_positive_interaction_breakdown);
+            var negativeData = Object.values(datas["Total Interaction Counts"].total_negative_interaction_breakdown);
 
-      var series = [
-        {
-          name: 'Positive Interactions',
-          type: 'bar',
-          stack: 'interactions',
-          data: positiveData.map((value) => ({
-            value,
-            itemStyle: {
-              borderRadius: [0, 0, 0, 0] // Rounded corners for positive bars
-            }
-          })),
-          itemStyle: {
-            color: '#8979FF' 
-          }
-        },
-        {
-          name: 'Negative Interactions',
-          type: 'bar',
-          stack: 'interactions',
-          data: negativeData.map((value) => ({
-            value: value, 
-            itemStyle: {
-              borderRadius: [10, 0, 0, 0] // Rounded corners for negative bars
-            }
-          })),
-          itemStyle: {
-            color: '#FF9B5C' 
-          }
-        }
-      ];
+            var series = [
+                {
+                    name: 'Positive Interactions',
+                    type: 'bar',
+                    stack: 'interactions',
+                    data: positiveData.map((value) => ({
+                        value,
+                        itemStyle: {
+                            borderRadius: [0, 0, 0, 0] // Rounded corners for positive bars
+                        }
+                    })),
+                    itemStyle: {
+                        color: '#8979FF'
+                    }
+                },
+                {
+                    name: 'Negative Interactions',
+                    type: 'bar',
+                    stack: 'interactions',
+                    data: negativeData.map((value) => ({
+                        value: value,
+                        itemStyle: {
+                            borderRadius: [10, 0, 0, 0] // Rounded corners for negative bars
+                        }
+                    })),
+                    itemStyle: {
+                        color: '#FF9B5C'
+                    }
+                }
+            ];
 
-      var option = {
-        title: {
-          text: 'Sentiment Breakdown by Audience type',
-          
-          textStyle: {
-            color: '#ffffff',
-            font:12,
+            var option = {
+                title: {
+                    text: 'Sentiment Breakdown by Audience type',
 
-          }
-        },
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          },
-          left:0,
-          formatter: function (params) {
-            let content = params[0].axisValue + '<br/>';
-            params.forEach(param => {
-              content += `${param.seriesName}: ${Math.abs(param.value)}%<br/>`;
-            });
-            
-            return content;
-          }
-        },
-        legend: {
-          data: ['Positive Interactions', 'Negative Interactions'],
-          bottom: 10,
-          textStyle: {
-            color: '#fff',
-            fontSize:14
-          }
-        },
-        xAxis: {
-          type: 'category',
-          data: xAxisData,
-          
-          axisLabel: {
-   interval:0,
-    color: '#ffffff', 
-   
-    textStyle: {
-      fontSize: 12, 
-    },
-  },
-        },
-        yAxis: {
-          type: 'value',
-          axisLabel: {
-            formatter: '{value}%'
-          },
-          axisLabel: {
-            interval: 0,
+                    textStyle: {
+                        color: '#ffffff',
+                        font: 12,
 
-            textStyle: {
-              color: "#ffffff",
-            },
-          },
-        },
-        series: series
-      };
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    },
+                    left: 0,
+                    formatter: function (params) {
+                        let content = params[0].axisValue + '<br/>';
+                        params.forEach(param => {
+                            content += `${param.seriesName}: ${Math.abs(param.value)}%<br/>`;
+                        });
 
-      chart.setOption(option);
-      window.addEventListener('resize', () => {
+                        return content;
+                    }
+                },
+                legend: {
+                    data: ['Positive Interactions', 'Negative Interactions'],
+                    bottom: 10,
+                    textStyle: {
+                        color: '#fff',
+                        fontSize: 14
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    data: xAxisData,
+
+                    axisLabel: {
+                        interval: 0,
+                        color: '#ffffff',
+
+                        textStyle: {
+                            fontSize: 12,
+                        },
+                    },
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value}%'
+                    },
+                    axisLabel: {
+                        interval: 0,
+
+                        textStyle: {
+                            color: "#ffffff",
+                        },
+                    },
+                },
+                series: series
+            };
+
+            chart.setOption(option);
+            window.addEventListener('resize', () => {
                 chart.resize();
             });
 
-    }
-    const initAudienceLevelPeoplesChoicePercentages = (data) => {
-      const chart = echarts.init(selectors.audienceLevelPeoplesChoicePercentages);
-      const symbols = [
-        "path://M9.808 21V8.333Q8.06 7.994 6.863 6.7T5.358 3.652q-.031-.177.115-.318t.335-.142q.208 0 .354.126t.196.328q.333 1.646 1.569 2.712q1.237 1.065 2.823 1.065h2.5q.577 0 .977.17t.81.578l3.882 3.883q.14.14.15.344t-.15.364t-.353.16q-.195 0-.354-.16l-4.02-4.02V21q0 .214-.143.357t-.357.143t-.356-.143t-.144-.357v-5.384h-2.384V21q0 .214-.143.357t-.357.143t-.357-.143T9.808 21M12 5.77q-.71 0-1.201-.492t-.491-1.201t.491-1.201T12 2.385t1.201.491t.491 1.201t-.491 1.201q-.492.491-1.201.491",
-        "path://M9.808 21V8.333Q8.06 7.994 6.863 6.7T5.358 3.652q-.031-.177.115-.318t.335-.142q.208 0 .354.126t.196.328q.333 1.646 1.569 2.712q1.237 1.065 2.823 1.065h2.5q.577 0 .977.17t.81.578l3.882 3.883q.14.14.15.344t-.15.364t-.353.16q-.195 0-.354-.16l-4.02-4.02V21q0 .214-.143.357t-.357.143t-.356-.143t-.144-.357v-5.384h-2.384V21q0 .214-.143.357t-.357.143t-.357-.143T9.808 21M12 5.77q-.71 0-1.201-.492t-.491-1.201t.491-1.201T12 2.385t1.201.491t.491 1.201t-.491 1.201q-.492.491-1.201.491",
-        "path://M9.808 21V8.333Q8.06 7.994 6.863 6.7T5.358 3.652q-.031-.177.115-.318t.335-.142q.208 0 .354.126t.196.328q.333 1.646 1.569 2.712q1.237 1.065 2.823 1.065h2.5q.577 0 .977.17t.81.578l3.882 3.883q.14.14.15.344t-.15.364t-.353.16q-.195 0-.354-.16l-4.02-4.02V21q0 .214-.143.357t-.357.143t-.356-.143t-.144-.357v-5.384h-2.384V21q0 .214-.143.357t-.357.143t-.357-.143T9.808 21M12 5.77q-.71 0-1.201-.492t-.491-1.201t.491-1.201T12 2.385t1.201.491t.491 1.201t-.491 1.201q-.492.491-1.201.491",
-        "path://M9.808 21V8.333Q8.06 7.994 6.863 6.7T5.358 3.652q-.031-.177.115-.318t.335-.142q.208 0 .354.126t.196.328q.333 1.646 1.569 2.712q1.237 1.065 2.823 1.065h2.5q.577 0 .977.17t.81.578l3.882 3.883q.14.14.15.344t-.15.364t-.353.16q-.195 0-.354-.16l-4.02-4.02V21q0 .214-.143.357t-.357.143t-.356-.143t-.144-.357v-5.384h-2.384V21q0 .214-.143.357t-.357.143t-.357-.143T9.808 21M12 5.77q-.71 0-1.201-.492t-.491-1.201t.491-1.201T12 2.385t1.201.491t.491 1.201t-.491 1.201q-.492.491-1.201.491",
-      ]
-      const datas = data.percentages
-      
-      var xAxisData = Object.keys(datas["Audience Level Peoples Choice Percentages"]).map(key => key.replace(/audience/gi, '').trim());;
-      const bodyMax = 150;
-      const labelSetting = {
-        show: true,
-        position: 'top',
-        // offset: [0, -20],
-        formatter: function (param) {
-          return ((param.value) ).toFixed(0) + '%';
-        },
-        fontSize: 18,
-        fontFamily: 'Arial',
-        color:'#FFF',
-      };
-      const color = ['#2196F3']
-      const markLineSetting = {
-        symbol: 'none',
-        lineStyle: {
-          opacity: 0.3
-        },
-        data: [
-          {
-            type: 'max',
-            label: {
-              formatter: 'max: {c}'
-            }
-          },
-          {
-            type: 'min',
-            label: {
-              formatter: 'min: {c}'
-            }
-          }
-          
-        ]
-      };
-      const dataSet= data.percentages['Audience Level Peoples Choice Percentages'];
-      console.log('data', dataSet)
-      const audienceData = Object.entries(dataSet).map(([key, value], index) => ({
-        value: value, 
-        name: key, 
-        symbol: symbols[index % symbols.length] 
-      }));
-
-      option = {
-        title: {
-          text: 'Audience Level Peoples Choice Percentages',
-        //   left: 'center',
-          top:0,
-          textStyle: {
-            color: '#ffffff',
-            fontSize:16,
-          }
-        },
-
-        // grid:{
-        //   top:90,
-        // },
-        
-        tooltip:{},
-        legend: {
-          data: ['Audience Level Peoples Choice Percentages'],
-          selectedMode: 'single',
-         
-        },
-        xAxis: {
-            data: xAxisData ,
-            axisTick: { show: true },
-            axisLine: { show: true },
-            axisLabel: { show: true,
-            interval:0,
-            
-              textStyle:{
-              color:'#fff',
-              fontSize:14,
-            }
-             },
-            
-          },
-        yAxis: {
-          max: bodyMax,
-          
-        //   offset: 20,
-          splitLine: { show: false },
-          axisLabel:{
-            textStyle:{
-              color:'#fff',
-              
-            }
-          }
-          
-          
-        },
-
-        series : [{
-          name: '',
-          type: 'pictorialBar',
-          symbolClip: true,
-          symbolBoundingData: bodyMax,
-          label: labelSetting,
-          data: audienceData,
-          markLine: markLineSetting,
-          z: 10,
-          itemStyle: {
-            color: '#FF9B5C'
-          },
-        },
-        {
-          name: '',
-          type: 'pictorialBar',
-          symbolBoundingData: bodyMax,
-          animationDuration: 0,
-          itemStyle: {
-           color: 'rgba(31, 19, 11, 0.4)'
-          },
-          data: [
-            {
-              value: 1,
-              symbol: symbols[0]
-            },
-            {
-              value: 1,
-              symbol: symbols[1]
-            },
-            {
-              value: 1,
-              symbol: symbols[2]
-            },
-            {
-              value: 1,
-              symbol: symbols[3]
-            },
-          ]
         }
-        ]
-      
-      }
-      
-      chart.setOption(option);
-      window.addEventListener('resize', () => {
+        const initAudienceLevelPeoplesChoicePercentages = (data) => {
+            const chart = echarts.init(selectors.audienceLevelPeoplesChoicePercentages);
+            const symbols = [
+                "path://M9.808 21V8.333Q8.06 7.994 6.863 6.7T5.358 3.652q-.031-.177.115-.318t.335-.142q.208 0 .354.126t.196.328q.333 1.646 1.569 2.712q1.237 1.065 2.823 1.065h2.5q.577 0 .977.17t.81.578l3.882 3.883q.14.14.15.344t-.15.364t-.353.16q-.195 0-.354-.16l-4.02-4.02V21q0 .214-.143.357t-.357.143t-.356-.143t-.144-.357v-5.384h-2.384V21q0 .214-.143.357t-.357.143t-.357-.143T9.808 21M12 5.77q-.71 0-1.201-.492t-.491-1.201t.491-1.201T12 2.385t1.201.491t.491 1.201t-.491 1.201q-.492.491-1.201.491",
+                "path://M9.808 21V8.333Q8.06 7.994 6.863 6.7T5.358 3.652q-.031-.177.115-.318t.335-.142q.208 0 .354.126t.196.328q.333 1.646 1.569 2.712q1.237 1.065 2.823 1.065h2.5q.577 0 .977.17t.81.578l3.882 3.883q.14.14.15.344t-.15.364t-.353.16q-.195 0-.354-.16l-4.02-4.02V21q0 .214-.143.357t-.357.143t-.356-.143t-.144-.357v-5.384h-2.384V21q0 .214-.143.357t-.357.143t-.357-.143T9.808 21M12 5.77q-.71 0-1.201-.492t-.491-1.201t.491-1.201T12 2.385t1.201.491t.491 1.201t-.491 1.201q-.492.491-1.201.491",
+                "path://M9.808 21V8.333Q8.06 7.994 6.863 6.7T5.358 3.652q-.031-.177.115-.318t.335-.142q.208 0 .354.126t.196.328q.333 1.646 1.569 2.712q1.237 1.065 2.823 1.065h2.5q.577 0 .977.17t.81.578l3.882 3.883q.14.14.15.344t-.15.364t-.353.16q-.195 0-.354-.16l-4.02-4.02V21q0 .214-.143.357t-.357.143t-.356-.143t-.144-.357v-5.384h-2.384V21q0 .214-.143.357t-.357.143t-.357-.143T9.808 21M12 5.77q-.71 0-1.201-.492t-.491-1.201t.491-1.201T12 2.385t1.201.491t.491 1.201t-.491 1.201q-.492.491-1.201.491",
+                "path://M9.808 21V8.333Q8.06 7.994 6.863 6.7T5.358 3.652q-.031-.177.115-.318t.335-.142q.208 0 .354.126t.196.328q.333 1.646 1.569 2.712q1.237 1.065 2.823 1.065h2.5q.577 0 .977.17t.81.578l3.882 3.883q.14.14.15.344t-.15.364t-.353.16q-.195 0-.354-.16l-4.02-4.02V21q0 .214-.143.357t-.357.143t-.356-.143t-.144-.357v-5.384h-2.384V21q0 .214-.143.357t-.357.143t-.357-.143T9.808 21M12 5.77q-.71 0-1.201-.492t-.491-1.201t.491-1.201T12 2.385t1.201.491t.491 1.201t-.491 1.201q-.492.491-1.201.491",
+            ]
+            const datas = data.percentages
+
+            var xAxisData = Object.keys(datas["Audience Level Peoples Choice Percentages"]).map(key => key.replace(/audience/gi, '').trim());
+            const bodyMax = 150;
+            const labelSetting = {
+                show: true,
+                position: 'top',
+                // offset: [0, -20],
+                formatter: function (param) {
+                    return ((param.value)).toFixed(0) + '%';
+                },
+                fontSize: 18,
+                fontFamily: 'Arial',
+                color: '#FFF',
+            };
+            const color = ['#2196F3']
+            const markLineSetting = {
+                symbol: 'none',
+                lineStyle: {
+                    opacity: 0.3
+                },
+                data: [
+                    {
+                        type: 'max',
+                        label: {
+                            formatter: 'max: {c}'
+                        }
+                    },
+                    {
+                        type: 'min',
+                        label: {
+                            formatter: 'min: {c}'
+                        }
+                    }
+
+                ]
+            };
+            const dataSet = data.percentages['Audience Level Peoples Choice Percentages'];
+            console.log('data', dataSet)
+            const audienceData = Object.entries(dataSet).map(([key, value], index) => ({
+                value: value,
+                name: key,
+                symbol: symbols[index % symbols.length]
+            }));
+
+            option = {
+                title: {
+                    text: 'Audience Level Peoples Choice Percentages',
+                    //   left: 'center',
+                    top: 0,
+                    textStyle: {
+                        color: '#ffffff',
+                        fontSize: 16,
+                    }
+                },
+
+                // grid:{
+                //   top:90,
+                // },
+
+                tooltip: {},
+                legend: {
+                    data: ['Audience Level Peoples Choice Percentages'],
+                    selectedMode: 'single',
+
+                },
+                xAxis: {
+                    data: xAxisData,
+                    axisTick: { show: true },
+                    axisLine: { show: true },
+                    axisLabel: {
+                        show: true,
+                        interval: 0,
+
+                        textStyle: {
+                            color: '#fff',
+                            fontSize: 14,
+                        }
+                    },
+
+                },
+                yAxis: {
+                    max: bodyMax,
+
+                    //   offset: 20,
+                    splitLine: { show: false },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#fff',
+
+                        }
+                    }
+
+
+                },
+
+                series: [{
+                    name: '',
+                    type: 'pictorialBar',
+                    symbolClip: true,
+                    symbolBoundingData: bodyMax,
+                    label: labelSetting,
+                    data: audienceData,
+                    markLine: markLineSetting,
+                    z: 10,
+                    itemStyle: {
+                        color: '#FF9B5C'
+                    },
+                },
+                {
+                    name: '',
+                    type: 'pictorialBar',
+                    symbolBoundingData: bodyMax,
+                    animationDuration: 0,
+                    itemStyle: {
+                        color: 'rgba(31, 19, 11, 0.4)'
+                    },
+                    data: [
+                        {
+                            value: 1,
+                            symbol: symbols[0]
+                        },
+                        {
+                            value: 1,
+                            symbol: symbols[1]
+                        },
+                        {
+                            value: 1,
+                            symbol: symbols[2]
+                        },
+                        {
+                            value: 1,
+                            symbol: symbols[3]
+                        },
+                    ]
+                }
+                ]
+
+            }
+
+            chart.setOption(option);
+            window.addEventListener('resize', () => {
                 chart.resize();
             });
-    };
+        };
+
+
+        // functions for user graphs//
+        const categoricalReputationBreakdown = (data) => {
+
+            const chart = echarts.init(userSelectors.categoricalReputationBreakdown);
+            const seriesData = []
+            const legendData = []
+
+            data.forEach(item => {
+                seriesData.push({
+                    name: item.category,
+                    value: item.rep
+                });
+                legendData.push({
+                    name: item.category,
+                })
+            });
+
+            option = {
+                title: {
+                    text: 'User Categorical reputation Breakdown',
+
+                    left: 'center',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: ' ({d}%)'
+                },
+                label: {
+                    color: '#fff'
+                },
+                legend: {
+                    type: 'scroll',
+                    orient: 'vertical',
+                    right: 0,
+                    top: 25,
+                    bottom: 20,
+                    data: legendData,
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                series: [
+                    {
+                        name: 'reputation Breakdown',
+                        type: 'pie',
+                        radius: '65%',
+
+                        data: seriesData,
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+            chart.setOption(option);
+            window.addEventListener('resize', () => {
+                chart.resize();
+            });
+
+        }
+        const networkReputationScore = (data) => {
+            const chart = echarts.init(userSelectors.networkReputationScore);
+            const categories = Object.keys(data["Source of Positive MPXR Score"]);
+            const category =
+                console.log(categories)
+            // Extract corresponding values dynamically
+            const positiveValues = categories.map(cat => data["Source of Positive MPXR Score"][cat]);
+            const negativeValues = categories.map(cat => data["Source of Negative MPXR Score"][cat]);
+            const option = {
+                title: {
+                    text: 'Network Analysis Reputation Score Percentage',
+                    textStyle: {
+                        color: '#fff'
+                    },
+                    margin: 10,
+                },
+                angleAxis: {
+                    type: 'value',
+                },
+
+
+                radiusAxis: {
+                    type: 'category',
+                    data: categories,
+                    z: 10,
+
+                    axisLabel: {
+                        interval: 0,
+                        fontSize: 12,
+                        overflow: 'truncate',
+                        width: 80,
+                        textStyle: {
+                            color: '#fff',
+                        }
+                    },
+
+                },
+                polar: {
+                    center: ['50%', '50%'], // Moves the graph down (default is '50%')
+                    radius: "65%",
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: { type: 'shadow' },
+                    position: function (point, params, dom, rect, size) {
+                        const tooltipWidth = dom.clientWidth;
+                        const tooltipHeight = dom.clientHeight;
+
+                        // Calculate the center position for the tooltip
+                        const centerX = size.viewSize[0] / 2 - tooltipWidth / 2;
+                        let offsetY = point[1] + 10; // Keep a small offset from the point
+
+                        // If the tooltip overflows on the right, adjust position
+                        if (centerX + tooltipWidth > size.viewSize[0]) {
+                            offsetX = size.viewSize[0] - tooltipWidth - 10;
+                        }
+
+                        // If the tooltip overflows on the bottom, adjust position
+                        if (point[1] + tooltipHeight > size.viewSize[1]) {
+                            offsetY = point[1] - tooltipHeight - 10;
+                        }
+
+                        return [centerX, offsetY]; // Ensure the tooltip is centered horizontally
+                    }
+                },
+
+                series: [
+
+                    {
+                        type: 'bar',
+                        data: positiveValues,
+                        coordinateSystem: 'polar',
+                        name: 'Positive MPXR',
+                        stack: 'a',
+                        emphasis: {
+                            focus: 'series'
+                        }
+                    },
+                    {
+                        type: 'bar',
+                        data: negativeValues,
+                        coordinateSystem: 'polar',
+                        name: 'Negative MPXR',
+                        stack: 'a',
+                        emphasis: {
+                            focus: 'series'
+                        }
+                    }
+                ],
+                legend: {
+                    show: true,
+                    orient: 'vertical',
+                    right: 0,
+                    top: 25,
+                    bottom: 20,
+                    data: ['Positive MPXR', 'Negative MPXR'],
+                    textStyle: {
+                        color: '#fff'
+                    },
+
+                },
+
+            };
+            chart.setOption(option);
+            window.addEventListener('resize', () => {
+                chart.resize();
+            });
+        }
+        const numberMpxrPublication = (data) => {
+            const chart = echarts.init(userSelectors.numberMpxrPublication);
+
+        }
+        const interactionBreakdownNumbers = (data) => {
+            const chart = echarts.init(userSelectors.interactionBreakdownNumbers);
+            function buildTree(data) {
+                return Object.keys(data).map(key => {
+                    if (typeof data[key] === 'object' && data[key] !== null) {
+                        return { name: key, children: buildTree(data[key]) };
+                    } else {
+                        return { name: key, value: data[key] };
+                    }
+                });
+            }
+
+            const datas = {
+                name: 'User Interactions',
+                children: buildTree(data)
+            };
+
+
+            const option = {
+                tooltip: {
+                    trigger: 'item',
+                    triggerOn: 'mousemove'
+                },
+                series: [
+                    {
+                        type: 'tree',
+                        data: [datas],
+                        top: '1%',
+                        left: '7%',
+                        bottom: '1%',
+                        right: '20%',
+                        symbolSize: 7,
+                        label: {
+                            position: 'left',
+                            verticalAlign: 'middle',
+                            align: 'right',
+                            fontSize: 9
+                        },
+                        leaves: {
+                            label: {
+                                position: 'right',
+                                verticalAlign: 'middle',
+                                align: 'left'
+                            }
+                        },
+                        emphasis: {
+                            focus: 'descendant'
+                        },
+                        expandAndCollapse: true,
+                        animationDuration: 550,
+                        animationDurationUpdate: 750
+                    }
+                ]
+            }
+            chart.setOption(option);
+            window.addEventListener('resize', () => {
+                chart.resize();
+            });
+        }
+        const mpxrFromInteractionPercentage = (data) => {
+            const chart = echarts.init(userSelectors.mpxrFromInteractionPercentage);
+            const newData = [];
+
+            for (const key in data) {
+                newData.push({
+                    value: data[key],
+                    name: key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' ')
+                });
+            }
+            option = {
+                title: {
+                    text: 'MPXR From Interaction Percentage',
+                    left: 'center',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                tooltip: {
+                    trigger: 'item',
+                    position: function (point, params, dom, rect, size) {
+                        const tooltipWidth = dom.clientWidth;
+                        const tooltipHeight = dom.clientHeight;
+
+                        // Calculate the center position for the tooltip
+                        const centerX = size.viewSize[0] / 2 - tooltipWidth / 2;
+                        let offsetY = point[1] + 10; // Keep a small offset from the point
+
+                        // If the tooltip overflows on the right, adjust position
+                        if (centerX + tooltipWidth > size.viewSize[0]) {
+                            offsetX = size.viewSize[0] - tooltipWidth - 10;
+                        }
+
+                        // If the tooltip overflows on the bottom, adjust position
+                        if (point[1] + tooltipHeight > size.viewSize[1]) {
+                            offsetY = point[1] - tooltipHeight - 10;
+                        }
+
+                        return [centerX, offsetY]; // Ensure the tooltip is centered horizontally
+                    }
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    top: '10%',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+
+                series: [
+                    {
+                        name: 'Access From',
+                        type: 'pie',
+                        radius: '60%',
+                        top: '15%',
+                        data: newData,
+                        label: {
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            chart.setOption(option);
+            window.addEventListener('resize', () => {
+                chart.resize();
+            });
+
+        }
+        const mpxrFromRewards = (data) => {
+            const chart = echarts.init(userSelectors.mpxrFromRewards);
+            const newData = [];
+            console.log(data, 'here')
+            function flattenObject(obj, prefix = '') {
+                for (const key in obj) {
+                    const newKey = prefix ? `${prefix} ${key}` : key;
+                    if (typeof obj[key] === 'object' && obj[key] !== null && Object.keys(obj[key]).length > 0) { // Check if it's a non-empty object
+                        flattenObject(obj[key], newKey); 
+                    } else if (typeof obj[key] === 'number') { 
+                        newData.push({
+                            value: obj[key],
+                            name: newKey.replace(/_/g, ' ').trim() 
+                        });
+                    }
+                }
+            }
+
+            flattenObject(data);
+
+            console.log(newData)
+           
+            const option = {
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    top: '0%',
+                    orient: 'horizontal',
+                    left:0,
+                    // right: 0,
+                    width:'100%',
+                    textStyle:{
+                                    color:'#fff'
+                                }
+
+                },
+                series: [
+                    {
+                        name: 'Access From',
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                       
+                        avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 10,
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        label: {
+                            show: false,
+                            position: 'center',
+                           
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: 12,
+                                fontWeight: 'bold',
+                                textStyle:{
+                                    color:'#fff'
+                                },
+                               
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: newData
+                    }
+                ]
+            };
+            chart.setOption(option);
+            window.addEventListener('resize', () => {
+                chart.resize();
+            });
+        }
 
         async function fetchedPostById(postId) {
 
@@ -1163,17 +1834,39 @@
             }
         }
 
-        fetchedPostById(2)
-            .then((data) => {
-                if (data) {
-                    console.log("Fetched data:", data);
+        async function fetchedUserById(userId) {
+
+            try {
+
+                let data
+                if (userId != undefined) {
+                    const user = users.find((u) => u.user == parseInt(userId));
+
+                    if (!user) {
+                        console.log("post not found");
+                    } else {
+                        data = user;
+
+                    }
                 } else {
-                    console.log("No data fetched due to error.");
+                    console.log("id is undefined");
                 }
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-            });
+
+                if (data) {
+                    console.log("Fetched user data:", data);
+                    categoricalReputationBreakdown(data.categories)
+                    networkReputationScore(data['Network Breakdown'])
+                    numberMpxrPublication(data["Reputation Score Breakdown by number"])
+                    mpxrFromInteractionPercentage(data["Total User Interaction Breakdown"]["Total User Percentage of Interactions"])
+                    // interactionBreakdownNumbers(data)
+                    mpxrFromRewards(data["Reputation Score Breakdown by number"])
+                }
+            } catch (error) {
+                console.error("Error when fetching the data:", error);
+            }
+        }
+        fetchedPostById(2);
+        fetchedUserById(2);
 
 
     </script>
