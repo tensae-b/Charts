@@ -13,6 +13,7 @@
       color: #fff;
       margin: 40px auto;
       font-size: 50px;
+      text-align: center;
     }
   </style>
 </head>
@@ -70,22 +71,22 @@
 
   <h1>User Profile Chart</h1>
   <div id="user-charts">
-    <div class="user-catergorical-reputation-data-chart">
+    <div class="user-catergorical-reputation-data-chart chart">
       <div id="user-catergorical-reputation-data" style="width: 700px; height: 500px"></div>
     </div>
-    <div class="network-analysis-reputation-score-percentage-for-user">
-      <div id="network-analysis-reputation-score-percentage" style="width: 700px; height: 750px; margin: 0px 0;"></div>
+    <div class="network-analysis-reputation-score-percentage-for-user chart">
+      <div id="network-analysis-reputation-score-percentage" style="width: 700px; height: 750px;"></div>
     </div>
-    <div class="user-expertise-level-and-user-nature-for-user-chart">
-      <div id="user-expertise-level-and-user-nature-for-user" style="padding-left: 10px; width: 800px; height: 500px"></div>
+    <div class="user-expertise-level-and-user-nature-for-user-chart chart">
+      <div id="user-expertise-level-and-user-nature-for-user" style="width: 900px; height: 500px"></div>
     </div><br><br>
-    <div class="interaction-breakdown-in-numbers-users-favorite-chart">
-      <div id="interaction-breakdown-in-numbers-users-favorite" style="width: 1200px; height: 500px; margin: 100px 0;"></div>
+    <div class="interaction-breakdown-in-numbers-users-favorite-chart chart">
+      <div id="interaction-breakdown-in-numbers-users-favorite" style="width: 1000px; height: 500px;"></div>
     </div><br>
-    <div class="number-Of-MPXR-from-publication-for-user-chart">
+    <div class="number-Of-MPXR-from-publication-for-user-chart chart">
       <div id="number-of-MPXR-from-publication-for-user" style="width: 700px; height: 500px"></div>
     </div>
-    <div class="MPXR-from-interaction-percentage-user-chart">
+    <div class="MPXR-from-interaction-percentage-user-chart chart">
       <div id="MPXR-from-interaction-percentage-user" style="width: 700px; height: 500px"></div>
     </div>
   </div>
@@ -1101,18 +1102,17 @@
 
 
       // User profile charts
-      
-      const userSelectors = {
-  userCategoricalReputationChart: document.getElementById('user-catergorical-reputation-data'),
-  networkAnalysisReputationChart: document.getElementById('network-analysis-reputation-score-percentage'),
-  userExpertiseLevelChart: document.getElementById('user-expertise-level-and-user-nature-for-user'),
-  interactionBreakdownChart: document.getElementById('interaction-breakdown-in-numbers-users-favorite'),
-  mpxrFromPublicationChart: document.getElementById('number-of-MPXR-from-publication-for-user'),
-  mpxrFromInteractionChart: document.getElementById('MPXR-from-interaction-percentage-user'),
-};
+    const userSelectors = {
+    userCategoricalReputationChart: document.getElementById('user-catergorical-reputation-data'),
+    networkAnalysisReputationChart: document.getElementById('network-analysis-reputation-score-percentage'),
+    userExpertiseLevelChart: document.getElementById('user-expertise-level-and-user-nature-for-user'),
+    interactionBreakdownChart: document.getElementById('interaction-breakdown-in-numbers-users-favorite'),
+    mpxrFromPublicationChart: document.getElementById('number-of-MPXR-from-publication-for-user'),
+    mpxrFromInteractionChart: document.getElementById('MPXR-from-interaction-percentage-user'),
+    };
 
-const userProfileData = 
-{
+    const userProfileData = [
+    {
     "user": 2,
     "mpxr": 3.50056,
     "vote_rep_availabe": 3.50055665,
@@ -1165,7 +1165,7 @@ const userProfileData =
     },
     "Reputation Score Breakdown by number": {
         "MPXR Total From Interaction": 2.5,
- "MPXR Total From Profile Completion": 0.8,
+    "MPXR Total From Profile Completion": 0.8,
         "MPXR From Time Spent": 1.5,
         "MPXR From people's Choice": 1.0,
         "MPXR From Comment": {
@@ -1257,7 +1257,7 @@ const userProfileData =
         }
     ],
     // 
-   "User Emoji Interaction By Type Percentage Breakdown": {
+    "User Emoji Interaction By Type Percentage Breakdown": {
         "Emoji Reaction Breakdown": {
             "Positive Reaction": {
                 "This content is perfect!": 0,
@@ -1321,19 +1321,240 @@ const userProfileData =
             "No. of Low Quality Int.": 6
         }
     }
+    }
+];
+
+
+
+    // Base chart configurations for reusability
+    const baseTitleStyle = {
+    textStyle: { color: '#fff' },
+    };
+    const baseLabelStyle = {
+    fontSize: 14,
+    color: '#fff',
+    };
+    
+
+    // USer cateogrical Reputation chart
+const initUserCategoricalReputationChart = (data) => {
+  const chart = echarts.init(userSelectors.userCategoricalReputationChart);
+  const categoriesData = (data.categories || []).map((item) => ({
+    name: item.category,
+    value: item.rep,
+  }));
+
+  chart.setOption({
+    title: {
+      text: "User Categorical Reputation",
+      left: "center",
+      textStyle: { color: "#fff" },
+    },
+    tooltip: { trigger: "item", formatter: "{b}: {c}" },
+    legend: {
+      orient: "vertical",
+      left: "left",
+      textStyle: { color: "#fff" },
+    },
+    series: [
+      {
+        name: "Categories",
+        type: "pie",
+        radius: "50%",
+        data: categoriesData,
+        label:{fontSize: 14, color: '#fff',},
+        color: ["#8979FF", "#79FF8D", "#FF9B5C"],
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: "rgba(0, 0, 0, 0.5)",
+          },
+        },
+      },
+    ],
+  });
+};
+
+// Network Analysis Chart
+// 
+const initNetworkAnalysisReputationChart = (data) => {
+  const chart = echarts.init(userSelectors.networkAnalysisReputationChart);
+
+  const breakdown = data["Network Breakdown"];
+  console.log("network analysis data", breakdown);
+  if (!breakdown) {
+    console.error("Network Breakdown data is undefined", breakdown);
+    return;
+  }
+
+  const source = breakdown.hasOwnProperty("Source of Positive MPXR Score")
+    ? [breakdown["Source of Positive MPXR Score"], breakdown["Source of Negative MPXR Score"]]
+    : null;
+
+  if (!source) {
+    console.error("Network Breakdown source data is not available or undefined", source);
+    return;
+  }
+
+  const categories = Object.keys(source[0] || {});
+  const positiveData = Object.values(source[0] || {});
+  const negativeData = Object.values(source[1] || {});
+
+  // Base chart options
+  const baseOption = {
+    title: {
+      text: "Network Analysis Breakdown",
+      left: "center",
+      textStyle: { color: "#fff" },
+    },
+    polar: {
+      center: ["50%", "40%"],
+      radius: [35, "60%"],
+    },
+    angleAxis: { max: Math.max(...positiveData, ...negativeData), startAngle: 75 },
+    radiusAxis: {
+      type: "category",
+      data: categories,
+    },
+    tooltip: { trigger: "item" },
+    series: [
+      {
+        name: "Source of Positive Reputation",
+        type: "bar",
+        data: positiveData,
+        coordinateSystem: "polar",
+        stack: "total",
+        itemStyle: { color: "#5470C6" },
+        label: {
+          show: true,
+          position: "middle",
+          formatter: "{b}: {c}",
+          fontSize: 10,
+          color: "#fff",
+        },
+      },
+      {
+        name: "Source of Negative Reputation",
+        type: "bar",
+        data: negativeData,
+        coordinateSystem: "polar",
+        stack: "total",
+        itemStyle: { color: "#91cc75" },
+        label: {
+          show: true,
+          position: "middle",
+          formatter: "{b}: {c}",
+          fontSize: 10,
+          color: "#fff",
+        },
+      },
+    ],
+  };
+
+  // Responsive function to update chart options
+  const updateResponsiveOption = () => {
+    const screenWidth = window.innerWidth;
+
+    // Adjust settings if the screen width is less than or equal to 950px
+    if (screenWidth <= 950) {
+      chart.setOption({
+        polar: {
+          center: ["50%", "50%"], // Adjust polar center
+          radius: [20, "50%"], // Adjust radius for smaller screens
+        },
+        series: baseOption.series.map((series) => ({
+          ...series,
+          label: {
+            ...series.label,
+            fontSize: 8, // Reduce font size for labels
+          },
+        })),
+      });
+    } else {
+      // Reset to default settings for larger screens
+      chart.setOption(baseOption);
+    }
+  };
+
+  // Initialize the chart with the base options
+  chart.setOption(baseOption);
+
+  // Add event listener for window resizing
+  window.addEventListener("resize", () => {
+    chart.resize(); // Ensure the chart resizes properly
+    updateResponsiveOption(); // Update options based on screen width
+  });
+
+  // Apply responsive options immediately
+  updateResponsiveOption();
 };
 
 
+// User Expertise Level and User Nature Chart
 
-// Base chart configurations for reusability
-const baseTitleStyle = {
-  textStyle: { color: '#fff' },
-};
-const baseLabelStyle = {
-  fontSize: 14,
-  color: '#fff',
+const initUserExpertiseLevelChart = (data) => {
+  const chart = echarts.init(userSelectors.userExpertiseLevelChart);
+
+  const expertiseNatureTree = [
+    {
+      name: "User Profile",
+      children: [
+        {
+          name: "User Nature",
+          children: Object.entries(data["User Nature"] || {}).map(([key, value]) => ({
+            name: `${key}: ${value}`,
+          })),
+        },
+        {
+          name: "User Level",
+          value: data["User Level"],
+        },
+      ],
+    },
+  ];
+
+  chart.setOption({
+    title: {
+      text: "User Profile Tree",
+      left: "center",
+      textStyle: { color: "#fff" },
+    },
+    tooltip: { trigger: "item", formatter: "{b}" },
+    series: [
+      {
+        type: "tree",
+        data: expertiseNatureTree,
+        top: "10%",
+        left: "15%",
+        bottom: "10%",
+        right: "15%",
+        symbol: "circle",
+        symbolSize: 10,
+        label: {
+          position: "top",
+          verticalAlign: "middle",
+          align: "right",
+          fontSize: 14,
+          color: "#fff",
+        },
+        leaves: {
+          label: {
+            position: "bottom",
+            verticalAlign: "middle",
+            align: "left",
+            color: "#fff",
+          },
+        },
+        expandAndCollapse: true,
+        animationDuration: 750,
+        animationEasing: "quinticInOut",
+      },
+    ],
+  });
 };
 
+// Interaction Breakdown Chart
 // Configurable data paths
 const dataPaths = {
   emojiReaction: "User Emoji Interaction By Type Percentage Breakdown.Emoji Reaction Breakdown",
@@ -1468,279 +1689,87 @@ const initInteractionBreakdownChart = (data) => {
 };
 
 
-
-// Initialize User Categorical Reputation Chart
-const initUserCategoricalReputationChart = (data) => {
-  const chart = echarts.init(userSelectors.userCategoricalReputationChart);
-  const categoriesData = (data.categories || []).map((item) => ({
-    name: item.category,
-    value: item.rep,
-  }));
-
-  chart.setOption({
-    title: {
-      text: 'User Categorical Reputation',
-      left: 'center',
-      textStyle: { color: '#fff' },
-    },
-    tooltip: { trigger: 'item', formatter: '{b}: {c}' },
-    legend: {
-      orient: 'vertical',
-      left: 'left',
-      textStyle: { color: '#fff' },
-    },
-    series: [
-      {
-        name: 'Categories',
-        type: 'pie',
-        radius: '50%',
-        data: categoriesData,
-        label: baseLabelStyle,
-        color: [          
-              '#8979FF',  
-              '#79FF8D',
-              '#FF9B5C',
-      ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
-          },
-        },
-      },
-    ],
-  });
-};
-
-
-
-// Initialize Network Analysis Chart
-const initNetworkAnalysisReputationChart = (data) => {
-  const chart = echarts.init(userSelectors.networkAnalysisReputationChart);
-
-  const categories = Object.keys(data["Network Breakdown"]["Source of Positive MPXR Score"] || {});
-  const positiveData = Object.values(data["Network Breakdown"]["Source of Positive MPXR Score"] || {});
-  const negativeData = Object.values(data["Network Breakdown"]["Source of Negative MPXR Score"] || {});
-
-  chart.setOption({
-    title: {
-      text: 'Network Analysis Breakdown',
-      left: 'center',
-      textStyle: { color: '#fff' },
-    },
-    polar: {
-      center: ['50%', '50%'],
-      radius: [35, '90%'],
-    },
-    angleAxis: { max: Math.max(...positiveData, ...negativeData), startAngle: 75 },
-    radiusAxis: {
-      type: 'category',
-      data: categories,
-    },
-    tooltip: { trigger: 'item' },
-    series: [
-      {
-        name: 'Source of Positive Reputation',
-        type: 'bar',
-        data: positiveData,
-        coordinateSystem: 'polar',
-        stack: 'total',
-        itemStyle: { color: '#5470C6' },
-        label: {
-          show: true,
-          position: 'middle',
-          formatter: '{b}: {c}',
-          fontSize: 16,
-          color: '#fff',
-        },
-      },
-      {
-        name: 'Source of Negative Reputation',
-        type: 'bar',
-        data: negativeData,
-        coordinateSystem: 'polar',
-        stack: 'total',
-        itemStyle: { color: '#91cc75' },
-        label: {
-          show: true,
-          position: 'middle',
-          formatter: '{b}: {c}',
-          fontSize: 16,
-          color: '#fff',
-        },
-      },
-    ],
-  });
-};
-
-// Initialize User Expertise Level and User Nature
-const initUserExpertiseLevelChart = (data) => {
-  const chart = echarts.init(userSelectors.userExpertiseLevelChart);
-
-  const expertiseNatureTree = [
-    {
-      name: "User Profile",
-      children: [
-        {
-          name: "User Nature",
-          children: Object.entries(data["User Nature"] || {}).map(([key, value]) => ({
-            name: `${key}: ${value}`,
-          })),
-        },
-        {
-          name: "User Level",
-          value: data["User Level"],
-        },
-      ],
-    },
-  ];
-
-  chart.setOption({
-    title: {
-      text: 'User Profile Tree',
-      left: 'center',
-      textStyle: { color: '#fff' },
-    },
-    tooltip: { trigger: 'item', formatter: '{b}' },
-    series: [
-      {
-        type: 'tree',
-        data: expertiseNatureTree,
-        top: '10%',
-        left: '15%',
-        bottom: '10%',
-        right: '15%',
-        symbol: 'circle',
-        symbolSize: 10,
-        label: {
-          position: 'top',
-          verticalAlign: 'middle',
-          align: 'right',
-          fontSize: 14,
-          color: '#fff',
-        },
-        leaves: {
-          label: {
-            position: 'bottom',
-            verticalAlign: 'middle',
-            align: 'left',
-            color: '#fff',
-          },
-        },
-        expandAndCollapse: true,
-        animationDuration: 750,
-        animationEasing: 'quinticInOut',
-      },
-    ],
-  });
-};
-
-// Initialize No. of MPXR From publication 
+// MPXR From Publication Chart
 const initMPXRFromPublicationChart = (data) => {
   const chart = echarts.init(userSelectors.mpxrFromPublicationChart);
-  const categories = ['MPXR From Social Post', 'MPXR From Comment'];
 
-  const rewardFields = [
-    'MPXR reward for publication', 
-    'MPXR Reward By Comment'      
+  const categories = ["MPXR From Social Post", "MPXR From Comment"];
+  const rewardData = [
+    data["Reputation Score Breakdown by number"]["MPXR From Social Post"]["MPXR reward for publication"] || 0,
+    data["Reputation Score Breakdown by number"]["MPXR From Comment"]["MPXR Reward By Comment"] || 0,
   ];
-
-  const scoreFields = [
-    'MPXR score from user interaction', 
-    'MPXR Reward From Comment'         
+  const scoreData = [
+    data["Reputation Score Breakdown by number"]["MPXR From Social Post"]["MPXR score from user interaction"] || 0,
+    data["Reputation Score Breakdown by number"]["MPXR From Comment"]["MPXR Reward From Comment"] || 0,
   ];
-
-  const rewardData = categories.map((category, index) => 
-    data["Reputation Score Breakdown by number"][category][rewardFields[index]]
-  );
-
-  const scoreData = categories.map((category, index) => 
-    data["Reputation Score Breakdown by number"][category][scoreFields[index]]
-  );
 
   chart.setOption({
     title: {
-      text: 'No. of MPXR From Publication',
-      left: 'center',
-      textStyle: { color: '#fff' },
+      text: "No. of MPXR From Publication",
+      left: "center",
+      textStyle: { color: "#fff" },
     },
-    tooltip: { trigger: 'axis' },
-    grid: { left: '20%' },
+    tooltip: { trigger: "axis" },
+    grid: { left: "20%" },
     yAxis: {
-      type: 'category',
+      type: "category",
       data: categories,
     },
-    xAxis: { type: 'value' },
+    xAxis: { type: "value" },
     series: [
       {
-        name: 'Reward',
-        type: 'bar',
-        stack: 'Total',
-        label: {
-          show: true,
-          position: 'inside',
-          fontSize: 14,
-          color: '#fff',
-        },
+        name: "Reward",
+        type: "bar",
+        stack: "Total",
         data: rewardData,
-        itemStyle: { color: '#5470C6' },
+        itemStyle: { color: "#5470C6" },
       },
       {
-        name: 'Score',
-        type: 'bar',
-        stack: 'Total',
-        label: {
-          show: true,
-          position: 'inside',
-          fontSize: 14,
-          color: '#fff',
-        },
+        name: "Score",
+        type: "bar",
+        stack: "Total",
         data: scoreData,
-        itemStyle: { color: '#91cc75' },
+        itemStyle: { color: "#91cc75" },
       },
     ],
   });
 };
 
-
-
-// Initialize MPXR From Interaction Percentage Chart
+// MPXR From Interaction Chart
 const initMPXRFromInteractionChart = (data) => {
-  const interactionData = Object.entries(data["Total User Interaction Breakdown"]["Total User Percentage of Interactions"] || {}).map(([key, value]) => ({
-    name: key, 
-    value: value,
-  }));
-
   const chart = echarts.init(userSelectors.mpxrFromInteractionChart);
+
+  const interactionData = Object.entries(
+    data["Total User Interaction Breakdown"]["Total User Percentage of Interactions"] || {}
+  ).map(([key, value]) => ({
+    name: key,
+    value,
+  }));
 
   chart.setOption({
     title: {
-      text: 'MPXR From Interaction Percentage',
-      left: 'center',
-      textStyle: { color: '#fff' },
+      text: "MPXR From Interaction Percentage",
+      left: "center",
+      textStyle: { color: "#fff" },
     },
-    tooltip: { trigger: 'item' },
+    tooltip: { trigger: "item" },
     legend: {
-      orient: 'vertical',
-      left: 'left',
-      textStyle: { color: '#fff' },
+      orient: "vertical",
+      left: "left",
+      textStyle: { color: "#fff" },
     },
     series: [
       {
-        name: 'Interaction Percentage',
-        type: 'pie',
-        radius: '50%',
+        name: "Interaction Percentage",
+        type: "pie",
+        radius: "50%",
         data: interactionData,
-        label: {
-          fontSize: 14,
-          color: '#fff',
-        },
+        label: { fontSize: 14, color: "#fff" },
         emphasis: {
           itemStyle: {
             shadowBlur: 10,
             shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)',
+            shadowColor: "rgba(0, 0, 0, 0.5)",
           },
         },
       },
@@ -1748,17 +1777,18 @@ const initMPXRFromInteractionChart = (data) => {
   });
 };
 
-// Initialize all user profile charts
-const initializeUserProfileCharts = (userProfileData) => {
-  initUserCategoricalReputationChart(userProfileData);
-  initNetworkAnalysisReputationChart(userProfileData);
-  initUserExpertiseLevelChart(userProfileData);
-  initInteractionBreakdownChart(userProfileData);
-  initMPXRFromPublicationChart(userProfileData);
-  initMPXRFromInteractionChart(userProfileData);
+
+const initializeUserProfileCharts = (userProfileDataArray) => {
+  const user = userProfileDataArray[0]; 
+  initUserCategoricalReputationChart(user);
+  initNetworkAnalysisReputationChart(user);
+  initUserExpertiseLevelChart(user);
+  initInteractionBreakdownChart(user);
+  initMPXRFromPublicationChart(user);
+  initMPXRFromInteractionChart(user);
 };
 
-// Initialize with the dynamic data
+// Initialize charts
 initializeUserProfileCharts(userProfileData);
 
   </script>
