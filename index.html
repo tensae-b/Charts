@@ -1788,8 +1788,24 @@ const initializeUserProfileCharts = (userProfileDataArray) => {
   initMPXRFromInteractionChart(user);
 };
 
-// Initialize charts
-initializeUserProfileCharts(userProfileData);
+// Function to make charts responsive
+const makeChartsResponsive = () => {
+    Object.values(userSelectors).forEach(chart => {
+      if (chart && chart.resize) {
+        chart.resize();
+      }
+    });
+  };
+
+  // Initialize charts
+  initializeUserProfileCharts(userProfileData);
+
+  // Add event listener for window resize
+  window.addEventListener('resize', makeChartsResponsive);
+
+  // Call the resize function initially to set the correct size
+  makeChartsResponsive();
+
 
   </script>
   <!-- <script type="module" src="/src/main.js"></script> -->
