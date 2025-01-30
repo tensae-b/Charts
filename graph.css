@@ -8,6 +8,10 @@ body {
 
 }
 
+.chart {
+    padding: 0px 10px;
+  }
+
 #post-charts {
     display: flex;
     flex-direction: column;
@@ -148,6 +152,11 @@ h1 {
     body {
         padding: 0px 30px 150px 30px;
        }
+
+       .chart {
+        padding: 0px 20px;
+       
+      }
     .post-engagement-summary {
         width: 100%;
     }
@@ -171,6 +180,10 @@ h1 {
         padding: 0px 50px 150px 50px;
        } 
 
+       .chart {
+        padding: 0px 50px;
+       
+      }
     .engagement-summary {
         width: 100%;
         display: flex;
@@ -205,6 +218,10 @@ h1 {
     body {
         padding: 0px 50px 150px 50px;
        }
+
+       .chart {
+        padding: 0px 201px;
+      }
 
     .completion-rate-audience-breakdown-for-article-chart {
         width: 50%;
