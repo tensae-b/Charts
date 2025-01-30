@@ -102,6 +102,10 @@ h1 {
  #timespent-by-category{
     width:100%
 }
+
+.user-expertise-level-and-user-nature-chart #user-expertise-level-and-user-nature{
+    width:80%;
+}
 /* .post-engagement-summary .total-readed-time-chart .article-total-read-time{
     width: 100%;
   } */

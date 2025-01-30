@@ -67,14 +67,17 @@
                 </div>
             </div>
         </div>
-        <div class="number-Of-MPXR-from-publication-for-user-chart">
-            <div id="number-of-MPXR-from-publication-for-user" style="width: 700px; height: 500px"></div>
+        <!-- <div class="number-Of-MPXR-from-publication-for-user-chart">
+            <div id="number-of-MPXR-from-publication-for-user" style=" height: 500px"></div>
+        </div> -->
+        <div class="user-expertise-level-and-user-nature-chart">
+            <div id="user-expertise-level-and-user-nature" style="height: 500px"></div>
         </div>
         <div class="mpxr-from-interaction-percentage-chart">
             <div id="mpxr-from-interaction-percentage" style="height: 500px;"></div>
         </div>
         <div class="mpxr-from-rewards-chart">
-            <div id="mpxr-from-rewards" style="height: 500px;"> </div>
+            <div id="mpxr-from-rewards" style="height: 600px;"> </div>
         </div>
         <div class="content-consumption-breakdown-chart">
             <div id="content-consumption-breakdown" style="height: 500px;"> </div>
@@ -122,6 +125,8 @@
             audienceLevelPeoplesChoicePercentages: document.getElementById(
                 "audience-level-peoples-choice-percentages"
             ),
+
+
         };
 
         let userSelectors = {
@@ -131,8 +136,11 @@
             networkReputationScore: document.getElementById(
                 "network-analysis-reputation-score-percentage"
             ),
-            numberMpxrPublication: document.getElementById(
-                "number-of-MPXR-from-publication-for-user"
+            // numberMpxrPublication: document.getElementById(
+            //     "number-of-MPXR-from-publication-for-user"
+            // ),
+            userNature: document.getElementById(
+                "user-expertise-level-and-user-nature"
             ),
             interactionBreakdownNumbers: document.getElementById(
                 "interaction-breakdown-in-numbers-users-favorite"
@@ -1137,7 +1145,7 @@
                     },
                 ],
             }
-            console.log(seriesData);
+
             const series = options.series[0];
 
             chart.setOption({
@@ -1308,7 +1316,7 @@
                 ]
             };
             const dataSet = data.percentages['Audience Level Peoples Choice Percentages'];
-            console.log('data', dataSet)
+
             const audienceData = Object.entries(dataSet).map(([key, value], index) => ({
                 value: value,
                 name: key,
@@ -1487,8 +1495,7 @@
         const networkReputationScore = (data) => {
             const chart = echarts.init(userSelectors.networkReputationScore);
             const categories = Object.keys(data["Source of Positive MPXR Score"]);
-            const category =
-                console.log(categories)
+
             // Extract corresponding values dynamically
             const positiveValues = categories.map(cat => data["Source of Positive MPXR Score"][cat]);
             const negativeValues = categories.map(cat => data["Source of Negative MPXR Score"][cat]);
@@ -1592,10 +1599,10 @@
                 chart.resize();
             });
         }
-        const numberMpxrPublication = (data) => {
-            const chart = echarts.init(userSelectors.numberMpxrPublication);
+        // const numberMpxrPublication = (data) => {
+        //     const chart = echarts.init(userSelectors.numberMpxrPublication);
 
-        }
+        // }
         const interactionBreakdownNumbers = (data) => {
             const chart = echarts.init(userSelectors.interactionBreakdownNumbers);
             function buildTree(data) {
@@ -1737,11 +1744,11 @@
         const mpxrFromRewards = (data) => {
             const chart = echarts.init(userSelectors.mpxrFromRewards);
             const newData = [];
-            console.log(data, 'here')
+
             function flattenObject(obj, prefix = '') {
                 for (const key in obj) {
                     const newKey = prefix ? `${prefix} ${key}` : key;
-                    if (typeof obj[key] === 'object' && obj[key] !== null && Object.keys(obj[key]).length > 0) { // Check if it's a non-empty object
+                    if (typeof obj[key] === 'object' && obj[key] !== null && Object.keys(obj[key]).length > 0) { 
                         flattenObject(obj[key], newKey);
                     } else if (typeof obj[key] === 'number') {
                         newData.push({
@@ -1754,19 +1761,19 @@
 
             flattenObject(data);
 
-            console.log(newData)
+
 
             const option = {
-                title:{
-                    text:'MPXR From Different Rewards',
-                    left:'center',
-                    textStyle:{
-                        color:'#fff',
+                title: {
+                    text: 'MPXR From Different Rewards',
+                    left: 'center',
+                    textStyle: {
+                        color: '#fff',
                     }
                 },
-                tooltip: {
-                    trigger: 'item'
-                },
+                // tooltip: {
+                //     trigger: 'item'
+                // },
                 legend: {
                     top: '10%',
                     orient: 'horizontal',
@@ -1778,15 +1785,15 @@
                     }
 
                 },
-                grid:{
-                    top:'15%'
+                grid: {
+                    top: '15%'
                 },
                 series: [
                     {
                         name: 'Access From',
                         type: 'pie',
-                        radius: ['40%', '70%'],
-
+                        radius: ['35%', '55%'],
+                        center:['50%', '70%'],
                         avoidLabelOverlap: false,
                         itemStyle: {
                             borderRadius: 10,
@@ -1803,8 +1810,10 @@
                                 show: true,
                                 fontSize: 12,
                                 fontWeight: 'bold',
+
                                 textStyle: {
-                                    color: '#fff'
+                                    color: '#fff',
+                                    
                                 },
 
                             }
@@ -1945,74 +1954,165 @@
                 barValues.push(Math.round(item["percentage of spent time"]))
             })
 
-           
-            const option ={
-    title: {
-        text: 'Read Time and Reputation score collected from Time spent by Category',
-        width:'90%',
-        textStyle: {
-            color: '#fff'
+
+            const option = {
+                title: {
+                    text: 'Read Time and Reputation score collected from Time spent by Category',
+                    width: '90%',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                legend: {
+                    textStyle: {
+                        color: '#fff'
+                    },
+                    top: '5%',
+                    data: barCategories
+                },
+                tooltip: {
+                    trigger: 'item',
+                    showContent: true
+                },
+                grid: {
+                    top: '10%',
+                    bottom: '60%',
+                    left: '5%',
+                    right: '5%',
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: barCategories,
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: 'bar',
+                        type: 'bar',
+                        barWidth: '40%',
+                        data: barValues,
+                        colorBy: barCategories,
+                        // Position the bar chart at the top
+                        emphasis: { focus: 'self' }
+                    },
+                    {
+                        name: 'pie', // Name the pie series for the legend
+                        type: 'pie',
+                        id: 'pie',
+                        center: ['50%', '65%'],
+                        radius: '40%',
+                        emphasis: { focus: 'self' },
+                        label: {
+                            textStyle: {
+                                color: '#fff',
+                                overflow: 'truncate',
+                                width: 80
+                            }
+                        },
+                        data: pieData,
+                    }
+                ]
+            };
+
+            chart.setOption(option);
+            window.addEventListener('resize', () => {
+                chart.resize();
+            });
         }
-    },
-    legend: {
-        textStyle: {
-            color: '#fff'
-        },
-        top: '5%',
-        data:  barCategories
-    },
-    tooltip: {
-        trigger: 'item',
-        showContent: true
-    },
-    grid:{
-       top:'10%',
-       bottom:'60%',
-       left:'5%',
-       right:'5%',
-    },
-    xAxis: [
-        {
-            type: 'category',
-            data: barCategories,
-            axisTick: {
-                alignWithLabel: true
-            }
-        }
-    ],
-    yAxis: [
-        {
-            type: 'value'
-        }
-    ],
-    series: [
-        {
-            name: 'bar',
-            type: 'bar',
-            barWidth: '60%',
-            data: barValues,
-            colorBy:barCategories,
-            // Position the bar chart at the top
-            emphasis: { focus: 'self' }
-        },
-        {
-            name: 'pie', // Name the pie series for the legend
-            type: 'pie',
-            id: 'pie',
-            center: ['50%', '65%'], 
-            radius:'40%',
-            emphasis: { focus: 'self' },
-            label: {
-                textStyle: {
-                    color: '#fff',
-                    overflow: 'truncate',
-                    width: 80
+        const userNature = (data) => {
+            const chart = echarts.init(userSelectors.userNature);
+            const userNature = [
+                { name: "Audience User" },
+                { name: "Expert Audience" },
+                { name: "Novice Audience" },
+                { name: "Novic Content Creator" },
+                { name: "Expert Content Creator" },
+            ]
+
+            const userExpert = [
+                { name: "Average Audience" },
+                { name: "Intermediate Audience" },
+                { name: "Advanced Audience" },
+                { name: "Expert Audience" },
+
+            ]
+            const updatedUserNature = userNature.map(item =>
+                item.name.toLowerCase() === data["User Nature"]["user nature"].toLowerCase()
+                    ? { ...item, itemStyle: { borderColor: '#FF6E14', borderWidth: 3 }, label: { fontWeight: 'bold' } }
+                    : item
+            );
+
+            const updatedUserExpert = userExpert.map(item =>
+                item.name.toLowerCase() === data["User Level"].toLowerCase()
+                    ? { ...item, itemStyle: { borderColor: '#FF6E14', borderWidth: 3 }, label: { fontWeight: 'bold' } }
+                    : item
+            );
+            console.log(userNature, data["User Nature"]["user nature"],)
+
+            const userExpertiseTree = [
+                {
+                    name: "User Profile",
+                    children: [
+                        {
+                            name: "User Nature",
+                            children: updatedUserNature
+                        },
+                        {
+                            name: "User Expertise Level",
+                            children: updatedUserExpert
+                        }
+                    ]
                 }
-            },
-            data: pieData,
-        }
-    ]
-};
+            ],
+                option = {
+                    title: {
+                        text: 'User Profile Tree',
+                        left: 'center',
+                        textStyle: { color: '#fff' }
+                    },
+                    tooltip: { trigger: 'item', formatter: '{b}' },
+                    series: [
+                        {
+                            type: 'tree',
+                            data: userExpertiseTree,
+                            top: '10%',
+                            left: '15%',
+                            bottom: '10%',
+                            right: '15%',
+                            symbol: 'circle',
+                            symbolSize: 10,
+                            label: {
+                                position: 'top',
+                                verticalAlign: 'middle',
+                                align: 'right',
+
+                                fontSize: 14,
+                                color: '#fff',
+                            },
+                            leaves: {
+                                label: {
+
+                                    //   position: 'bottom',
+                                    verticalAlign: 'middle',
+                                    align: 'left',
+                                    color: '#fff',
+                                }
+                            },
+                            expandAndCollapse: true,
+                            animationDuration: 750,
+                            animationEasing: 'quinticInOut'
+                        }
+                    ]
+                }
 
             chart.setOption(option);
             window.addEventListener('resize', () => {
@@ -2073,10 +2173,11 @@
                 }
 
                 if (data) {
-                    console.log("Fetched user data:", data);
+
                     categoricalReputationBreakdown(data.categories)
                     networkReputationScore(data['Network Breakdown'])
-                    numberMpxrPublication(data["Reputation Score Breakdown by number"])
+                    // numberMpxrPublication(data["Reputation Score Breakdown by number"])
+                    userNature(data)
                     mpxrFromInteractionPercentage(data["Total User Interaction Breakdown"]["Total User Percentage of Interactions"])
                     // interactionBreakdownNumbers(data)
                     mpxrFromRewards(data["Reputation Score Breakdown by number"])
