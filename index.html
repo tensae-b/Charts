@@ -108,7 +108,7 @@
           {
             name: "",
             type: "gauge",
-            color: ['#ffffff'],
+            
             center:['30%', '60%'],
             splitLine: {
                         show: false
@@ -143,6 +143,7 @@
           },
           center:['30%', '60%'],
         },
+        tooltip:{},
         series: [
        
           {
@@ -158,7 +159,6 @@
               show: true,
               overlap: false,
               roundCap: true,
-
               clip: false,
               itemStyle: {
                 borderWidth: 1,
@@ -167,11 +167,9 @@
             },
             axisLine: {
               lineStyle: {
-                width: 40,
-                color: '#032c46'
+              width: 40,
+              color: '#032c46',  
               },
-
-              roundCap: true
             },
             splitLine: {
               show: false,
@@ -251,9 +249,7 @@
           bottom: "3%",
           containLabel: true,
         },
-        xAxis: [
-
-        ],
+        xAxis: [],
         yAxis: [
           {
             type: "value",
@@ -349,7 +345,7 @@
           },
           
           {
-            name: 'TypeB',
+            name: '',
             type: 'pictorialBar',
             animationDuration: 0,
             itemStyle: {
@@ -632,7 +628,7 @@
                     axisLine: {
                         lineStyle: {
                             width: 30,
-                            color: [[1, '#303A52']]
+                            color: [[1, '#15424F']]
                         }
                     },
                     splitLine: {
@@ -839,14 +835,14 @@
           top: 60,
           data: pieData,
           label: {
-            show: false,
+            show: true,
             color: "#ffffff",
+            fontSize: 12,
             borderWidth: 0,
             borderColor: "transparent",
           },
           color:[
-              '#8979FF',
-              
+              '#8979FF',   
               '#79FF8D',
               '#FF9B5C',
             ],
@@ -895,6 +891,7 @@
           textStyle: {
             color: "#ffffff",
           },
+          
 
         },
       });
@@ -931,16 +928,34 @@
             
             },
             interval:0,
-          }
+          },
+          splitLine: { 
+            show: true,
+            lineStyle: {
+              color: '#ccc',
+              type: 'dashed',
+              width: 0.3,
+            },
+          },
         },
       ];
 
-      let yAxis=[
-     { axisLabel:{
-            textStyle:{
-              color:'#fff'
-            }
-          },}
+      let yAxis = [
+          { 
+            axisLabel:{
+                  textStyle:{
+                    color:'#fff'
+                  }
+                },
+            splitLine: { 
+              show: true,
+              lineStyle: {
+                color: '#ccc',
+                type: 'dashed',
+                width:0.3,
+              },
+          },
+              }
       ]
 
       let series = [
@@ -1037,13 +1052,21 @@
           type: 'category',
           data: xAxisData,
           axisLabel: {
-    interval: 0, 
-    color: '#ffffff', 
-    rotate: 10, 
-    textStyle: {
-      fontSize: 14, 
-    },
-  },
+              interval: 0, 
+              color: '#ffffff', 
+              rotate: 10, 
+              textStyle: {
+                fontSize: 14, 
+              },
+            },
+            splitLine: {
+            show: true,
+            lineStyle: {
+              color: '#ccc',
+              type: 'dashed',
+              width: 0.3,
+            },
+          },
         },
         yAxis: {
           type: 'value',
@@ -1055,6 +1078,14 @@
 
             textStyle: {
               color: "#ffffff",
+            },
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: '#ccc',
+              type: 'dashed',
+              width: 0.3,
             },
           },
         },
@@ -1114,19 +1145,24 @@
       const markLineSetting = {
         symbol: 'none',
         lineStyle: {
-          opacity: 0.3
+          opacity: 1,
+          color: '#fff',
+          
         },
         data: [
           {
             type: 'max',
             label: {
-              formatter: 'max: {c}'
+              formatter: 'max: {c}',
+              color:'#fff',
+              
             }
           },
           {
             type: 'min',
             label: {
-              formatter: 'min: {c}'
+              formatter: 'min: {c}',
+              color:"#fff",
             }
           }
         ]
@@ -1152,7 +1188,7 @@
           top:90,
         },
         
-        tooltip:{},
+        tooltip:{trigger: 'axis' , axisPointer:{type: 'shadow'}},
         legend: {
           data: ['Audience Level Peoples Choice Percentages'],
           selectedMode: 'single',
@@ -1175,7 +1211,18 @@
         yAxis: {
           max: bodyMax,
           offset: 20,
+          axisLabel:{
+            formatter: '{value}',
+            textStyle:{
+              color:'#fff',
+              fontSize:12,
+            }
+          },
           splitLine: { show: false },
+          textStyle:{
+            color:'#fff',
+            fontSize:14,
+          },
           
         },
 
@@ -1190,7 +1237,7 @@
           z: 10
         },
         {
-          name: 'TypeB',
+          name: '',
           type: 'pictorialBar',
           symbolBoundingData: bodyMax,
           animationDuration: 0,
@@ -1217,6 +1264,7 @@
           ]
         }
         ]
+        
       
       }
       
