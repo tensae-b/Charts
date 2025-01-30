@@ -76,6 +76,12 @@
         <div class="mpxr-from-rewards-chart">
             <div id="mpxr-from-rewards" style="height: 500px;"> </div>
         </div>
+        <div class="content-consumption-breakdown-chart">
+            <div id="content-consumption-breakdown" style="height: 500px;"> </div>
+        </div>
+        <div class="timespent-by-category-chart">
+            <div id="timespent-by-category" style=" height: 1000px;"> </div>
+        </div>
         <!-- <div class="number-Of-MPXR-from-publication-for-user-chart">
             <div id="number-of-MPXR-from-publication-for-user" style="width: 700px; height: 500px"></div>
           </div> -->
@@ -136,6 +142,12 @@
             ),
             mpxrFromRewards: document.getElementById(
                 "mpxr-from-rewards"
+            ),
+            contentConsumptionBreakdown: document.getElementById(
+                "content-consumption-breakdown"
+            ),
+            timeSpentByCategory: document.getElementById(
+                "timespent-by-category"
             ),
         }
         let posts = [
@@ -447,30 +459,30 @@
                 "Content Consumption Breakdown": {
                     "articles/text": {
                         "total": 3,
-                        "completed": 0,
-                        "more_than_half": 3,
+                        "completed": 3,
+                        "more_than_half": 30,
                         "less_than_half": 0,
-                        "completed_percentage": 0.0,
+                        "completed_percentage": 1.0,
                         "more_than_half_percentage": 100.0,
-                        "less_than_half_percentage": 0.0
+                        "less_than_half_percentage": 10.0
                     },
                     "podcasts/audio": {
-                        "total": 0,
-                        "completed": 0,
-                        "more_than_half": 0,
-                        "less_than_half": 0,
-                        "completed_percentage": 0,
-                        "more_than_half_percentage": 0,
-                        "less_than_half_percentage": 0
+                        "total": 2,
+                        "completed": 3,
+                        "more_than_half": 4,
+                        "less_than_half": 5,
+                        "completed_percentage": 6,
+                        "more_than_half_percentage": 7,
+                        "less_than_half_percentage": 8
                     },
                     "video": {
-                        "total": 0,
-                        "completed": 0,
-                        "more_than_half": 0,
-                        "less_than_half": 0,
-                        "completed_percentage": 0,
-                        "more_than_half_percentage": 0,
-                        "less_than_half_percentage": 0
+                        "total": 1,
+                        "completed": 2,
+                        "more_than_half": 3,
+                        "less_than_half": 4,
+                        "completed_percentage": 5,
+                        "more_than_half_percentage": 6,
+                        "less_than_half_percentage": 7
                     }
                 },
                 "User Categorical read time Breakdown": [
@@ -1730,11 +1742,11 @@
                 for (const key in obj) {
                     const newKey = prefix ? `${prefix} ${key}` : key;
                     if (typeof obj[key] === 'object' && obj[key] !== null && Object.keys(obj[key]).length > 0) { // Check if it's a non-empty object
-                        flattenObject(obj[key], newKey); 
-                    } else if (typeof obj[key] === 'number') { 
+                        flattenObject(obj[key], newKey);
+                    } else if (typeof obj[key] === 'number') {
                         newData.push({
                             value: obj[key],
-                            name: newKey.replace(/_/g, ' ').trim() 
+                            name: newKey.replace(/_/g, ' ').trim()
                         });
                     }
                 }
@@ -1743,28 +1755,38 @@
             flattenObject(data);
 
             console.log(newData)
-           
+
             const option = {
+                title:{
+                    text:'MPXR From Different Rewards',
+                    left:'center',
+                    textStyle:{
+                        color:'#fff',
+                    }
+                },
                 tooltip: {
                     trigger: 'item'
                 },
                 legend: {
-                    top: '0%',
+                    top: '10%',
                     orient: 'horizontal',
-                    left:0,
+                    left: 0,
                     // right: 0,
-                    width:'100%',
-                    textStyle:{
-                                    color:'#fff'
-                                }
+                    width: '100%',
+                    textStyle: {
+                        color: '#fff'
+                    }
 
+                },
+                grid:{
+                    top:'15%'
                 },
                 series: [
                     {
                         name: 'Access From',
                         type: 'pie',
                         radius: ['40%', '70%'],
-                       
+
                         avoidLabelOverlap: false,
                         itemStyle: {
                             borderRadius: 10,
@@ -1774,17 +1796,17 @@
                         label: {
                             show: false,
                             position: 'center',
-                           
+
                         },
                         emphasis: {
                             label: {
                                 show: true,
                                 fontSize: 12,
                                 fontWeight: 'bold',
-                                textStyle:{
-                                    color:'#fff'
+                                textStyle: {
+                                    color: '#fff'
                                 },
-                               
+
                             }
                         },
                         labelLine: {
@@ -1794,6 +1816,204 @@
                     }
                 ]
             };
+            chart.setOption(option);
+            window.addEventListener('resize', () => {
+                chart.resize();
+            });
+        }
+        const contentConsumptionBreakdown = (data) => {
+            const chart = echarts.init(userSelectors.contentConsumptionBreakdown);
+
+            const datasetSource = [
+                ['content_type', 'total', 'completed', 'more_than_half', 'less_than_half']
+            ];
+
+            let totalCompleted = 0;
+            let totalMoreThanHalf = 0;
+            let totalLessThanHalf = 0;
+
+            Object.keys(data["Content Consumption Breakdown"]).forEach(key => {
+                const item = data["Content Consumption Breakdown"][key];
+                datasetSource.push([key, item.total, item.completed, item.more_than_half, item.less_than_half]);
+                totalCompleted += item.completed_percentage;
+                totalMoreThanHalf += item.more_than_half_percentage;
+                totalLessThanHalf += item.less_than_half_percentage;
+            });
+
+            // Aggregated pie chart data
+            const pieSource = [
+                { value: totalCompleted, name: 'Completed' },
+                { value: totalMoreThanHalf, name: 'More than Half' },
+                { value: totalLessThanHalf, name: 'Less than Half' },
+
+            ];
+
+            const option = {
+                title: {
+                    text: 'Content Consumption Breakdown',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                legend: {
+                    textStyle: {
+                        color: '#fff'
+                    },
+                    top: '5%',
+                },
+                tooltip: {
+                    trigger: 'item',
+                    showContent: true
+                },
+                dataset: [
+                    { source: datasetSource },
+                    { source: pieSource }
+                ],
+
+                xAxis: { type: 'value' },
+                yAxis: { type: 'category', data: datasetSource.slice(1).map(item => item[0]) },
+                grid: {
+                    left: '7%',
+                    top: '15%',
+                    right: '60%',
+                    bottom: '10%'
+                },
+                series: [
+                    {
+                        name: 'Completed',
+                        type: 'bar',
+                        stack: 'total',
+                        label: { show: true },
+                        emphasis: { focus: 'series' },
+                        data: datasetSource.slice(1).map(item => item[1]),
+                        barWidth: '40%',
+                    },
+                    {
+                        name: 'More than Half',
+                        type: 'bar',
+                        stack: 'total',
+                        label: { show: true },
+                        emphasis: { focus: 'series' },
+                        data: datasetSource.slice(1).map(item => item[2]),
+                        barWidth: '40%',
+                    },
+                    {
+                        name: 'Less than Half',
+                        type: 'bar',
+                        stack: 'total',
+                        label: { show: true },
+                        emphasis: { focus: 'series' },
+                        data: datasetSource.slice(1).map(item => item[3]),
+                        barWidth: '40%',
+                    },
+                    {
+                        type: 'pie',
+                        id: 'pie',
+                        radius: ['50%', '30%'],
+                        center: ['70%', '50%'],
+                        emphasis: { focus: 'self' },
+                        label: {
+                            formatter: '{b}', textStyle: {
+                                color: '#fff',
+                                overflow: 'truncate',
+                                width: 80,
+
+                            }
+                        },
+                        data: pieSource,
+
+                    }
+                ]
+            };
+
+
+            chart.setOption(option);
+            window.addEventListener('resize', () => {
+                chart.resize();
+            });
+        }
+        const timeSpentByCategory = (data) => {
+            const chart = echarts.init(userSelectors.timeSpentByCategory);
+            const pieData = data.map(item => ({
+                value: Math.round(item["percentage of spent time"]), // Multiply by 100 to scale to a whole number (optional)
+                name: item.category
+            }));
+            const barCategories = []
+            const barValues = []
+            data.forEach(item => {
+                barCategories.push(item.category)
+                barValues.push(Math.round(item["percentage of spent time"]))
+            })
+
+           
+            const option ={
+    title: {
+        text: 'Read Time and Reputation score collected from Time spent by Category',
+        width:'90%',
+        textStyle: {
+            color: '#fff'
+        }
+    },
+    legend: {
+        textStyle: {
+            color: '#fff'
+        },
+        top: '5%',
+        data:  barCategories
+    },
+    tooltip: {
+        trigger: 'item',
+        showContent: true
+    },
+    grid:{
+       top:'10%',
+       bottom:'60%',
+       left:'5%',
+       right:'5%',
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: barCategories,
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'bar',
+            type: 'bar',
+            barWidth: '60%',
+            data: barValues,
+            colorBy:barCategories,
+            // Position the bar chart at the top
+            emphasis: { focus: 'self' }
+        },
+        {
+            name: 'pie', // Name the pie series for the legend
+            type: 'pie',
+            id: 'pie',
+            center: ['50%', '65%'], 
+            radius:'40%',
+            emphasis: { focus: 'self' },
+            label: {
+                textStyle: {
+                    color: '#fff',
+                    overflow: 'truncate',
+                    width: 80
+                }
+            },
+            data: pieData,
+        }
+    ]
+};
+
             chart.setOption(option);
             window.addEventListener('resize', () => {
                 chart.resize();
@@ -1860,6 +2080,8 @@
                     mpxrFromInteractionPercentage(data["Total User Interaction Breakdown"]["Total User Percentage of Interactions"])
                     // interactionBreakdownNumbers(data)
                     mpxrFromRewards(data["Reputation Score Breakdown by number"])
+                    contentConsumptionBreakdown(data)
+                    timeSpentByCategory(data["User Categorical read time Breakdown"])
                 }
             } catch (error) {
                 console.error("Error when fetching the data:", error);

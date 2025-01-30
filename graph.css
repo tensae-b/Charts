@@ -4,6 +4,7 @@ body {
     /* padding: 0; */
     padding: 0px 0px 150px 0px;
     font-family: Arial, sans-serif;
+   
 
 }
 
@@ -74,12 +75,32 @@ h1 {
     width:100%;
 }
 
-.mpxr-from-interaction-percentage-chart #mpxr-from-interaction-percentage{
+.mpxr-from-interaction-percentage-chart {
+    width: 100%;
+}
+#mpxr-from-interaction-percentage{
     width: 100%;
 }
 
-.mpxr-from-rewards-chart #mpxr-from-rewards{
+.mpxr-from-rewards-chart{
     width: 100%;
+}
+ #mpxr-from-rewards{
+    width: 100%;
+}
+
+.content-consumption-breakdown-chart{
+    width: 100%;
+}
+ #content-consumption-breakdown{
+    width:100%
+}
+
+.timespent-by-category-chart{
+    width: 100%;
+}
+ #timespent-by-category{
+    width:100%
 }
 /* .post-engagement-summary .total-readed-time-chart .article-total-read-time{
     width: 100%;
@@ -91,6 +112,8 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 50px;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .user-catergorical-reputation-data-chart{
