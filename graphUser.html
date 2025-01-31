@@ -12,1808 +12,1807 @@
 </head>
 
 <body>
-    <div class="chart">
-        <h1>User Profile Chart</h1>
-        <div id="user-charts">
-            <div class="reputation-chart">
-                <div class="user-catergorical-reputation-data-chart">
-                    <div id="user-catergorical-reputation-data" style="height: 500px"></div>
+<div class="chart">
+    <h1>User Profile Chart</h1>
+    <div id="user-charts">
+        <div class="reputation-chart">
+            <div class="user-catergorical-reputation-data-chart">
+                <div id="user-catergorical-reputation-data" style="height: 500px"></div>
+            </div>
+            <div class="network-analysis-reputation-score-percentage-for-user">
+                <div id="network-analysis-reputation-score-percentage" style=" height: 500px;">
+
                 </div>
-                <div class="network-analysis-reputation-score-percentage-for-user">
-                    <div id="network-analysis-reputation-score-percentage" style=" height: 500px;">
-
-                    </div>
-                </div>
             </div>
-
-            <div class="user-expertise-level-and-user-nature-chart">
-                <div id="user-expertise-level-and-user-nature" style="height: 500px"></div>
-            </div>
-            <div class="mpxr-from-interaction-percentage-chart">
-                <div id="mpxr-from-interaction-percentage" style="height: 500px;"></div>
-            </div>
-            <div class="mpxr-from-rewards-chart">
-                <div id="mpxr-from-rewards" style=""> </div>
-            </div>
-            <div class="content-consumption-breakdown-chart">
-                <div id="content-consumption-breakdown" style="height: 500px;"> </div>
-            </div>
-            <div class="timespent-by-category-chart">
-                <div id="timespent-by-category" style=" height: 1000px;"> </div>
-            </div>
-
-            <div class="mpxr-from-publication-chart">
-                <div id="mpxr-from-publication" style="height: 1000px;"> </div>
-            </div>
-            <div class="association-breakdown-chart">
-                <div id="association-breakdown" style=" height: 500px;"> </div>
-            </div>
-            <div class="interaction-breakdown-lists-chart">
-                <div id="interaction-breakdown-lists" style="height: 700px;"> </div>
-            </div>
-
         </div>
+     
+        <div class="user-expertise-level-and-user-nature-chart">
+            <div id="user-expertise-level-and-user-nature" style="height: 500px"></div>
+        </div>
+        <div class="mpxr-from-interaction-percentage-chart">
+            <div id="mpxr-from-interaction-percentage" style="height: 500px;"></div>
+        </div>
+        <div class="mpxr-from-rewards-chart">
+            <div id="mpxr-from-rewards" style="height: 500px;"> </div>
+        </div>
+        <div class="content-consumption-breakdown-chart">
+            <div id="content-consumption-breakdown" style="height: 500px;"> </div>
+        </div>
+        <div class="timespent-by-category-chart">
+            <div id="timespent-by-category" style=" height: 1000px;"> </div>
+        </div>
+
+        <div class="mpxr-from-publication-chart">
+            <div id="mpxr-from-publication" style="height: 1000px;"> </div>
+        </div>
+        <div class="association-breakdown-chart">
+            <div id="association-breakdown" style=" height: 500px;"> </div>
+        </div>
+        <div class="interaction-breakdown-lists-chart">
+            <div id="interaction-breakdown-lists" style="height: 700px;"> </div>
+        </div>
+        
     </div>
-    </div>
-    <script>
+</div>
+</div>
+<script>
 
-        let userSelectors = {
-            categoricalReputationBreakdown: document.getElementById(
-                "user-catergorical-reputation-data"
-            ),
-            networkReputationScore: document.getElementById(
-                "network-analysis-reputation-score-percentage"
-            ),
-            // numberMpxrPublication: document.getElementById(
-            //     "number-of-MPXR-from-publication-for-user"
-            // ),
-            userNature: document.getElementById(
-                "user-expertise-level-and-user-nature"
-            ),
-            interactionBreakdownNumbers: document.getElementById(
-                "interaction-breakdown-in-numbers-users-favorite"
-            ),
-            mpxrFromInteractionPercentage: document.getElementById(
-                "mpxr-from-interaction-percentage"
-            ),
-            mpxrFromRewards: document.getElementById(
-                "mpxr-from-rewards"
-            ),
-            contentConsumptionBreakdown: document.getElementById(
-                "content-consumption-breakdown"
-            ),
-            timeSpentByCategory: document.getElementById(
-                "timespent-by-category"
-            ),
+    let userSelectors = {
+        categoricalReputationBreakdown: document.getElementById(
+            "user-catergorical-reputation-data"
+        ),
+        networkReputationScore: document.getElementById(
+            "network-analysis-reputation-score-percentage"
+        ),
+        // numberMpxrPublication: document.getElementById(
+        //     "number-of-MPXR-from-publication-for-user"
+        // ),
+        userNature: document.getElementById(
+            "user-expertise-level-and-user-nature"
+        ),
+        interactionBreakdownNumbers: document.getElementById(
+            "interaction-breakdown-in-numbers-users-favorite"
+        ),
+        mpxrFromInteractionPercentage: document.getElementById(
+            "mpxr-from-interaction-percentage"
+        ),
+        mpxrFromRewards: document.getElementById(
+            "mpxr-from-rewards"
+        ),
+        contentConsumptionBreakdown: document.getElementById(
+            "content-consumption-breakdown"
+        ),
+        timeSpentByCategory: document.getElementById(
+            "timespent-by-category"
+        ),
 
-            mpxrFromPublication: document.getElementById(
-                "mpxr-from-publication"
-            ),
-            associationBreakdown: document.getElementById(
-                "association-breakdown"
-            ),
-            interactionBreakdownLists: document.getElementById(
-                "interaction-breakdown-lists"
-            ),
-        }
+        mpxrFromPublication: document.getElementById(
+            "mpxr-from-publication"
+        ),
+        associationBreakdown: document.getElementById(
+            "association-breakdown"
+        ),
+        interactionBreakdownLists: document.getElementById(
+            "interaction-breakdown-lists"
+        ),
+    }
 
-        let users = [
-        {
-  "user": 2,
-  "mpxr": 89.00369,
-  "vote_rep_availabe": 89.003686,
-  "public_address": "0x59cE7310C2f5a6932248cF8FE489731FCC17b86f",
-  "shared_rep": 0.0,
-  "categories": [
-    {
-      "category": "Bitcoin",
-      "rep": 0.00495
-    },
-    {
-      "category": "Blockchain",
-      "rep": 0.00495
-    },
-    {
-      "category": "EEG",
-      "rep": 0.00016666666666666666
-    },
-    {
-      "category": "Music",
-      "rep": 0.00016666666666666666
-    },
-    {
-      "category": "Brain",
-      "rep": 0.0003333333333333333
-    },
-    {
-      "category": "Opinion",
-      "rep": 0.6929331689898147
-    },
-    {
-      "category": "Eccentric",
-      "rep": 0.00025
-    },
-    {
-      "category": "Extraterrestrial",
-      "rep": 0.00019999999999999998
-    },
-    {
-      "category": "Philosophy",
-      "rep": 0.00019999999999999998
-    },
-    {
-      "category": "Psychology",
-      "rep": 0.000125
-    },
-    {
-      "category": "Ethics",
-      "rep": 0.0008227272750000001
-    },
-    {
-      "category": "Psychiatry",
-      "rep": 0.000125
-    },
-    {
-      "category": "AI",
-      "rep": 0.03558457249505363
-    },
-    {
-      "category": "People",
-      "rep": 0.000125
-    },
-    {
-      "category": "Entertainment",
-      "rep": 0.00015
-    },
-    {
-      "category": "Short Sci-fi",
-      "rep": 0.00015
-    },
-    {
-      "category": "Social Media",
-      "rep": 3.3333333333333335e-05
-    },
-    {
-      "category": "SocialFi",
-      "rep": 3.3333333333333335e-05
-    },
-    {
-      "category": "Web3",
-      "rep": 3.3333333333333335e-05
-    },
-    {
-      "category": "3D Printing",
-      "rep": 0.0023333333333333335
-    },
-    {
-      "category": "Aged Care",
-      "rep": 0.0023333333333333335
-    },
-    {
-      "category": "Space",
-      "rep": 0.00030000000000000003
-    },
-    {
-      "category": "Life",
-      "rep": 0.00025
-    },
-    {
-      "category": "nuclear",
-      "rep": 5e-05
-    },
-    {
-      "category": "Crypto Mining",
-      "rep": 5e-05
-    },
-    {
-      "category": "Cryptocurrencies",
-      "rep": 5e-05
-    },
-    {
-      "category": "Future",
-      "rep": 5e-05
-    },
-    {
-      "category": "Brain-computer Interfacing",
-      "rep": 0.00016666666666666666
-    },
-    {
-      "category": "Neuroscience",
-      "rep": 0.00016666666666666666
-    }
-  ],
-  "user_read_time": 253.89000000000001,
-  "read_count": 36,
-  "User Nature": {
-    "user nature": "Novice Content Creator",
-    "number of published articles": 5
-  },
-  "Total User Interaction Breakdown": {
-    "Total User Number of Interactions": {
-      "Total Interaction": 445,
-      "Total Positive Interactions": 420,
-      "Total Negative Interactions": 23,
-      "Total Neutral Interactions": 2
-    },
-    "Total User Percentage of Interactions": {
-      "reply": 0.44943820224719105,
-      "comment": 3.146067415730337,
-      "time_spent": 22.47191011235955,
-      "react": 30.786516853932582,
-      "bookmark": 1.348314606741573,
-      "boost": 0.44943820224719105,
-      "favorite": 3.3707865168539324,
-      "thumbs_up": 35.50561797752809,
-      "thumbs_down": 2.4719101123595504
-    }
-  },
-  "User Level": "Average Audience",
-  "Association Breakdown": {
-    "Friend Relationship": {
-      "Immediate MPXR": 0.11594049095902428,
-      "Monthly MPXR": 2.684749456373918
-    },
-    "Follow Relationship": {
-      "Immediate MPXR": 0.0,
-      "Monthly MPXR": 60.74269279844926
-    }
-  },
-  "Reputation Score Breakdown by number": {
-    "MPXR Total From Interaction": {
-      "MPXR By": 0,
-      "MPXR From": 1.3499047381847757
-    },
-    "MPXR From Time Spent": {
-      "MPXR By": 0,
-      "MPXR From": 0.030580181818400012
-    },
-    "MPXR From People's Choice": {
-      "MPXR By": 0,
-      "MPXR From": 0
-    },
-    "MPXR From Comment": {
-      "MPXR By": 0.0009277500000000001,
-      "MPXR From": 0.00018555
-    },
-    "MPXR From Publication": {
-      "text": {
-        "MPXR From": 0.9170792921788036,
-        "MPXR By": 0
-      },
-      "audio": {
-        "MPXR From": 0.03262623916172029,
-        "MPXR By": 0
-      },
-      "video": {
-        "MPXR From": 0.0,
-        "MPXR By": 0
-      }
-    },
-    "MPXR From Social Post": {
-      "MPXR From": 0.11972866838785647,
-      "MPXR By": 0.4
-    },
-    "MPXR From Login": {
-      "MPXR From": 15.099999999999962,
-      "MPXR By": 0.0
-    },
-    "MPXR From Profile Completion": {
-      "MPXR By": 0,
-      "MPXR From": 0.0
-    }
-  },
-  "Network Breakdown": {
-    "Source of Positive MPXR Score": {
-      "Expert Audience": 0,
-      "Advanced Audience": 0,
-      "Intermediate Audience": 0,
-      "Average Audience": 14.893617021276595
-    },
-    "Source of Negative MPXR Score": {
-      "Expert Audience": 0,
-      "Advanced Audience": 0,
-      "Intermediate Audience": 0,
-      "Average Audience": 0
-    }
-  },
-  "Content Consumption Breakdown": {
-    "articles": {
-      "total": 78,
-      "completed": 24,
-      "more_than_half": 23,
-      "less_than_half": 31,
-      "completed_percentage": 30.76923076923077,
-      "more_than_half_percentage": 29.48717948717949,
-      "less_than_half_percentage": 39.743589743589745
-    },
-    "podcasts": {
-      "total": 22,
-      "completed": 18,
-      "more_than_half": 0,
-      "less_than_half": 4,
-      "completed_percentage": 81.81818181818183,
-      "more_than_half_percentage": 0.0,
-      "less_than_half_percentage": 18.181818181818183
-    },
-    "videos": {
-      "total": 0,
-      "completed": 0,
-      "more_than_half": 0,
-      "less_than_half": 0,
-      "completed_percentage": 0,
-      "more_than_half_percentage": 0,
-      "less_than_half_percentage": 0
-    }
-  },
-  "User Categorical read time Breakdown": [
-    {
-      "category": "Bitcoin",
-      "percentage of spent time": 0.6625777495233337
-    },
-    {
-      "category": "Blockchain",
-      "percentage of spent time": 0.6625777495233337
-    },
-    {
-      "category": "EEG",
-      "percentage of spent time": 0.02230901513546578
-    },
-    {
-      "category": "Music",
-      "percentage of spent time": 0.02230901513546578
-    },
-    {
-      "category": "Brain",
-      "percentage of spent time": 0.04461803027093156
-    },
-    {
-      "category": "Opinion",
-      "percentage of spent time": 92.75193932916025
-    },
-    {
-      "category": "Eccentric",
-      "percentage of spent time": 0.03346352270319867
-    },
-    {
-      "category": "Extraterrestrial",
-      "percentage of spent time": 0.026770818162558933
-    },
-    {
-      "category": "Philosophy",
-      "percentage of spent time": 0.026770818162558933
-    },
-    {
-      "category": "Psychology",
-      "percentage of spent time": 0.016731761351599334
-    },
-    {
-      "category": "Ethics",
-      "percentage of spent time": 0.1101254113820131
-    },
-    {
-      "category": "Psychiatry",
-      "percentage of spent time": 0.016731761351599334
-    },
-    {
-      "category": "AI",
-      "percentage of spent time": 4.763140598287384
-    },
-    {
-      "category": "People",
-      "percentage of spent time": 0.016731761351599334
-    },
-    {
-      "category": "Entertainment",
-      "percentage of spent time": 0.0200781136219192
-    },
-    {
-      "category": "Short Sci-fi",
-      "percentage of spent time": 0.0200781136219192
-    },
-    {
-      "category": "Social Media",
-      "percentage of spent time": 0.004461803027093155
-    },
-    {
-      "category": "SocialFi",
-      "percentage of spent time": 0.004461803027093155
-    },
-    {
-      "category": "Web3",
-      "percentage of spent time": 0.004461803027093155
-    },
-    {
-      "category": "3D Printing",
-      "percentage of spent time": 0.31232621189652093
-    },
-    {
-      "category": "Aged Care",
-      "percentage of spent time": 0.31232621189652093
-    },
-    {
-      "category": "Space",
-      "percentage of spent time": 0.040156227243838404
-    },
-    {
-      "category": "Life",
-      "percentage of spent time": 0.03346352270319867
-    },
-    {
-      "category": "nuclear",
-      "percentage of spent time": 0.006692704540639733
-    },
-    {
-      "category": "Crypto Mining",
-      "percentage of spent time": 0.006692704540639733
-    },
-    {
-      "category": "Cryptocurrencies",
-      "percentage of spent time": 0.006692704540639733
-    },
-    {
-      "category": "Future",
-      "percentage of spent time": 0.006692704540639733
-    },
-    {
-      "category": "Brain-computer Interfacing",
-      "percentage of spent time": 0.02230901513546578
-    },
-    {
-      "category": "Neuroscience",
-      "percentage of spent time": 0.02230901513546578
-    }
-  ],
-  "User Categorical Reputation from Time-Spent interaction": [
-    {
-      "category": "Bitcoin",
-      "reputation": 0.0009,
-      "percentage": 0.6625777495233339
-    },
-    {
-      "category": "Blockchain",
-      "reputation": 0.0034999999999999996,
-      "percentage": 0.6625777495233339
-    },
-    {
-      "category": "EEG",
-      "reputation": 0.0005,
-      "percentage": 0.022309015135465786
-    },
-    {
-      "category": "Music",
-      "reputation": 0.0005,
-      "percentage": 0.022309015135465786
-    },
-    {
-      "category": "Brain",
-      "reputation": 0.001,
-      "percentage": 0.04461803027093157
-    },
-    {
-      "category": "Opinion",
-      "reputation": 0.004600000000000001,
-      "percentage": 92.75193932916028
-    },
-    {
-      "category": "Eccentric",
-      "reputation": 0.0021,
-      "percentage": 0.03346352270319868
-    },
-    {
-      "category": "Extraterrestrial",
-      "reputation": 0.00039999999999999996,
-      "percentage": 0.026770818162558944
-    },
-    {
-      "category": "Philosophy",
-      "reputation": 0.0021,
-      "percentage": 0.026770818162558944
-    },
-    {
-      "category": "Psychology",
-      "reputation": 0.0005,
-      "percentage": 0.01673176135159934
-    },
-    {
-      "category": "Ethics",
-      "reputation": 0.0035445454544999998,
-      "percentage": 0.11012541138201314
-    },
-    {
-      "category": "Psychiatry",
-      "reputation": 0.0005,
-      "percentage": 0.01673176135159934
-    },
-    {
-      "category": "AI",
-      "reputation": 0.007100000000000002,
-      "percentage": 4.763140598287386
-    },
-    {
-      "category": "People",
-      "reputation": 0.0005,
-      "percentage": 0.01673176135159934
-    },
-    {
-      "category": "Entertainment",
-      "reputation": 0.0003,
-      "percentage": 0.020078113621919205
-    },
-    {
-      "category": "Short Sci-fi",
-      "reputation": 0.0003,
-      "percentage": 0.020078113621919205
-    },
-    {
-      "category": "Social Media",
-      "reputation": 0.0001,
-      "percentage": 0.004461803027093157
-    },
-    {
-      "category": "SocialFi",
-      "reputation": 0.0001,
-      "percentage": 0.004461803027093157
-    },
-    {
-      "category": "Web3",
-      "reputation": 0.0005,
-      "percentage": 0.004461803027093157
-    },
-    {
-      "category": "3D Printing",
-      "reputation": 0.0005,
-      "percentage": 0.31232621189652104
-    },
-    {
-      "category": "Aged Care",
-      "reputation": 0.0005,
-      "percentage": 0.31232621189652104
-    },
-    {
-      "category": "Space",
-      "reputation": 0.0006000000000000001,
-      "percentage": 0.04015622724383842
-    },
-    {
-      "category": "Life",
-      "reputation": 0.0005,
-      "percentage": 0.03346352270319868
-    },
-    {
-      "category": "nuclear",
-      "reputation": 0.0001,
-      "percentage": 0.006692704540639736
-    },
-    {
-      "category": "Crypto Mining",
-      "reputation": 0.0001,
-      "percentage": 0.006692704540639736
-    },
-    {
-      "category": "Cryptocurrencies",
-      "reputation": 0.0011,
-      "percentage": 0.006692704540639736
-    },
-    {
-      "category": "Future",
-      "reputation": 0.0007000000000000001,
-      "percentage": 0.006692704540639736
-    },
-    {
-      "category": "Brain-computer Interfacing",
-      "reputation": 0.0005,
-      "percentage": 0.022309015135465786
-    },
-    {
-      "category": "Neuroscience",
-      "reputation": 0.0005,
-      "percentage": 0.022309015135465786
-    }
-  ],
-  "Interaction Breakdown Lists": {
-    "User Emoji Interaction By Type Percentage Breakdown": {
-      "Emoji Reaction Breakdown": {
-        "Positive Reaction": {
-          "This content is perfect!": 46.15384615384615,
-          "This content is excellent!": 8.461538461538462,
-          "This Content is very good.": 9.230769230769232,
-          "This content is well done.": 9.230769230769232,
-          "This content is at least interesting.": 5.384615384615385,
-          "This content is not bad.": 12.307692307692308
+  let users = [
+            {
+        "user": 40,
+        "mpxr": 89.00369,
+        "vote_rep_availabe": 89.003686,
+        "public_address": "0x59cE7310C2f5a6932248cF8FE489731FCC17b86f",
+        "shared_rep": 0.0,
+        "categories": [
+            {
+                "category": "Bitcoin",
+                "rep": 0.00495
+            },
+            {
+                "category": "Blockchain",
+                "rep": 0.00495
+            },
+            {
+                "category": "EEG",
+                "rep": 0.00016666666666666666
+            },
+            {
+                "category": "Music",
+                "rep": 0.00016666666666666666
+            },
+            {
+                "category": "Brain",
+                "rep": 0.0003333333333333333
+            },
+            {
+                "category": "Opinion",
+                "rep": 0.6929331689898147
+            },
+            {
+                "category": "Eccentric",
+                "rep": 0.00025
+            },
+            {
+                "category": "Extraterrestrial",
+                "rep": 0.00019999999999999998
+            },
+            {
+                "category": "Philosophy",
+                "rep": 0.00019999999999999998
+            },
+            {
+                "category": "Psychology",
+                "rep": 0.000125
+            },
+            {
+                "category": "Ethics",
+                "rep": 0.0008227272750000001
+            },
+            {
+                "category": "Psychiatry",
+                "rep": 0.000125
+            },
+            {
+                "category": "AI",
+                "rep": 0.03558457249505363
+            },
+            {
+                "category": "People",
+                "rep": 0.000125
+            },
+            {
+                "category": "Entertainment",
+                "rep": 0.00015
+            },
+            {
+                "category": "Short Sci-fi",
+                "rep": 0.00015
+            },
+            {
+                "category": "Social Media",
+                "rep": 3.3333333333333335e-05
+            },
+            {
+                "category": "SocialFi",
+                "rep": 3.3333333333333335e-05
+            },
+            {
+                "category": "Web3",
+                "rep": 3.3333333333333335e-05
+            },
+            {
+                "category": "3D Printing",
+                "rep": 0.0023333333333333335
+            },
+            {
+                "category": "Aged Care",
+                "rep": 0.0023333333333333335
+            },
+            {
+                "category": "Space",
+                "rep": 0.00030000000000000003
+            },
+            {
+                "category": "Life",
+                "rep": 0.00025
+            },
+            {
+                "category": "nuclear",
+                "rep": 5e-05
+            },
+            {
+                "category": "Crypto Mining",
+                "rep": 5e-05
+            },
+            {
+                "category": "Cryptocurrencies",
+                "rep": 5e-05
+            },
+            {
+                "category": "Future",
+                "rep": 5e-05
+            },
+            {
+                "category": "Brain-computer Interfacing",
+                "rep": 0.00016666666666666666
+            },
+            {
+                "category": "Neuroscience",
+                "rep": 0.00016666666666666666
+            }
+        ],
+        "user_read_time": 253.89000000000001,
+        "read_count": 36,
+        "User Nature": {
+            "user nature": "Novice Content Creator",
+            "number of published articles": 5
         },
-        "Negative Reaction": {
-          "This content is useless and mostly wrong": 0.7692307692307693,
-          "This content is so bad.": 0.7692307692307693,
-          "This content has some errors.": 2.307692307692308,
-          "This content is provocative and might be factually and logically wrong.": 0.0,
-          "This content is boring.": 1.5384615384615385,
-          "This content is badly presented.": 3.8461538461538463
-        }
-      }
-    },
-    "User Comment Interaction By Type Percentage Breakdown": {
-      "User Comment Interaction Percentages Breakdown": {
-        "Percentage of Comment": {
-          "Percentage of All Best": 6.25,
-          "Percentage of All Good": 12.5,
-          "Percentage of All Average": 56.25,
-          "Percentage of All Expedient": 12.5,
-          "Percentage of Hate Speech": 12.5,
-          "Percentage of Bullying": 0.0,
-          "Percentage of Vulgar": 0.0,
-          "Percentage of Spamming": 0.0
-        }
-      }
-    },
-    "User Like Interaction By Type Breakdown": {
-      "User Like Interaction By Type": {
-        "Percentages": {
-          "Percentage of Thumbs Up": 93.49112426035504,
-          "Percentage of Thumbs Down": 6.508875739644971
+        "Total User Interaction Breakdown": {
+            "Total User Number of Interactions": {
+                "Total Interaction": 445,
+                "Total Positive Interactions": 420,
+                "Total Negative Interactions": 23,
+                "Total Neutral Interactions": 2
+            },
+            "Total User Percentage of Interactions": {
+                "reply": 0.44943820224719105,
+                "comment": 3.146067415730337,
+                "time_spent": 22.47191011235955,
+                "react": 30.786516853932582,
+                "bookmark": 1.348314606741573,
+                "boost": 0.44943820224719105,
+                "favorite": 3.3707865168539324,
+                "thumbs_up": 35.50561797752809,
+                "thumbs_down": 2.4719101123595504
+            }
         },
-        "Breakdown by Quality": {
-          "Percentage of Thumbs Up": {
-            "No. of Best Quality Int.": 6,
-            "No. of Good Quality Int.": 1,
-            "No. of Average Quality Int.": 5,
-            "No. of Low Quality Int.": 146
-          },
-          "Percentage of Thumbs Down": {
-            "No. of Best Quality Int.": 0,
-            "No. of Good Quality Int.": 0,
-            "No. of Average Quality Int.": 0,
-            "No. of Low Quality Int.": 11
-          }
-        }
-      }
-    },
-    "User Interaction by Quality Breakdown": {
-      "User Interaction by Quality Breakdown": {
-        "No. of Best Quality Int.": 12,
-        "No. of Good Quality Int.": 13,
-        "No. of Average Quality Int.": 12,
-        "No. of Low Quality Int.": 308
-      }
-    }
-  }
-}
-        ]
-
-
-
-        // functions for user graphs//
-        const categoricalReputationBreakdown = (data) => {
-
-            const chart = echarts.init(userSelectors.categoricalReputationBreakdown);
-            const seriesData = []
-            const legendData = []
-
-            data.forEach(item => {
-                seriesData.push({
-                    name: item.category,
-                    value: item.rep
-                });
-                legendData.push({
-                    name: item.category,
-                })
-            });
-
-            option = {
-                title: {
-                    text: 'User Categorical reputation Breakdown',
-
-                    left: 'center',
-                    textStyle: {
-                        color: '#fff'
+        "User Level": "Average Audience",
+        "Association Breakdown": {
+            "Friend Relationship": {
+                "Immediate MPXR": 0.11594049095902428,
+                "Monthly MPXR": 2.684749456373918
+            },
+            "Follow Relationship": {
+                "Immediate MPXR": 0.0,
+                "Monthly MPXR": 60.74269279844926
+            }
+        },
+        "Reputation Score Breakdown by number": {
+            "MPXR Total From Interaction": {
+                "MPXR By": 0,
+                "MPXR From": 1.3499047381847757
+            },
+            "MPXR From Time Spent": {
+                "MPXR By": 0,
+                "MPXR From": 0.030580181818400012
+            },
+            "MPXR From People's Choice": {
+                "MPXR By": 0,
+                "MPXR From": 0
+            },
+            "MPXR From Comment": {
+                "MPXR By": 0.0009277500000000001,
+                "MPXR From": 0.00018555
+            },
+            "MPXR From Publication": {
+                "text": {
+                    "MPXR From": 0.9170792921788036,
+                    "MPXR By": 0
+                },
+                "audio": {
+                    "MPXR From": 0.03262623916172029,
+                    "MPXR By": 0
+                },
+                "video": {
+                    "MPXR From": 0.0,
+                    "MPXR By": 0
+                }
+            },
+            "MPXR From Social Post": {
+                "MPXR From": 0.11972866838785647,
+                "MPXR By": 0.4
+            },
+            "MPXR From Login": {
+                "MPXR From": 15.099999999999962,
+                "MPXR By": 0.0
+            },
+            "MPXR From Profile Completion": {
+                "MPXR By": 0,
+                "MPXR From": 0.0
+            }
+        },
+        "Network Breakdown": {
+            "Source of Positive MPXR Score": {
+                "Expert Audience": 0,
+                "Advanced Audience": 0,
+                "Intermediate Audience": 0,
+                "Average Audience": 14.893617021276595
+            },
+            "Source of Negative MPXR Score": {
+                "Expert Audience": 0,
+                "Advanced Audience": 0,
+                "Intermediate Audience": 0,
+                "Average Audience": 0
+            }
+        },
+        "Content Consumption Breakdown": {
+            "articles": {
+                "total": 78,
+                "completed": 24,
+                "more_than_half": 23,
+                "less_than_half": 31,
+                "completed_percentage": 30.76923076923077,
+                "more_than_half_percentage": 29.48717948717949,
+                "less_than_half_percentage": 39.743589743589745
+            },
+            "podcasts": {
+                "total": 22,
+                "completed": 18,
+                "more_than_half": 0,
+                "less_than_half": 4,
+                "completed_percentage": 81.81818181818183,
+                "more_than_half_percentage": 0.0,
+                "less_than_half_percentage": 18.181818181818183
+            },
+            "videos": {
+                "total": 0,
+                "completed": 0,
+                "more_than_half": 0,
+                "less_than_half": 0,
+                "completed_percentage": 0,
+                "more_than_half_percentage": 0,
+                "less_than_half_percentage": 0
+            }
+        },
+        "User Categorical read time Breakdown": [
+            {
+                "category": "Bitcoin",
+                "percentage of spent time": 0.6625777495233337
+            },
+            {
+                "category": "Blockchain",
+                "percentage of spent time": 0.6625777495233337
+            },
+            {
+                "category": "EEG",
+                "percentage of spent time": 0.02230901513546578
+            },
+            {
+                "category": "Music",
+                "percentage of spent time": 0.02230901513546578
+            },
+            {
+                "category": "Brain",
+                "percentage of spent time": 0.04461803027093156
+            },
+            {
+                "category": "Opinion",
+                "percentage of spent time": 92.75193932916025
+            },
+            {
+                "category": "Eccentric",
+                "percentage of spent time": 0.03346352270319867
+            },
+            {
+                "category": "Extraterrestrial",
+                "percentage of spent time": 0.026770818162558933
+            },
+            {
+                "category": "Philosophy",
+                "percentage of spent time": 0.026770818162558933
+            },
+            {
+                "category": "Psychology",
+                "percentage of spent time": 0.016731761351599334
+            },
+            {
+                "category": "Ethics",
+                "percentage of spent time": 0.1101254113820131
+            },
+            {
+                "category": "Psychiatry",
+                "percentage of spent time": 0.016731761351599334
+            },
+            {
+                "category": "AI",
+                "percentage of spent time": 4.763140598287384
+            },
+            {
+                "category": "People",
+                "percentage of spent time": 0.016731761351599334
+            },
+            {
+                "category": "Entertainment",
+                "percentage of spent time": 0.0200781136219192
+            },
+            {
+                "category": "Short Sci-fi",
+                "percentage of spent time": 0.0200781136219192
+            },
+            {
+                "category": "Social Media",
+                "percentage of spent time": 0.004461803027093155
+            },
+            {
+                "category": "SocialFi",
+                "percentage of spent time": 0.004461803027093155
+            },
+            {
+                "category": "Web3",
+                "percentage of spent time": 0.004461803027093155
+            },
+            {
+                "category": "3D Printing",
+                "percentage of spent time": 0.31232621189652093
+            },
+            {
+                "category": "Aged Care",
+                "percentage of spent time": 0.31232621189652093
+            },
+            {
+                "category": "Space",
+                "percentage of spent time": 0.040156227243838404
+            },
+            {
+                "category": "Life",
+                "percentage of spent time": 0.03346352270319867
+            },
+            {
+                "category": "nuclear",
+                "percentage of spent time": 0.006692704540639733
+            },
+            {
+                "category": "Crypto Mining",
+                "percentage of spent time": 0.006692704540639733
+            },
+            {
+                "category": "Cryptocurrencies",
+                "percentage of spent time": 0.006692704540639733
+            },
+            {
+                "category": "Future",
+                "percentage of spent time": 0.006692704540639733
+            },
+            {
+                "category": "Brain-computer Interfacing",
+                "percentage of spent time": 0.02230901513546578
+            },
+            {
+                "category": "Neuroscience",
+                "percentage of spent time": 0.02230901513546578
+            }
+        ],
+        "User Categorical Reputation from Time-Spent interaction": [
+            {
+                "category": "Bitcoin",
+                "reputation": 0.0009,
+                "percentage": 0.6625777495233339
+            },
+            {
+                "category": "Blockchain",
+                "reputation": 0.0034999999999999996,
+                "percentage": 0.6625777495233339
+            },
+            {
+                "category": "EEG",
+                "reputation": 0.0005,
+                "percentage": 0.022309015135465786
+            },
+            {
+                "category": "Music",
+                "reputation": 0.0005,
+                "percentage": 0.022309015135465786
+            },
+            {
+                "category": "Brain",
+                "reputation": 0.001,
+                "percentage": 0.04461803027093157
+            },
+            {
+                "category": "Opinion",
+                "reputation": 0.004600000000000001,
+                "percentage": 92.75193932916028
+            },
+            {
+                "category": "Eccentric",
+                "reputation": 0.0021,
+                "percentage": 0.03346352270319868
+            },
+            {
+                "category": "Extraterrestrial",
+                "reputation": 0.00039999999999999996,
+                "percentage": 0.026770818162558944
+            },
+            {
+                "category": "Philosophy",
+                "reputation": 0.0021,
+                "percentage": 0.026770818162558944
+            },
+            {
+                "category": "Psychology",
+                "reputation": 0.0005,
+                "percentage": 0.01673176135159934
+            },
+            {
+                "category": "Ethics",
+                "reputation": 0.0035445454544999998,
+                "percentage": 0.11012541138201314
+            },
+            {
+                "category": "Psychiatry",
+                "reputation": 0.0005,
+                "percentage": 0.01673176135159934
+            },
+            {
+                "category": "AI",
+                "reputation": 0.007100000000000002,
+                "percentage": 4.763140598287386
+            },
+            {
+                "category": "People",
+                "reputation": 0.0005,
+                "percentage": 0.01673176135159934
+            },
+            {
+                "category": "Entertainment",
+                "reputation": 0.0003,
+                "percentage": 0.020078113621919205
+            },
+            {
+                "category": "Short Sci-fi",
+                "reputation": 0.0003,
+                "percentage": 0.020078113621919205
+            },
+            {
+                "category": "Social Media",
+                "reputation": 0.0001,
+                "percentage": 0.004461803027093157
+            },
+            {
+                "category": "SocialFi",
+                "reputation": 0.0001,
+                "percentage": 0.004461803027093157
+            },
+            {
+                "category": "Web3",
+                "reputation": 0.0005,
+                "percentage": 0.004461803027093157
+            },
+            {
+                "category": "3D Printing",
+                "reputation": 0.0005,
+                "percentage": 0.31232621189652104
+            },
+            {
+                "category": "Aged Care",
+                "reputation": 0.0005,
+                "percentage": 0.31232621189652104
+            },
+            {
+                "category": "Space",
+                "reputation": 0.0006000000000000001,
+                "percentage": 0.04015622724383842
+            },
+            {
+                "category": "Life",
+                "reputation": 0.0005,
+                "percentage": 0.03346352270319868
+            },
+            {
+                "category": "nuclear",
+                "reputation": 0.0001,
+                "percentage": 0.006692704540639736
+            },
+            {
+                "category": "Crypto Mining",
+                "reputation": 0.0001,
+                "percentage": 0.006692704540639736
+            },
+            {
+                "category": "Cryptocurrencies",
+                "reputation": 0.0011,
+                "percentage": 0.006692704540639736
+            },
+            {
+                "category": "Future",
+                "reputation": 0.0007000000000000001,
+                "percentage": 0.006692704540639736
+            },
+            {
+                "category": "Brain-computer Interfacing",
+                "reputation": 0.0005,
+                "percentage": 0.022309015135465786
+            },
+            {
+                "category": "Neuroscience",
+                "reputation": 0.0005,
+                "percentage": 0.022309015135465786
+            }
+        ],
+        "Interaction Breakdown Lists": {
+            "User Emoji Interaction By Type Percentage Breakdown": {
+                "Emoji Reaction Breakdown": {
+                    "Positive Reaction": {
+                        "This content is perfect!": 46.15384615384615,
+                        "This content is excellent!": 8.461538461538462,
+                        "This Content is very good.": 9.230769230769232,
+                        "This content is well done.": 9.230769230769232,
+                        "This content is at least interesting.": 5.384615384615385,
+                        "This content is not bad.": 12.307692307692308
+                    },
+                    "Negative Reaction": {
+                        "This content is useless and mostly wrong": 0.7692307692307693,
+                        "This content is so bad.": 0.7692307692307693,
+                        "This content has some errors.": 2.307692307692308,
+                        "This content is provocative and might be factually and logically wrong.": 0.0,
+                        "This content is boring.": 1.5384615384615385,
+                        "This content is badly presented.": 3.8461538461538463
                     }
-                },
-                tooltip: {
-                    trigger: 'item',
-                    formatter: ' ({d}%)'
-                },
-                label: {
+                }
+            },
+            "User Comment Interaction By Type Percentage Breakdown": {
+                "User Comment Interaction Percentages Breakdown": {
+                    "Percentage of Comment": {
+                        "Percentage of All Best": 6.25,
+                        "Percentage of All Good": 12.5,
+                        "Percentage of All Average": 56.25,
+                        "Percentage of All Expedient": 12.5,
+                        "Percentage of Hate Speech": 12.5,
+                        "Percentage of Bullying": 0.0,
+                        "Percentage of Vulgar": 0.0,
+                        "Percentage of Spamming": 0.0
+                    }
+                }
+            },
+            "User Like Interaction By Type Breakdown": {
+                "User Like Interaction By Type": {
+                    "Percentages": {
+                        "Percentage of Thumbs Up": 93.49112426035504,
+                        "Percentage of Thumbs Down": 6.508875739644971
+                    },
+                    "Breakdown by Quality": {
+                        "Percentage of Thumbs Up": {
+                            "No. of Best Quality Int.": 6,
+                            "No. of Good Quality Int.": 1,
+                            "No. of Average Quality Int.": 5,
+                            "No. of Low Quality Int.": 146
+                        },
+                        "Percentage of Thumbs Down": {
+                            "No. of Best Quality Int.": 0,
+                            "No. of Good Quality Int.": 0,
+                            "No. of Average Quality Int.": 0,
+                            "No. of Low Quality Int.": 11
+                        }
+                    }
+                }
+            },
+            "User Interaction by Quality Breakdown": {
+                "User Interaction by Quality Breakdown": {
+                    "No. of Best Quality Int.": 12,
+                    "No. of Good Quality Int.": 13,
+                    "No. of Average Quality Int.": 12,
+                    "No. of Low Quality Int.": 308
+                }
+            }
+        }
+    }
+  ]
+
+    
+    // functions for user graphs//
+    const categoricalReputationBreakdown = (data) => {
+
+        const chart = echarts.init(userSelectors.categoricalReputationBreakdown);
+        const seriesData = []
+        const legendData = []
+
+        data.forEach(item => {
+            seriesData.push({
+                name: item.category,
+                value: item.rep
+            });
+            legendData.push({
+                name: item.category,
+            })
+        });
+
+        option = {
+            title: {
+                text: 'User Categorical reputation Breakdown',
+
+                left: 'center',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: ' ({d}%)'
+            },
+            label: {
+                color: '#fff'
+            },
+            legend: {
+                type: 'scroll',
+                orient: 'horizontal',
+                right: 0,
+                top: 30,
+                bottom: 20,
+                data: legendData,
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            series: [
+                {
+                    name: 'reputation Breakdown',
+                    type: 'pie',
+                    radius: '50%',
+                    
+                    data: seriesData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+
+    }
+    const networkReputationScore = (data) => {
+        const chart = echarts.init(userSelectors.networkReputationScore);
+        const categories = Object.keys(data["Source of Positive MPXR Score"]);
+
+        // Extract corresponding values dynamically
+        const positiveValues = categories.map(cat => data["Source of Positive MPXR Score"][cat]);
+        const negativeValues = categories.map(cat => data["Source of Negative MPXR Score"][cat]);
+        const option = {
+            title: {
+                text: 'Network Analysis Reputation Score Percentage',
+                textStyle: {
                     color: '#fff'
                 },
-                legend: {
-                    type: 'scroll',
-                    orient: 'vertical',
-                    right: 0,
-                    top: 25,
-                    bottom: 20,
-                    data: legendData,
-                    textStyle: {
-                        color: '#fff'
-                    }
-                },
-                series: [
-                    {
-                        name: 'reputation Breakdown',
-                        type: 'pie',
-                        radius: '50%',
-
-                        data: seriesData,
-                        emphasis: {
-                            itemStyle: {
-                                shadowBlur: 10,
-                                shadowOffsetX: 0,
-                                shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            }
-                        }
-                    }
-                ]
-            };
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
-            });
-
-        }
-        const networkReputationScore = (data) => {
-            const chart = echarts.init(userSelectors.networkReputationScore);
-            const categories = Object.keys(data["Source of Positive MPXR Score"]);
-
-            // Extract corresponding values dynamically
-            const positiveValues = categories.map(cat => data["Source of Positive MPXR Score"][cat]);
-            const negativeValues = categories.map(cat => data["Source of Negative MPXR Score"][cat]);
-            const option = {
-                title: {
-                    text: 'Network Analysis Reputation Score Percentage',
-                    textStyle: {
-                        color: '#fff'
-                    },
-                    margin: 10,
-                    left: 'center'
-                },
-                angleAxis: {
-                    type: 'value',
-                },
+                margin: 10,
+                left: 'center'
+            },
+            angleAxis: {
+                type: 'value',
+            },
 
 
-                radiusAxis: {
-                    type: 'category',
-                    data: categories,
-                    z: 10,
+            radiusAxis: {
+                type: 'category',
+                data: categories,
+                z: 10,
 
-                    axisLabel: {
-                        interval: 0,
-                        fontSize: 12,
-                        overflow: 'truncate',
-                        width: 80,
-                        textStyle: {
-                            color: '#fff',
-                        }
-                    },
-
-                },
-                polar: {
-                    center: ['50%', '50%'], // Moves the graph down (default is '50%')
-                    radius: "50%",
-                },
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: { type: 'shadow' },
-                    position: function (point, params, dom, rect, size) {
-                        const tooltipWidth = dom.clientWidth;
-                        const tooltipHeight = dom.clientHeight;
-
-                        // Calculate the center position for the tooltip
-                        const centerX = size.viewSize[0] / 2 - tooltipWidth / 2;
-                        let offsetY = point[1] + 10; // Keep a small offset from the point
-
-                        // If the tooltip overflows on the right, adjust position
-                        if (centerX + tooltipWidth > size.viewSize[0]) {
-                            offsetX = size.viewSize[0] - tooltipWidth - 10;
-                        }
-
-                        // If the tooltip overflows on the bottom, adjust position
-                        if (point[1] + tooltipHeight > size.viewSize[1]) {
-                            offsetY = point[1] - tooltipHeight - 10;
-                        }
-
-                        return [centerX, offsetY]; // Ensure the tooltip is centered horizontally
-                    }
-                },
-
-                series: [
-
-                    {
-                        type: 'bar',
-                        data: positiveValues,
-                        coordinateSystem: 'polar',
-                        name: 'Positive MPXR',
-                        stack: 'a',
-                        emphasis: {
-                            focus: 'series'
-                        }
-                    },
-                    {
-                        type: 'bar',
-                        data: negativeValues,
-                        coordinateSystem: 'polar',
-                        name: 'Negative MPXR',
-                        stack: 'a',
-                        emphasis: {
-                            focus: 'series'
-                        }
-                    }
-                ],
-                legend: {
-                    show: true,
-                    orient: 'vertical',
-                    right: 0,
-                    top: 25,
-                    bottom: 20,
-                    data: ['Positive MPXR', 'Negative MPXR'],
-                    textStyle: {
-                        color: '#fff'
-                    },
-
-                },
-
-            };
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
-            });
-        }
-        // const numberMpxrPublication = (data) => {
-        //     const chart = echarts.init(userSelectors.numberMpxrPublication);
-
-        // }
-        const interactionBreakdownNumbers = (data) => {
-            const chart = echarts.init(userSelectors.interactionBreakdownNumbers);
-            function buildTree(data) {
-                return Object.keys(data).map(key => {
-                    if (typeof data[key] === 'object' && data[key] !== null) {
-                        return { name: key, children: buildTree(data[key]) };
-                    } else {
-                        return { name: key, value: data[key] };
-                    }
-                });
-            }
-
-            const datas = {
-                name: 'User Interactions',
-                children: buildTree(data)
-            };
-
-
-            const option = {
-                tooltip: {
-                    trigger: 'item',
-                    triggerOn: 'mousemove'
-                },
-                series: [
-                    {
-                        type: 'tree',
-                        data: [datas],
-                        top: '1%',
-                        left: '7%',
-                        bottom: '1%',
-                        right: '20%',
-                        symbolSize: 7,
-                        label: {
-                            position: 'left',
-                            verticalAlign: 'middle',
-                            align: 'right',
-                            fontSize: 9
-                        },
-                        leaves: {
-                            label: {
-                                position: 'right',
-                                verticalAlign: 'middle',
-                                align: 'left'
-                            }
-                        },
-                        emphasis: {
-                            focus: 'descendant'
-                        },
-                        expandAndCollapse: true,
-                        animationDuration: 550,
-                        animationDurationUpdate: 750
-                    }
-                ]
-            }
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
-            });
-        }
-        const mpxrFromInteractionPercentage = (data) => {
-            const chart = echarts.init(userSelectors.mpxrFromInteractionPercentage);
-            const newData = [];
-
-            for (const key in data) {
-                newData.push({
-                    value: data[key],
-                    name: key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' ')
-                });
-            }
-            option = {
-                title: {
-                    text: 'MPXR From Interaction Percentage',
-                    left: 'center',
-                    textStyle: {
-                        color: '#fff'
-                    }
-                },
-                tooltip: {
-                    trigger: 'item',
-                    position: function (point, params, dom, rect, size) {
-                        const tooltipWidth = dom.clientWidth;
-                        const tooltipHeight = dom.clientHeight;
-
-                        // Calculate the center position for the tooltip
-                        const centerX = size.viewSize[0] / 2 - tooltipWidth / 2;
-                        let offsetY = point[1] + 10; // Keep a small offset from the point
-
-                        // If the tooltip overflows on the right, adjust position
-                        if (centerX + tooltipWidth > size.viewSize[0]) {
-                            offsetX = size.viewSize[0] - tooltipWidth - 10;
-                        }
-
-                        // If the tooltip overflows on the bottom, adjust position
-                        if (point[1] + tooltipHeight > size.viewSize[1]) {
-                            offsetY = point[1] - tooltipHeight - 10;
-                        }
-
-                        return [centerX, offsetY]; // Ensure the tooltip is centered horizontally
-                    }
-                },
-                legend: {
-                    orient: 'vertical',
-                    left: 'left',
-                    top: '10%',
-                    textStyle: {
-                        color: '#fff'
-                    }
-                },
-
-                series: [
-                    {
-                        name: 'Access From',
-                        type: 'pie',
-                        radius: '60%',
-                        top: '15%',
-                        data: newData,
-                        label: {
-                            textStyle: {
-                                color: '#fff'
-                            }
-                        },
-                        emphasis: {
-                            itemStyle: {
-                                shadowBlur: 10,
-                                shadowOffsetX: 0,
-                                shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            }
-                        }
-                    }
-                ]
-            };
-
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
-            });
-
-        }
-        const mpxrFromRewards = (data) => {
-            const chart = echarts.init(userSelectors.mpxrFromRewards);
-            const newData = [];
-
-            function flattenObject(obj, prefix = '') {
-                for (const key in obj) {
-                    const newKey = prefix ? `${prefix} ${key}` : key;
-                    if (typeof obj[key] === 'object' && obj[key] !== null && Object.keys(obj[key]).length > 0) {
-                        flattenObject(obj[key], newKey);
-                    } else if (typeof obj[key] === 'number') {
-                        newData.push({
-                            value: obj[key],
-                            name: newKey.replace(/_/g, ' ').trim()
-                        });
-                    }
-                }
-            }
-
-            flattenObject(data);
-
-
-
-            const option = {
-                title: {
-                    text: 'MPXR From Different Rewards',
-                    left: 'center',
+                axisLabel: {
+                    interval: 0,
+                    fontSize: 12,
+                    overflow: 'truncate',
+                    width: 80,
                     textStyle: {
                         color: '#fff',
                     }
                 },
-                // tooltip: {
-                //     trigger: 'item'
-                // },
-                legend: {
-                    top: '5%',
-                    orient: 'horizontal',
-                    left: 0,
-                    // right: 0,
-                    width: '100%',
-                    textStyle: {
-                        color: '#fff'
+
+            },
+            polar: {
+                center: ['50%', '50%'], // Moves the graph down (default is '50%')
+                radius: "50%",
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { type: 'shadow' },
+                position: function (point, params, dom, rect, size) {
+                    const tooltipWidth = dom.clientWidth;
+                    const tooltipHeight = dom.clientHeight;
+
+                    // Calculate the center position for the tooltip
+                    const centerX = size.viewSize[0] / 2 - tooltipWidth / 2;
+                    let offsetY = point[1] + 10; // Keep a small offset from the point
+
+                    // If the tooltip overflows on the right, adjust position
+                    if (centerX + tooltipWidth > size.viewSize[0]) {
+                        offsetX = size.viewSize[0] - tooltipWidth - 10;
                     }
 
-                },
-
-
-                series: [
-                    {
-                        name: 'Access From',
-                        type: 'pie',
-                        top: '0%',
-                        radius: ['40%', '57%'],
-                        center: ['50%', '70%'],
-                        avoidLabelOverlap: false,
-                        itemStyle: {
-                            borderRadius: 10,
-                            borderColor: '#fff',
-                            borderWidth: 2
-                        },
-                        label: {
-                            show: false,
-                            position: 'center',
-
-                        },
-                        emphasis: {
-                            label: {
-                                show: true,
-                                fontSize: 12,
-                                fontWeight: 'bold',
-
-                                textStyle: {
-                                    color: '#fff',
-
-                                },
-
-                            }
-                        },
-                        labelLine: {
-                            show: false
-                        },
-                        data: newData
+                    // If the tooltip overflows on the bottom, adjust position
+                    if (point[1] + tooltipHeight > size.viewSize[1]) {
+                        offsetY = point[1] - tooltipHeight - 10;
                     }
-                ]
-            };
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
-            });
-        }
-        const contentConsumptionBreakdown = (data) => {
-            const chart = echarts.init(userSelectors.contentConsumptionBreakdown);
 
-            const datasetSource = [
-                ['content_type', 'total', 'completed', 'more_than_half', 'less_than_half']
-            ];
+                    return [centerX, offsetY]; // Ensure the tooltip is centered horizontally
+                }
+            },
 
-            let totalCompleted = 0;
-            let totalMoreThanHalf = 0;
-            let totalLessThanHalf = 0;
+            series: [
 
-            Object.keys(data["Content Consumption Breakdown"]).forEach(key => {
-                const item = data["Content Consumption Breakdown"][key];
-                datasetSource.push([key, item.total, item.completed, item.more_than_half, item.less_than_half]);
-                totalCompleted += item.completed_percentage;
-                totalMoreThanHalf += item.more_than_half_percentage;
-                totalLessThanHalf += item.less_than_half_percentage;
-            });
-
-            // Aggregated pie chart data
-            const pieSource = [
-                { value: totalCompleted, name: 'Completed' },
-                { value: totalMoreThanHalf, name: 'More than Half' },
-                { value: totalLessThanHalf, name: 'Less than Half' },
-
-            ];
-
-            const option = {
-                title: {
-                    text: 'Content Consumption Breakdown',
-                    textStyle: {
-                        color: '#fff'
-                    },
-                    left: 'center'
-                },
-                legend: {
-                    textStyle: {
-                        color: '#fff'
-                    },
-                    top: '5%',
-                },
-                tooltip: {
-                    trigger: 'item',
-                    showContent: true
-                },
-                dataset: [
-                    { source: datasetSource },
-                    { source: pieSource }
-                ],
-
-                xAxis: { type: 'value' },
-                yAxis: { type: 'category', data: datasetSource.slice(1).map(item => item[0]) },
-                grid: {
-                    left: '7%',
-                    top: '15%',
-                    right: '60%',
-                    bottom: '10%'
-                },
-                series: [
-                    {
-                        name: 'Completed',
-                        type: 'bar',
-                        stack: 'total',
-                        label: { show: true },
-                        emphasis: { focus: 'series' },
-                        data: datasetSource.slice(1).map(item => item[1]),
-                        barWidth: '40%',
-                    },
-                    {
-                        name: 'More than Half',
-                        type: 'bar',
-                        stack: 'total',
-                        label: { show: true },
-                        emphasis: { focus: 'series' },
-                        data: datasetSource.slice(1).map(item => item[2]),
-                        barWidth: '40%',
-                    },
-                    {
-                        name: 'Less than Half',
-                        type: 'bar',
-                        stack: 'total',
-                        label: { show: true },
-                        emphasis: { focus: 'series' },
-                        data: datasetSource.slice(1).map(item => item[3]),
-                        barWidth: '40%',
-                    },
-                    {
-                        type: 'pie',
-                        id: 'pie',
-                        radius: ['50%', '30%'],
-                        center: ['70%', '50%'],
-                        emphasis: { focus: 'self' },
-                        label: {
-                            formatter: '{b}', textStyle: {
-                                color: '#fff',
-                                overflow: 'truncate',
-                                width: 80,
-
-                            }
-                        },
-                        data: pieSource,
-
-                    }
-                ]
-            };
-
-
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
-            });
-        }
-        const timeSpentByCategory = (data) => {
-            const chart = echarts.init(userSelectors.timeSpentByCategory);
-            const pieData = data.map(item => ({
-                value: Math.round(item["percentage of spent time"]), // Multiply by 100 to scale to a whole number (optional)
-                name: item.category
-            }));
-            const barCategories = []
-            const barValues = []
-            data.forEach(item => {
-                barCategories.push(item.category)
-                barValues.push(Math.round(item["percentage of spent time"]))
-            })
-
-
-            const option = {
-                title: {
-                    text: 'Read Time and Reputation score collected from Time spent by Category',
-                    width: '90%',
-                    textStyle: {
-                        color: '#fff'
-                    },
-                    left: 'center'
-                },
-                legend: {
-                    type: 'scroll',
-                    orient: 'horizontal',
-
-                    textStyle: {
-                        color: '#fff'
-                    },
-                    top: '5%',
-                    data: barCategories
-                },
-                tooltip: {
-                    trigger: 'item',
-                    showContent: true
-                },
-                grid: {
-                    top: '10%',
-                    bottom: '60%',
-                    left: '5%',
-                    right: '5%',
-                },
-                xAxis: [
-                    {
-                        type: 'category',
-                        data: barCategories,
-                        axisTick: {
-                            alignWithLabel: true
-                        }
-                    }
-                ],
-                yAxis: [
-                    {
-                        type: 'value'
-                    }
-                ],
-                series: [
-                    {
-                        name: 'bar',
-                        type: 'bar',
-                        barWidth: '40%',
-                        data: barValues,
-                        colorBy: barCategories,
-                        // Position the bar chart at the top
-                        emphasis: { focus: 'self' }
-                    },
-                    {
-                        name: 'pie', // Name the pie series for the legend
-                        type: 'pie',
-                        id: 'pie',
-                        center: ['50%', '65%'],
-                        radius: '40%',
-                        emphasis: { focus: 'self' },
-                        label: {
-                            textStyle: {
-                                color: '#fff',
-                                overflow: 'truncate',
-                                width: 80
-                            }
-                        },
-                        data: pieData,
-                    }
-                ]
-            };
-
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
-            });
-        }
-        const userNature = (data) => {
-            const chart = echarts.init(userSelectors.userNature);
-            const userNature = [
-                { name: "Audience User" },
-                { name: "Expert Audience" },
-                { name: "Novice Audience" },
-                { name: "Novic Content Creator" },
-                { name: "Expert Content Creator" },
-            ]
-
-            const userExpert = [
-                { name: "Average Audience" },
-                { name: "Intermediate Audience" },
-                { name: "Advanced Audience" },
-                { name: "Expert Audience" },
-
-            ]
-            const updatedUserNature = userNature.map(item =>
-                item.name.toLowerCase() === data["User Nature"]["user nature"].toLowerCase()
-                    ? { ...item, itemStyle: { borderColor: '#FF6E14', borderWidth: 3 }, label: { fontWeight: 'bold' } }
-                    : item
-            );
-
-            const updatedUserExpert = userExpert.map(item =>
-                item.name.toLowerCase() === data["User Level"].toLowerCase()
-                    ? { ...item, itemStyle: { borderColor: '#FF6E14', borderWidth: 3 }, label: { fontWeight: 'bold' } }
-                    : item
-            );
-            console.log(userNature, data["User Nature"]["user nature"],)
-
-            const userExpertiseTree = [
                 {
-                    name: "User Profile",
-                    children: [
-                        {
-                            name: "User Nature",
-                            children: updatedUserNature
-                        },
-                        {
-                            name: "User Expertise Level",
-                            children: updatedUserExpert
-                        }
-                    ]
+                    type: 'bar',
+                    data: positiveValues,
+                    coordinateSystem: 'polar',
+                    name: 'Positive MPXR',
+                    stack: 'a',
+                    emphasis: {
+                        focus: 'series'
+                    }
+                },
+                {
+                    type: 'bar',
+                    data: negativeValues,
+                    coordinateSystem: 'polar',
+                    name: 'Negative MPXR',
+                    stack: 'a',
+                    emphasis: {
+                        focus: 'series'
+                    }
                 }
             ],
-                option = {
-                    title: {
-                        text: 'User Profile Tree',
-                        left: 'center',
-                        textStyle: { color: '#fff' }
-                    },
-                    tooltip: { trigger: 'item', formatter: '{b}' },
-                    series: [
-                        {
-                            type: 'tree',
-                            data: userExpertiseTree,
-                            top: '10%',
-                            left: '15%',
-                            bottom: '10%',
-                            right: '15%',
-                            symbol: 'circle',
-                            symbolSize: 10,
-                            label: {
-                                position: 'top',
-                                verticalAlign: 'middle',
-                                align: 'right',
+            legend: {
+                show: true,
+                orient: 'vertical',
+                right: 0,
+                top: 25,
+                bottom: 20,
+                data: ['Positive MPXR', 'Negative MPXR'],
+                textStyle: {
+                    color: '#fff'
+                },
 
-                                fontSize: 14,
-                                color: '#fff',
-                            },
-                            leaves: {
-                                label: {
+            },
 
-                                    //   position: 'bottom',
-                                    verticalAlign: 'middle',
-                                    align: 'left',
-                                    color: '#fff',
-                                }
-                            },
-                            expandAndCollapse: true,
-                            animationDuration: 750,
-                            animationEasing: 'quinticInOut'
-                        }
-                    ]
+        };
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+    }
+    // const numberMpxrPublication = (data) => {
+    //     const chart = echarts.init(userSelectors.numberMpxrPublication);
+
+    // }
+    const interactionBreakdownNumbers = (data) => {
+        const chart = echarts.init(userSelectors.interactionBreakdownNumbers);
+        function buildTree(data) {
+            return Object.keys(data).map(key => {
+                if (typeof data[key] === 'object' && data[key] !== null) {
+                    return { name: key, children: buildTree(data[key]) };
+                } else {
+                    return { name: key, value: data[key] };
                 }
-
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
             });
         }
-        const mpxrFromPublication = (data) => {
-            const chart = echarts.init(userSelectors.mpxrFromPublication);
-            function processData(data) {
-                const categories = [];
-                const mpxrByData = [];
-                const mpxrFromData = [];
 
-                // Process all top-level keys dynamically
-                Object.entries(data).forEach(([topKey, topValue]) => {
-                    // Handle nested objects differently
-                    if (typeof topValue === 'object') {
-                        // Check if the value directly contains MPXR By/From
-                        if ('MPXR By' in topValue || 'MPXR From' in topValue) {
-                            categories.push(topKey);
-                            mpxrByData.push(topValue['MPXR By'] || 0);
-                            mpxrFromData.push(topValue['MPXR From'] || 0);
-                        } else {
-                            // Handle double-nested objects
-                            Object.entries(topValue).forEach(([subKey, subValue]) => {
-                                if (typeof subValue === 'object' && ('MPXR By' in subValue || 'MPXR From' in subValue)) {
-                                    categories.push(`${topKey} (${subKey})`);
-                                    mpxrByData.push(subValue['MPXR By'] || 0);
-                                    mpxrFromData.push(subValue['MPXR From'] || 0);
-                                }
-                            });
-                        }
-                    }
-                });
+        const datas = {
+            name: 'User Interactions',
+            children: buildTree(data)
+        };
 
-                return { categories, mpxrByData, mpxrFromData };
-            }
 
-            const { categories, mpxrByData, mpxrFromData } = processData(data);
-            const option = {
-                title: {
-                    text: 'MPXR Distribution',
-                    textStyle: {
-                        color: '#fff'
+        const option = {
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+            },
+            series: [
+                {
+                    type: 'tree',
+                    data: [datas],
+                    top: '1%',
+                    left: '7%',
+                    bottom: '1%',
+                    right: '20%',
+                    symbolSize: 7,
+                    label: {
+                        position: 'left',
+                        verticalAlign: 'middle',
+                        align: 'right',
+                        fontSize: 9
                     },
-                    left: 'center'
-                },
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow'
-                    },
-                    formatter: function (params) {
-                        let tooltip = params[0].axisValueLabel + '<br/>';
-                        params.forEach(param => {
-                            tooltip += `${param.seriesName}: ${param.value.toFixed(4)}<br/>`;
-                        });
-                        return tooltip;
-                    }
-                },
-                legend: {
-                    data: ['MPXR By', 'MPXR From'],
-                    textStyle: {
-                        color: '#fff'
-                    },
-                    top: '10%'
-                },
-                grid: {
-                    top: '20%',
-                    bottom: '3%',
-
-                    containLabel: true
-                },
-                xAxis: {
-                    type: 'value',
-                    axisLabel: {
-                        color: '#fff',
-                        formatter: value => value.toFixed(2)
-                    }
-                },
-                yAxis: {
-                    type: 'category',
-                    data: categories,
-
-                    axisLabel: {
-                        color: '#fff',
-                        margin: 30,
-                        interval: 0,
-                        formatter: function (value) {
-                            const chartWidth = chart.getWidth(); // Get the chart's width
-                            const maxLength = Math.floor(chartWidth * 0.02);
-                            if (value.length > maxLength) {
-                                return value.slice(0, maxLength) + '...';
-                            }
-                            return value;
-                        }
-                    }
-                },
-                series: [
-                    {
-                        name: 'MPXR By',
-                        type: 'bar',
-                        stack: 'total',
+                    leaves: {
                         label: {
-                            show: true,
-                            formatter: function (params) {
-                                return params.value === 0 ? '' : params.value.toFixed(4);
-                            },
-
-                            color: '#fff'
-                        },
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: mpxrByData
+                            position: 'right',
+                            verticalAlign: 'middle',
+                            align: 'left'
+                        }
                     },
-                    {
-                        name: 'MPXR From',
-                        type: 'bar',
-                        stack: 'total',
-                        label: {
-                            show: true,
-                            formatter: value => value.value.toFixed(4),
-                            color: '#fff'
-                        },
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: mpxrFromData
-                    }
-                ]
-            };
+                    emphasis: {
+                        focus: 'descendant'
+                    },
+                    expandAndCollapse: true,
+                    animationDuration: 550,
+                    animationDurationUpdate: 750
+                }
+            ]
+        }
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+    }
+    const mpxrFromInteractionPercentage = (data) => {
+        const chart = echarts.init(userSelectors.mpxrFromInteractionPercentage);
+        const newData = [];
 
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
+        for (const key in data) {
+            newData.push({
+                value: data[key],
+                name: key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' ')
             });
         }
-        const associationBreakdown = (data) => {
-            const chart = echarts.init(userSelectors.associationBreakdown);
-            const categories = Object.keys(data); // MPXR From Comment, MPXR From Social Post
-            const immediateData = []
-            const monthlyData = []
-            categories.forEach(category => {
-                immediateData.push(data[category]['Immediate MPXR'] || 0);
-                monthlyData.push(data[category]['Monthly MPXR'] || 0);
-            });
+        option = {
+            title: {
+                text: 'MPXR From Interaction Percentage',
+                left: 'center',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                position: function (point, params, dom, rect, size) {
+                    const tooltipWidth = dom.clientWidth;
+                    const tooltipHeight = dom.clientHeight;
 
+                    // Calculate the center position for the tooltip
+                    const centerX = size.viewSize[0] / 2 - tooltipWidth / 2;
+                    let offsetY = point[1] + 10; // Keep a small offset from the point
 
-
-            const option = {
-                title: {
-                    text: 'Reputation by Association Breakdown',
-                    textStyle: {
-                        color: '#fff'
-                    },
-                    left: 'center'
-                },
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow'
+                    // If the tooltip overflows on the right, adjust position
+                    if (centerX + tooltipWidth > size.viewSize[0]) {
+                        offsetX = size.viewSize[0] - tooltipWidth - 10;
                     }
-                },
-                label: {
-                    textStyle: {
-                        color: '#fff'
+
+                    // If the tooltip overflows on the bottom, adjust position
+                    if (point[1] + tooltipHeight > size.viewSize[1]) {
+                        offsetY = point[1] - tooltipHeight - 10;
                     }
-                },
-                legend: {
-                    textStyle: {
-                        color: '#fff'
-                    },
-                    top: '10%'
-                },
-                grid: {
-                    // left: '3%',
-                    // right: '4%',
-                    top: '19%',
-                    bottom: '3%',
-                    containLabel: true
-                },
-                xAxis: {
-                    type: 'value',
+
+                    return [centerX, offsetY]; // Ensure the tooltip is centered horizontally
+                }
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                top: '10%',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+
+            series: [
+                {
+                    name: 'Access From',
+                    type: 'pie',
+                    radius: '60%',
+                    top: '15%',
+                    data: newData,
                     label: {
                         textStyle: {
                             color: '#fff'
                         }
-                    }
-
-                },
-                yAxis: {
-                    type: 'category',
-                    data: categories,
-
-                    axisLabel: {
-                        interval: 0,
-                        formatter: function (value) {
-                            const chartWidth = chart.getWidth(); // Get the chart's width
-                            const maxLabelLength = Math.floor(chartWidth * 0.02); // 2% of chart width (adjustable)
-
-                            if (value.length > maxLabelLength) {
-                                return value.substring(0, maxLabelLength) + '...'; // Show last characters
-                            }
-                            return value;
-
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
                         }
                     }
-                },
-                series: [
-                    {
-                        name: 'Immediate MPXR',
-                        type: 'bar',
-                        barWidth: 90,
-                        stack: 'total',
+                }
+            ]
+        };
+
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+
+    }
+    const mpxrFromRewards = (data) => {
+        const chart = echarts.init(userSelectors.mpxrFromRewards);
+        const newData = [];
+
+        function flattenObject(obj, prefix = '') {
+            for (const key in obj) {
+                const newKey = prefix ? `${prefix} ${key}` : key;
+                if (typeof obj[key] === 'object' && obj[key] !== null && Object.keys(obj[key]).length > 0) {
+                    flattenObject(obj[key], newKey);
+                } else if (typeof obj[key] === 'number') {
+                    newData.push({
+                        value: obj[key],
+                        name: newKey.replace(/_/g, ' ').trim()
+                    });
+                }
+            }
+        }
+
+        flattenObject(data);
+
+
+
+        const option = {
+            title: {
+                text: 'MPXR From Different Rewards',
+                left: 'center',
+                textStyle: {
+                    color: '#fff',
+                }
+            },
+            // tooltip: {
+            //     trigger: 'item'
+            // },
+            legend: {
+                top: '5%',
+                type:'scroll',
+                orient: 'horizontal',
+                left: 0,
+                // right: 0,
+                // width: '100%',
+                textStyle: {
+                    color: '#fff'
+                }
+
+            },
+
+
+            series: [
+                {
+                    name: 'Access From',
+                    type: 'pie',
+                    top: '0%',
+                    radius: ['40%', '57%'],
+                    center: ['50%', '50%'],
+                    avoidLabelOverlap: false,
+                    itemStyle: {
+                        borderRadius: 10,
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    },
+                    label: {
+                        show: false,
+                        position: 'center',
+
+                    },
+                    emphasis: {
                         label: {
-                            show: true
-                        },
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: immediateData
+                            show: true,
+                            fontSize: 12,
+                            fontWeight: 'bold',
+
+                            textStyle: {
+                                color: '#fff',
+
+                            },
+
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: newData
+                }
+            ]
+        };
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+    }
+    const contentConsumptionBreakdown = (data) => {
+        const chart = echarts.init(userSelectors.contentConsumptionBreakdown);
+
+        const datasetSource = [
+            ['content_type', 'total', 'completed', 'more_than_half', 'less_than_half']
+        ];
+
+        let totalCompleted = 0;
+        let totalMoreThanHalf = 0;
+        let totalLessThanHalf = 0;
+
+        Object.keys(data["Content Consumption Breakdown"]).forEach(key => {
+            const item = data["Content Consumption Breakdown"][key];
+            datasetSource.push([key, item.total, item.completed, item.more_than_half, item.less_than_half]);
+            totalCompleted += item.completed_percentage;
+            totalMoreThanHalf += item.more_than_half_percentage;
+            totalLessThanHalf += item.less_than_half_percentage;
+        });
+
+        // Aggregated pie chart data
+        const pieSource = [
+            { value: totalCompleted, name: 'Completed' },
+            { value: totalMoreThanHalf, name: 'More than Half' },
+            { value: totalLessThanHalf, name: 'Less than Half' },
+
+        ];
+
+        const option = {
+            title: {
+                text: 'Content Consumption Breakdown',
+                textStyle: {
+                    color: '#fff'
+                },
+                left: 'center'
+            },
+            legend: {
+                textStyle: {
+                    color: '#fff'
+                },
+                top: '5%',
+            },
+            tooltip: {
+                trigger: 'item',
+                showContent: true
+            },
+            dataset: [
+                { source: datasetSource },
+                { source: pieSource }
+            ],
+
+            xAxis: { type: 'value' },
+            yAxis: { type: 'category', data: datasetSource.slice(1).map(item => item[0]) },
+            grid: {
+                left: '7%',
+                top: '15%',
+                right: '60%',
+                bottom: '10%'
+            },
+            series: [
+                {
+                    name: 'Completed',
+                    type: 'bar',
+                    stack: 'total',
+                    label: { show: true },
+                    emphasis: { focus: 'series' },
+                    data: datasetSource.slice(1).map(item => item[1]),
+                    barWidth: '40%',
+                },
+                {
+                    name: 'More than Half',
+                    type: 'bar',
+                    stack: 'total',
+                    label: { show: true },
+                    emphasis: { focus: 'series' },
+                    data: datasetSource.slice(1).map(item => item[2]),
+                    barWidth: '40%',
+                },
+                {
+                    name: 'Less than Half',
+                    type: 'bar',
+                    stack: 'total',
+                    label: { show: true },
+                    emphasis: { focus: 'series' },
+                    data: datasetSource.slice(1).map(item => item[3]),
+                    barWidth: '40%',
+                },
+                {
+                    type: 'pie',
+                    id: 'pie',
+                    radius: ['50%', '30%'],
+                    center: ['70%', '50%'],
+                    emphasis: { focus: 'self' },
+                    label: {
+                        formatter: '{b}', textStyle: {
+                            color: '#fff',
+                            overflow: 'truncate',
+                            width: 80,
+
+                        }
+                    },
+                    data: pieSource,
+
+                }
+            ]
+        };
+
+
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+    }
+    const timeSpentByCategory = (data) => {
+        const chart = echarts.init(userSelectors.timeSpentByCategory);
+        const pieData = data.map(item => ({
+            value: Math.round(item["percentage of spent time"]), // Multiply by 100 to scale to a whole number (optional)
+            name: item.category
+        }));
+        const barCategories = []
+        const barValues = []
+        data.forEach(item => {
+            barCategories.push(item.category)
+            barValues.push(Math.round(item["percentage of spent time"]))
+        })
+
+
+        const option = {
+            title: {
+                text: 'Read Time and Reputation score collected from Time spent by Category',
+                width: '90%',
+                textStyle: {
+                    color: '#fff'
+                },
+                left: 'center'
+            },
+            legend: {
+                orient:'horizontal',
+                type:'scroll',
+                textStyle: {
+                    color: '#fff'
+                },
+                top: '5%',
+                data: barCategories
+            },
+            tooltip: {
+                trigger: 'item',
+                showContent: true
+            },
+            grid: {
+                top: '10%',
+                bottom: '60%',
+                left: '5%',
+                right: '5%',
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: barCategories,
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: 'bar',
+                    type: 'bar',
+                    barWidth: '40%',
+                    data: barValues,
+                    colorBy: barCategories,
+                    // Position the bar chart at the top
+                    emphasis: { focus: 'self' }
+                },
+                {
+                    name: 'pie', // Name the pie series for the legend
+                    type: 'pie',
+                    id: 'pie',
+                    center: ['50%', '65%'],
+                    radius: '40%',
+                    emphasis: { focus: 'self' },
+                    label: {
+                        textStyle: {
+                            color: '#fff',
+                            overflow: 'truncate',
+                            width: 80
+                        }
+                    },
+                    data: pieData,
+                }
+            ]
+        };
+
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+    }
+    const userNature = (data) => {
+        const chart = echarts.init(userSelectors.userNature);
+        const userNature = [
+            { name: "Audience User" },
+            { name: "Expert Audience" },
+            { name: "Novice Audience" },
+            { name: "Novic Content Creator" },
+            { name: "Expert Content Creator" },
+        ]
+
+        const userExpert = [
+            { name: "Average Audience" },
+            { name: "Intermediate Audience" },
+            { name: "Advanced Audience" },
+            { name: "Expert Audience" },
+
+        ]
+        const updatedUserNature = userNature.map(item =>
+            item.name.toLowerCase() === data["User Nature"]["user nature"].toLowerCase()
+                ? { ...item, itemStyle: { borderColor: '#FF6E14', borderWidth: 3 }, label: { fontWeight: 'bold' } }
+                : item
+        );
+
+        const updatedUserExpert = userExpert.map(item =>
+            item.name.toLowerCase() === data["User Level"].toLowerCase()
+                ? { ...item, itemStyle: { borderColor: '#FF6E14', borderWidth: 3 }, label: { fontWeight: 'bold' } }
+                : item
+        );
+        console.log(userNature, data["User Nature"]["user nature"],)
+
+        const userExpertiseTree = [
+            {
+                name: "User Profile",
+                children: [
+                    {
+                        name: "User Nature",
+                        children: updatedUserNature
                     },
                     {
-                        name: 'Monthly MPXR',
-                        type: 'bar',
-                        barWidth: 90,
-                        stack: 'total',
-                        label: {
-                            show: true
-                        },
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: monthlyData
+                        name: "User Expertise Level",
+                        children: updatedUserExpert
                     }
                 ]
-            };
-
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
-            });
-        }
-        const interactionBreakdownLists = (data) => {
-            const chart = echarts.init(userSelectors.interactionBreakdownLists);
-
-            function truncateText(text) {
-                const chartWidth = chart.getWidth(); // Get the chart's width
-                const maxLength = Math.floor(chartWidth * 0.02);
-                if (text.length <= maxLength) return text;
-                return text.substring(0, maxLength - 3) + '...';
             }
-            // Function to transform the data into ECharts tree format
-            function transformData(data, name = "Interaction") {
-                // Handle null or undefined
-                if (data === null || data === undefined) {
-                    return {
-                        name: `${name}`,
-                        value: 'N/A'
-                    };
-                }
-
-                // Handle numeric values - make them leaf nodes
-                if (typeof data === 'number') {
-                    return {
-                        name,
-                        value: data
-                    };
-                }
-
-                // Handle non-object values
-                if (typeof data !== 'object') {
-                    return {
-                        name: `${name}: ${data}`,
-                        value: data
-                    };
-                }
-
-                // Handle arrays
-                if (Array.isArray(data)) {
-                    return {
-                        name,
-                        children: data.map((item, index) => transformData(item, `Item ${index}`))
-                    };
-                }
-
-                // Handle objects
-                try {
-                    const children = Object.entries(data).map(([key, value]) =>
-                        transformData(value, key)
-                    ).filter(Boolean);
-
-                    return {
-                        name,
-                        children: children.length > 0 ? children : undefined
-                    };
-                } catch (error) {
-                    console.error('Error transforming data:', error);
-                    return {
-                        name: `${name}`,
-                        value: 'Error'
-                    };
-                }
-            }
-
-            var datas = transformData(data);
-            const option = {
+        ],
+            option = {
                 title: {
-                    text: 'Interaction Breakdown in Numbers',
-                    textStyle: {
-                        color: '#fff',
-
-                    },
-                    left: 'center'
+                    text: 'User Profile Tree',
+                    left: 'center',
+                    textStyle: { color: '#fff' }
                 },
-                tooltip: {
-                    trigger: 'item',
-                    triggerOn: 'mousemove',
-                    formatter: (params) => {
-                        if (typeof params.data.value === 'number') {
-                            return `${params.name}: ${params.data.value.toFixed(2)}%`;
-                        }
-                        return params.name;
-                    },
-
-                    position: function (point, params, dom, rect, size) {
-                        const tooltipWidth = dom.clientWidth;
-                        const tooltipHeight = dom.clientHeight;
-
-                        // Calculate the center position for the tooltip
-                        const centerX = size.viewSize[0] / 2 - tooltipWidth / 2;
-                        let offsetY = point[1] + 10; // Keep a small offset from the point
-
-                        // If the tooltip overflows on the right, adjust position
-                        if (centerX + tooltipWidth > size.viewSize[0]) {
-                            offsetX = size.viewSize[0] - tooltipWidth - 10;
-                        }
-
-                        // If the tooltip overflows on the bottom, adjust position
-                        if (point[1] + tooltipHeight > size.viewSize[1]) {
-                            offsetY = point[1] - tooltipHeight - 10;
-                        }
-
-                        return [centerX, offsetY]; // Ensure the tooltip is centered horizontally
-                    }
-                },
+                tooltip: { trigger: 'item', formatter: '{b}' },
                 series: [
                     {
                         type: 'tree',
-                        data: [datas],
-                        top: '1%',
-                        left: '7%',
-                        bottom: '1%',
-                        right: '20%',
-                        symbolSize: 7,
+                        data: userExpertiseTree,
+                        top: '10%',
+                        left: '15%',
+                        bottom: '10%',
+                        right: '15%',
+                        symbol: 'circle',
+                        symbolSize: 10,
                         label: {
-                            position: 'left',
+                            position: 'top',
                             verticalAlign: 'middle',
                             align: 'right',
-                            fontSize: 12,
-                            textStyle: {
-                                color: '#fff'
-                            },
-                            formatter: (params) => {
-                                const name = params.name;
-                                const value = params.data.value;
-                                if (typeof value === 'number') {
-                                    // Truncate name and add value
-                                    return `${truncateText(name)}: ${value.toFixed(1)}%`;
-                                }
-                                // Just truncate name for non-leaf nodes
-                                return truncateText(name);
-                            }
+
+                            fontSize: 14,
+                            color: '#fff',
                         },
                         leaves: {
                             label: {
-                                position: 'right',
+
+                                //   position: 'bottom',
                                 verticalAlign: 'middle',
-                                align: 'left'
+                                align: 'left',
+                                color: '#fff',
                             }
                         },
-                        emphasis: {
-                            focus: 'descendant'
-                        },
                         expandAndCollapse: true,
-                        animationDuration: 550,
-                        animationDurationUpdate: 750,
-                        initialTreeDepth: 2
+                        animationDuration: 750,
+                        animationEasing: 'quinticInOut'
                     }
                 ]
-            };
-            chart.setOption(option);
-            window.addEventListener('resize', () => {
-                chart.resize();
+            }
+
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+    }
+    const mpxrFromPublication = (data) => {
+        const chart = echarts.init(userSelectors.mpxrFromPublication);
+        function processData(data) {
+            const categories = [];
+            const mpxrByData = [];
+            const mpxrFromData = [];
+
+            // Process all top-level keys dynamically
+            Object.entries(data).forEach(([topKey, topValue]) => {
+                // Handle nested objects differently
+                if (typeof topValue === 'object') {
+                    // Check if the value directly contains MPXR By/From
+                    if ('MPXR By' in topValue || 'MPXR From' in topValue) {
+                        categories.push(topKey);
+                        mpxrByData.push(topValue['MPXR By'] || 0);
+                        mpxrFromData.push(topValue['MPXR From'] || 0);
+                    } else {
+                        // Handle double-nested objects
+                        Object.entries(topValue).forEach(([subKey, subValue]) => {
+                            if (typeof subValue === 'object' && ('MPXR By' in subValue || 'MPXR From' in subValue)) {
+                                categories.push(`${topKey} (${subKey})`);
+                                mpxrByData.push(subValue['MPXR By'] || 0);
+                                mpxrFromData.push(subValue['MPXR From'] || 0);
+                            }
+                        });
+                    }
+                }
             });
+
+            return { categories, mpxrByData, mpxrFromData };
         }
 
+        const { categories, mpxrByData, mpxrFromData } = processData(data);
+        const option = {
+            title: {
+                text: 'MPXR Distribution',
+                textStyle: {
+                    color: '#fff'
+                },
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                },
+                formatter: function (params) {
+                    let tooltip = params[0].axisValueLabel + '<br/>';
+                    params.forEach(param => {
+                        tooltip += `${param.seriesName}: ${param.value.toFixed(4)}<br/>`;
+                    });
+                    return tooltip;
+                }
+            },
+            legend: {
+                data: ['MPXR By', 'MPXR From'],
+                textStyle: {
+                    color: '#fff'
+                },
+                top: '10%'
+            },
+            grid: {
+                top: '20%',
+                bottom: '3%',
+
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                axisLabel: {
+                    color: '#fff',
+                    formatter: value => value.toFixed(2)
+                }
+            },
+            yAxis: {
+                type: 'category',
+                data: categories,
+
+                axisLabel: {
+                    color: '#fff',
+                    margin: 30,
+                    interval: 0,
+                    formatter: function (value) {
+                        const chartWidth = chart.getWidth(); // Get the chart's width
+                        const maxLength = Math.floor(chartWidth * 0.02);
+                        if (value.length > maxLength) {
+                            return value.slice(0, maxLength) + '...';
+                        }
+                        return value;
+                    }
+                }
+            },
+            series: [
+                {
+                    name: 'MPXR By',
+                    type: 'bar',
+                    stack: 'total',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value === 0 ? '' : params.value.toFixed(4);
+                        },
+
+                        color: '#fff'
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: mpxrByData
+                },
+                {
+                    name: 'MPXR From',
+                    type: 'bar',
+                    stack: 'total',
+                    label: {
+                        show: true,
+                        formatter: value => value.value.toFixed(4),
+                        color: '#fff'
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: mpxrFromData
+                }
+            ]
+        };
+
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+    }
+    const associationBreakdown = (data) => {
+        const chart = echarts.init(userSelectors.associationBreakdown);
+        const categories = Object.keys(data); // MPXR From Comment, MPXR From Social Post
+        const immediateData = []
+        const monthlyData = []
+        categories.forEach(category => {
+            immediateData.push(data[category]['Immediate MPXR'] || 0);
+            monthlyData.push(data[category]['Monthly MPXR'] || 0);
+        });
 
 
-        async function fetchedUserById(userId) {
 
-            try {
+        const option = {
+            title: {
+                text: 'Reputation by Association Breakdown',
+                textStyle: {
+                    color: '#fff'
+                },
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            label: {
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            legend: {
+                textStyle: {
+                    color: '#fff'
+                },
+                top: '10%'
+            },
+            grid: {
+                // left: '3%',
+                // right: '4%',
+                top: '19%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                label: {
+                    textStyle: {
+                        color: '#fff'
+                    }
+                }
 
-                let data
-                if (userId != undefined) {
-                    const user = users.find((u) => u.user == parseInt(userId));
+            },
+            yAxis: {
+                type: 'category',
+                data: categories,
 
-                    if (!user) {
-                        console.log("post not found");
-                    } else {
-                        data = user;
+                axisLabel: {
+                    interval: 0,
+                    formatter: function (value) {
+                        const chartWidth = chart.getWidth(); // Get the chart's width
+                        const maxLabelLength = Math.floor(chartWidth * 0.02); // 2% of chart width (adjustable)
+
+                        if (value.length > maxLabelLength) {
+                            return value.substring(0, maxLabelLength) + '...'; // Show last characters
+                        }
+                        return value;
 
                     }
-                } else {
-                    console.log("id is undefined");
                 }
-
-                if (data) {
-
-                    categoricalReputationBreakdown(data.categories)
-                    networkReputationScore(data['Network Breakdown'])
-                    // numberMpxrPublication(data["Reputation Score Breakdown by number"])
-                    userNature(data)
-                    mpxrFromInteractionPercentage(data["Total User Interaction Breakdown"]["Total User Percentage of Interactions"])
-                    // interactionBreakdownNumbers(data)
-                    mpxrFromRewards(data["Reputation Score Breakdown by number"])
-                    contentConsumptionBreakdown(data)
-                    timeSpentByCategory(data["User Categorical read time Breakdown"])
-                    mpxrFromPublication(data["Reputation Score Breakdown by number"])
-                    associationBreakdown(data["Association Breakdown"])
-                    interactionBreakdownLists(data["Interaction Breakdown Lists"])
+            },
+            series: [
+                {
+                    name: 'Immediate MPXR',
+                    type: 'bar',
+                    barWidth: 90,
+                    stack: 'total',
+                    label: {
+                        show: true
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: immediateData
+                },
+                {
+                    name: 'Monthly MPXR',
+                    type: 'bar',
+                    barWidth: 90,
+                    stack: 'total',
+                    label: {
+                        show: true
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: monthlyData
                 }
+            ]
+        };
+
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+    }
+    const interactionBreakdownLists = (data) => {
+        const chart = echarts.init(userSelectors.interactionBreakdownLists);
+
+        function truncateText(text) {
+            const chartWidth = chart.getWidth(); // Get the chart's width
+            const maxLength = Math.floor(chartWidth * 0.02);
+            if (text.length <= maxLength) return text;
+            return text.substring(0, maxLength - 3) + '...';
+        }
+        // Function to transform the data into ECharts tree format
+        function transformData(data, name = "Interaction") {
+            // Handle null or undefined
+            if (data === null || data === undefined) {
+                return {
+                    name: `${name}`,
+                    value: 'N/A'
+                };
+            }
+
+            // Handle numeric values - make them leaf nodes
+            if (typeof data === 'number') {
+                return {
+                    name,
+                    value: data
+                };
+            }
+
+            // Handle non-object values
+            if (typeof data !== 'object') {
+                return {
+                    name: `${name}: ${data}`,
+                    value: data
+                };
+            }
+
+            // Handle arrays
+            if (Array.isArray(data)) {
+                return {
+                    name,
+                    children: data.map((item, index) => transformData(item, `Item ${index}`))
+                };
+            }
+
+            // Handle objects
+            try {
+                const children = Object.entries(data).map(([key, value]) =>
+                    transformData(value, key)
+                ).filter(Boolean);
+
+                return {
+                    name,
+                    children: children.length > 0 ? children : undefined
+                };
             } catch (error) {
-                console.error("Error when fetching the data:", error);
+                console.error('Error transforming data:', error);
+                return {
+                    name: `${name}`,
+                    value: 'Error'
+                };
             }
         }
 
-        fetchedUserById(2);
+        var datas = transformData(data);
+        const option = {
+            title: {
+                text: 'Interaction Breakdown in Numbers',
+                textStyle: {
+                    color: '#fff',
+
+                },
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove',
+                formatter: (params) => {
+                    if (typeof params.data.value === 'number') {
+                        return `${params.name}: ${params.data.value.toFixed(2)}%`;
+                    }
+                    return params.name;
+                },
+
+                position: function (point, params, dom, rect, size) {
+                    const tooltipWidth = dom.clientWidth;
+                    const tooltipHeight = dom.clientHeight;
+
+                    // Calculate the center position for the tooltip
+                    const centerX = size.viewSize[0] / 2 - tooltipWidth / 2;
+                    let offsetY = point[1] + 10; // Keep a small offset from the point
+
+                    // If the tooltip overflows on the right, adjust position
+                    if (centerX + tooltipWidth > size.viewSize[0]) {
+                        offsetX = size.viewSize[0] - tooltipWidth - 10;
+                    }
+
+                    // If the tooltip overflows on the bottom, adjust position
+                    if (point[1] + tooltipHeight > size.viewSize[1]) {
+                        offsetY = point[1] - tooltipHeight - 10;
+                    }
+
+                    return [centerX, offsetY]; // Ensure the tooltip is centered horizontally
+                }
+            },
+            series: [
+                {
+                    type: 'tree',
+                    data: [datas],
+                    top: '1%',
+                    left: '7%',
+                    bottom: '1%',
+                    right: '20%',
+                    symbolSize: 7,
+                    label: {
+                        position: 'left',
+                        verticalAlign: 'middle',
+                        align: 'right',
+                        fontSize: 12,
+                        textStyle: {
+                            color: '#fff'
+                        },
+                        formatter: (params) => {
+                            const name = params.name;
+                            const value = params.data.value;
+                            if (typeof value === 'number') {
+                                // Truncate name and add value
+                                return `${truncateText(name)}: ${value.toFixed(1)}%`;
+                            }
+                            // Just truncate name for non-leaf nodes
+                            return truncateText(name);
+                        }
+                    },
+                    leaves: {
+                        label: {
+                            position: 'right',
+                            verticalAlign: 'middle',
+                            align: 'left'
+                        }
+                    },
+                    emphasis: {
+                        focus: 'descendant'
+                    },
+                    expandAndCollapse: true,
+                    animationDuration: 550,
+                    animationDurationUpdate: 750,
+                    initialTreeDepth: 2
+                }
+            ]
+        };
+        chart.setOption(option);
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+    }
+
+    
+
+    async function fetchedUserById(userId) {
+
+        try {
+
+            let data
+            if (userId != undefined) {
+                const user = users.find((u) => u.user == parseInt(userId));
+
+                if (!user) {
+                    console.log("post not found");
+                } else {
+                    data = user;
+
+                }
+            } else {
+                console.log("id is undefined");
+            }
+
+            if (data) {
+
+                categoricalReputationBreakdown(data.categories)
+                networkReputationScore(data['Network Breakdown'])
+                // numberMpxrPublication(data["Reputation Score Breakdown by number"])
+                userNature(data)
+                mpxrFromInteractionPercentage(data["Total User Interaction Breakdown"]["Total User Percentage of Interactions"])
+                // interactionBreakdownNumbers(data)
+                mpxrFromRewards(data["Reputation Score Breakdown by number"])
+                contentConsumptionBreakdown(data)
+                timeSpentByCategory(data["User Categorical read time Breakdown"])
+                mpxrFromPublication(data["Reputation Score Breakdown by number"])
+                associationBreakdown(data["Association Breakdown"])
+                interactionBreakdownLists(data["Interaction Breakdown Lists"])
+            }
+        } catch (error) {
+            console.error("Error when fetching the data:", error);
+        }
+    }
+    
+    fetchedUserById(40);
 
 
     </script>
