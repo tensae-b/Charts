@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-         
+
             <div class="user-expertise-level-and-user-nature-chart">
                 <div id="user-expertise-level-and-user-nature" style="height: 500px"></div>
             </div>
@@ -51,7 +51,7 @@
             <div class="interaction-breakdown-lists-chart">
                 <div id="interaction-breakdown-lists" style="height: 700px;"> </div>
             </div>
-            
+
         </div>
     </div>
     </div>
@@ -96,237 +96,591 @@
                 "interaction-breakdown-lists"
             ),
         }
-       
+
         let users = [
-            {
-                "user": 2,
-                "mpxr": 3.50056,
-                "vote_rep_availabe": 3.50055665,
-                "public_address": null,
-                "shared_rep": 0.0,
-                "categories": [
-                    {
-                        "category": "3D Printing",
-                        "rep": 0.8333333333333333
-                    },
-                    {
-                        "category": "Aged Care",
-                        "rep": 0.8333333333333333
-                    },
-                    {
-                        "category": "AI",
-                        "rep": 0.83333333
-                    }
-                ],
-                "user_read_time": 12.0,
-                "read_count": 3,
-                "User Nature": {
-                    "user nature": "Audience user",
-                    "number of published articles": 0
-                },
-                "Total User Interaction Breakdown": {
-                    "Total User Number of Interactions": {
-                        "Total Interaction": 7,
-                        "Total Positive Interactions": 5,
-                        "Total Negative Interactions": 2,
-                        "Total Neutral Interactions": 0
-                    },
-                    "Total User Percentage of Interactions": {
-                        "time_spent": 42.857142857142854,
-                        "peoples_choise": 14.285714285714285,
-                        "comment": 14.285714285714285,
-                        "like": 14.285714285714285,
-                        "dislike": 14.285714285714285
-                    }
-                },
-                "User Level": "Average Audience",
-                "Association Breakdown": {
-                    "Friend Relationship": {
-                        "Immediate MPXR": 5.0,
-                        "Monthly MPXR": 10.0
-                    },
-                    "Follow Relationship": {
-                        "Monthly MPXR": 3.0
-                    }
-                },
-                "Reputation Score Breakdown by number": {
-                    "MPXR Total From Interaction": {
-                        "MPXR From": 1.3499047381847757,
-                    },
-                    "MPXR From Time Spent": 0.030580181818400012,
-                    "MPXR From people's Choice": 0,
-                    "MPXR From Comment": {
-                        "MPXR By": 0.0009277500000000001,
-                        "MPXR From": 0.00018555
-                    },
-                    "MPXR From Publication": {
-                        "text": {
-                            "MPXR From": 0.9170792921788036,
-                            "MPXR By": 0
-                        },
-                        "audio": {
-                            "MPXR From": 0.03262623916172029,
-                            "MPXR By": 0
-                        },
-                        "video": {
-                            "MPXR From": 0.0,
-                            "MPXR By": 0
-                        }
-                    },
-                    "MPXR From Social Post": {
-                        "MPXR From": 0.11972866838785647,
-                        "MPXR By": 0.4
-                    },
-                    "MPXR From Login": {
-                        "From Daily": 14.999999999999963,
-                        "Straight Bonus": 0.0
-                    }
-                },
-                "Network Breakdown": {
-                    "Source of Positive MPXR Score": {
-                        "Expert Audience": 10,
-                        "Advanced Audience": 50,
-                        "Intermediate Audience": 50,
-                        "Average Audience": 30
-                    },
-                    "Source of Negative MPXR Score": {
-                        "Expert Audience": 20,
-                        "Advanced Audience": 80,
-                        "Intermediate Audience": 40,
-                        "Average Audience": 5,
-                    }
-                },
-                "Content Consumption Breakdown": {
-                    "articles/text": {
-                        "total": 3,
-                        "completed": 3,
-                        "more_than_half": 30,
-                        "less_than_half": 0,
-                        "completed_percentage": 1.0,
-                        "more_than_half_percentage": 100.0,
-                        "less_than_half_percentage": 10.0
-                    },
-                    "podcasts/audio": {
-                        "total": 2,
-                        "completed": 3,
-                        "more_than_half": 4,
-                        "less_than_half": 5,
-                        "completed_percentage": 6,
-                        "more_than_half_percentage": 7,
-                        "less_than_half_percentage": 8
-                    },
-                    "video": {
-                        "total": 1,
-                        "completed": 2,
-                        "more_than_half": 3,
-                        "less_than_half": 4,
-                        "completed_percentage": 5,
-                        "more_than_half_percentage": 6,
-                        "less_than_half_percentage": 7
-                    }
-                },
-                "User Categorical read time Breakdown": [
-                    {
-                        "category": "3D Printing",
-                        "percentage of spent time": 33.33333337777778
-                    },
-                    {
-                        "category": "Aged Care",
-                        "percentage of spent time": 33.33333337777778
-                    },
-                    {
-                        "category": "AI",
-                        "percentage of spent time": 33.33333324444445
-                    }
-                ],
-                "User Categorical Reputation from Time-Spent interaction": [
-                    {
-                        "category": "3D Printing",
-                        "reputation": 1.5,
-                        "percentage": 33.33333337777778
-                    },
-                    {
-                        "category": "Aged Care",
-                        "reputation": 1.5,
-                        "percentage": 33.33333337777778
-                    },
-                    {
-                        "category": "AI",
-                        "reputation": 1.5,
-                        "percentage": 33.33333324444445
-                    }
-                ],
-                "Interaction Breakdown Lists": {
-                    "User Emoji Interaction By Type Percentage Breakdown": {
-                        "Emoji Reaction Breakdown": {
-                            "Positive Reaction": {
-                                "This content is perfect!": 46.15384615384615,
-                                "This content is excellent!": 8.461538461538462,
-                                "This Content is very good.": 9.230769230769232,
-                                "This content is well done.": 9.230769230769232,
-                                "This content is at least interesting.": 5.384615384615385,
-                                "This content is not bad.": 12.307692307692308
-                            },
-                            "Negative Reaction": {
-                                "This content is useless and mostly wrong": 0.7692307692307693,
-                                "This content is so bad.": 0.7692307692307693,
-                                "This content has some errors.": 2.307692307692308,
-                                "This content is provocative and might be factually and logically wrong.": 0.0,
-                                "This content is boring.": 1.5384615384615385,
-                                "This content is badly presented.": 3.8461538461538463
-                            }
-                        }
-                    },
-                    "User Comment Interaction By Type Percentage Breakdown": {
-                        "User Comment Interaction Percentages Breakdown": {
-                            "Percentage of Comment": {
-                                "Percentage of All Best": 6.25,
-                                "Percentage of All Good": 12.5,
-                                "Percentage of All Average": 56.25,
-                                "Percentage of All Expedient": 12.5,
-                                "Percentage of Hate Speech": 12.5,
-                                "Percentage of Bullying": 0.0,
-                                "Percentage of Vulgar": 0.0,
-                                "Percentage of Spamming": 0.0
-                            }
-                        }
-                    },
-                    "User Like Interaction By Type Breakdown": {
-                        "User Like Interaction By Type": {
-                            "Percentages": {
-                                "Percentage of Thumbs Up": 93.49112426035504,
-                                "Percentage of Thumbs Down": 6.508875739644971
-                            },
-                            "Breakdown by Quality": {
-                                "Percentage of Thumbs Up": {
-                                    "No. of Best Quality Int.": 6,
-                                    "No. of Good Quality Int.": 1,
-                                    "No. of Average Quality Int.": 5,
-                                    "No. of Low Quality Int.": 146
-                                },
-                                "Percentage of Thumbs Down": {
-                                    "No. of Best Quality Int.": 0,
-                                    "No. of Good Quality Int.": 0,
-                                    "No. of Average Quality Int.": 0,
-                                    "No. of Low Quality Int.": 11
-                                }
-                            }
-                        }
-                    },
-                    "User Interaction by Quality Breakdown": {
-                        "User Interaction by Quality Breakdown": {
-                            "No. of Best Quality Int.": 12,
-                            "No. of Good Quality Int.": 13,
-                            "No. of Average Quality Int.": 12,
-                            "No. of Low Quality Int.": 308
-                        }
-                    }
-                }
-            }
+        {
+  "user": 2,
+  "mpxr": 89.00369,
+  "vote_rep_availabe": 89.003686,
+  "public_address": "0x59cE7310C2f5a6932248cF8FE489731FCC17b86f",
+  "shared_rep": 0.0,
+  "categories": [
+    {
+      "category": "Bitcoin",
+      "rep": 0.00495
+    },
+    {
+      "category": "Blockchain",
+      "rep": 0.00495
+    },
+    {
+      "category": "EEG",
+      "rep": 0.00016666666666666666
+    },
+    {
+      "category": "Music",
+      "rep": 0.00016666666666666666
+    },
+    {
+      "category": "Brain",
+      "rep": 0.0003333333333333333
+    },
+    {
+      "category": "Opinion",
+      "rep": 0.6929331689898147
+    },
+    {
+      "category": "Eccentric",
+      "rep": 0.00025
+    },
+    {
+      "category": "Extraterrestrial",
+      "rep": 0.00019999999999999998
+    },
+    {
+      "category": "Philosophy",
+      "rep": 0.00019999999999999998
+    },
+    {
+      "category": "Psychology",
+      "rep": 0.000125
+    },
+    {
+      "category": "Ethics",
+      "rep": 0.0008227272750000001
+    },
+    {
+      "category": "Psychiatry",
+      "rep": 0.000125
+    },
+    {
+      "category": "AI",
+      "rep": 0.03558457249505363
+    },
+    {
+      "category": "People",
+      "rep": 0.000125
+    },
+    {
+      "category": "Entertainment",
+      "rep": 0.00015
+    },
+    {
+      "category": "Short Sci-fi",
+      "rep": 0.00015
+    },
+    {
+      "category": "Social Media",
+      "rep": 3.3333333333333335e-05
+    },
+    {
+      "category": "SocialFi",
+      "rep": 3.3333333333333335e-05
+    },
+    {
+      "category": "Web3",
+      "rep": 3.3333333333333335e-05
+    },
+    {
+      "category": "3D Printing",
+      "rep": 0.0023333333333333335
+    },
+    {
+      "category": "Aged Care",
+      "rep": 0.0023333333333333335
+    },
+    {
+      "category": "Space",
+      "rep": 0.00030000000000000003
+    },
+    {
+      "category": "Life",
+      "rep": 0.00025
+    },
+    {
+      "category": "nuclear",
+      "rep": 5e-05
+    },
+    {
+      "category": "Crypto Mining",
+      "rep": 5e-05
+    },
+    {
+      "category": "Cryptocurrencies",
+      "rep": 5e-05
+    },
+    {
+      "category": "Future",
+      "rep": 5e-05
+    },
+    {
+      "category": "Brain-computer Interfacing",
+      "rep": 0.00016666666666666666
+    },
+    {
+      "category": "Neuroscience",
+      "rep": 0.00016666666666666666
+    }
+  ],
+  "user_read_time": 253.89000000000001,
+  "read_count": 36,
+  "User Nature": {
+    "user nature": "Novice Content Creator",
+    "number of published articles": 5
+  },
+  "Total User Interaction Breakdown": {
+    "Total User Number of Interactions": {
+      "Total Interaction": 445,
+      "Total Positive Interactions": 420,
+      "Total Negative Interactions": 23,
+      "Total Neutral Interactions": 2
+    },
+    "Total User Percentage of Interactions": {
+      "reply": 0.44943820224719105,
+      "comment": 3.146067415730337,
+      "time_spent": 22.47191011235955,
+      "react": 30.786516853932582,
+      "bookmark": 1.348314606741573,
+      "boost": 0.44943820224719105,
+      "favorite": 3.3707865168539324,
+      "thumbs_up": 35.50561797752809,
+      "thumbs_down": 2.4719101123595504
+    }
+  },
+  "User Level": "Average Audience",
+  "Association Breakdown": {
+    "Friend Relationship": {
+      "Immediate MPXR": 0.11594049095902428,
+      "Monthly MPXR": 2.684749456373918
+    },
+    "Follow Relationship": {
+      "Immediate MPXR": 0.0,
+      "Monthly MPXR": 60.74269279844926
+    }
+  },
+  "Reputation Score Breakdown by number": {
+    "MPXR Total From Interaction": {
+      "MPXR By": 0,
+      "MPXR From": 1.3499047381847757
+    },
+    "MPXR From Time Spent": {
+      "MPXR By": 0,
+      "MPXR From": 0.030580181818400012
+    },
+    "MPXR From People's Choice": {
+      "MPXR By": 0,
+      "MPXR From": 0
+    },
+    "MPXR From Comment": {
+      "MPXR By": 0.0009277500000000001,
+      "MPXR From": 0.00018555
+    },
+    "MPXR From Publication": {
+      "text": {
+        "MPXR From": 0.9170792921788036,
+        "MPXR By": 0
+      },
+      "audio": {
+        "MPXR From": 0.03262623916172029,
+        "MPXR By": 0
+      },
+      "video": {
+        "MPXR From": 0.0,
+        "MPXR By": 0
+      }
+    },
+    "MPXR From Social Post": {
+      "MPXR From": 0.11972866838785647,
+      "MPXR By": 0.4
+    },
+    "MPXR From Login": {
+      "MPXR From": 15.099999999999962,
+      "MPXR By": 0.0
+    },
+    "MPXR From Profile Completion": {
+      "MPXR By": 0,
+      "MPXR From": 0.0
+    }
+  },
+  "Network Breakdown": {
+    "Source of Positive MPXR Score": {
+      "Expert Audience": 0,
+      "Advanced Audience": 0,
+      "Intermediate Audience": 0,
+      "Average Audience": 14.893617021276595
+    },
+    "Source of Negative MPXR Score": {
+      "Expert Audience": 0,
+      "Advanced Audience": 0,
+      "Intermediate Audience": 0,
+      "Average Audience": 0
+    }
+  },
+  "Content Consumption Breakdown": {
+    "articles": {
+      "total": 78,
+      "completed": 24,
+      "more_than_half": 23,
+      "less_than_half": 31,
+      "completed_percentage": 30.76923076923077,
+      "more_than_half_percentage": 29.48717948717949,
+      "less_than_half_percentage": 39.743589743589745
+    },
+    "podcasts": {
+      "total": 22,
+      "completed": 18,
+      "more_than_half": 0,
+      "less_than_half": 4,
+      "completed_percentage": 81.81818181818183,
+      "more_than_half_percentage": 0.0,
+      "less_than_half_percentage": 18.181818181818183
+    },
+    "videos": {
+      "total": 0,
+      "completed": 0,
+      "more_than_half": 0,
+      "less_than_half": 0,
+      "completed_percentage": 0,
+      "more_than_half_percentage": 0,
+      "less_than_half_percentage": 0
+    }
+  },
+  "User Categorical read time Breakdown": [
+    {
+      "category": "Bitcoin",
+      "percentage of spent time": 0.6625777495233337
+    },
+    {
+      "category": "Blockchain",
+      "percentage of spent time": 0.6625777495233337
+    },
+    {
+      "category": "EEG",
+      "percentage of spent time": 0.02230901513546578
+    },
+    {
+      "category": "Music",
+      "percentage of spent time": 0.02230901513546578
+    },
+    {
+      "category": "Brain",
+      "percentage of spent time": 0.04461803027093156
+    },
+    {
+      "category": "Opinion",
+      "percentage of spent time": 92.75193932916025
+    },
+    {
+      "category": "Eccentric",
+      "percentage of spent time": 0.03346352270319867
+    },
+    {
+      "category": "Extraterrestrial",
+      "percentage of spent time": 0.026770818162558933
+    },
+    {
+      "category": "Philosophy",
+      "percentage of spent time": 0.026770818162558933
+    },
+    {
+      "category": "Psychology",
+      "percentage of spent time": 0.016731761351599334
+    },
+    {
+      "category": "Ethics",
+      "percentage of spent time": 0.1101254113820131
+    },
+    {
+      "category": "Psychiatry",
+      "percentage of spent time": 0.016731761351599334
+    },
+    {
+      "category": "AI",
+      "percentage of spent time": 4.763140598287384
+    },
+    {
+      "category": "People",
+      "percentage of spent time": 0.016731761351599334
+    },
+    {
+      "category": "Entertainment",
+      "percentage of spent time": 0.0200781136219192
+    },
+    {
+      "category": "Short Sci-fi",
+      "percentage of spent time": 0.0200781136219192
+    },
+    {
+      "category": "Social Media",
+      "percentage of spent time": 0.004461803027093155
+    },
+    {
+      "category": "SocialFi",
+      "percentage of spent time": 0.004461803027093155
+    },
+    {
+      "category": "Web3",
+      "percentage of spent time": 0.004461803027093155
+    },
+    {
+      "category": "3D Printing",
+      "percentage of spent time": 0.31232621189652093
+    },
+    {
+      "category": "Aged Care",
+      "percentage of spent time": 0.31232621189652093
+    },
+    {
+      "category": "Space",
+      "percentage of spent time": 0.040156227243838404
+    },
+    {
+      "category": "Life",
+      "percentage of spent time": 0.03346352270319867
+    },
+    {
+      "category": "nuclear",
+      "percentage of spent time": 0.006692704540639733
+    },
+    {
+      "category": "Crypto Mining",
+      "percentage of spent time": 0.006692704540639733
+    },
+    {
+      "category": "Cryptocurrencies",
+      "percentage of spent time": 0.006692704540639733
+    },
+    {
+      "category": "Future",
+      "percentage of spent time": 0.006692704540639733
+    },
+    {
+      "category": "Brain-computer Interfacing",
+      "percentage of spent time": 0.02230901513546578
+    },
+    {
+      "category": "Neuroscience",
+      "percentage of spent time": 0.02230901513546578
+    }
+  ],
+  "User Categorical Reputation from Time-Spent interaction": [
+    {
+      "category": "Bitcoin",
+      "reputation": 0.0009,
+      "percentage": 0.6625777495233339
+    },
+    {
+      "category": "Blockchain",
+      "reputation": 0.0034999999999999996,
+      "percentage": 0.6625777495233339
+    },
+    {
+      "category": "EEG",
+      "reputation": 0.0005,
+      "percentage": 0.022309015135465786
+    },
+    {
+      "category": "Music",
+      "reputation": 0.0005,
+      "percentage": 0.022309015135465786
+    },
+    {
+      "category": "Brain",
+      "reputation": 0.001,
+      "percentage": 0.04461803027093157
+    },
+    {
+      "category": "Opinion",
+      "reputation": 0.004600000000000001,
+      "percentage": 92.75193932916028
+    },
+    {
+      "category": "Eccentric",
+      "reputation": 0.0021,
+      "percentage": 0.03346352270319868
+    },
+    {
+      "category": "Extraterrestrial",
+      "reputation": 0.00039999999999999996,
+      "percentage": 0.026770818162558944
+    },
+    {
+      "category": "Philosophy",
+      "reputation": 0.0021,
+      "percentage": 0.026770818162558944
+    },
+    {
+      "category": "Psychology",
+      "reputation": 0.0005,
+      "percentage": 0.01673176135159934
+    },
+    {
+      "category": "Ethics",
+      "reputation": 0.0035445454544999998,
+      "percentage": 0.11012541138201314
+    },
+    {
+      "category": "Psychiatry",
+      "reputation": 0.0005,
+      "percentage": 0.01673176135159934
+    },
+    {
+      "category": "AI",
+      "reputation": 0.007100000000000002,
+      "percentage": 4.763140598287386
+    },
+    {
+      "category": "People",
+      "reputation": 0.0005,
+      "percentage": 0.01673176135159934
+    },
+    {
+      "category": "Entertainment",
+      "reputation": 0.0003,
+      "percentage": 0.020078113621919205
+    },
+    {
+      "category": "Short Sci-fi",
+      "reputation": 0.0003,
+      "percentage": 0.020078113621919205
+    },
+    {
+      "category": "Social Media",
+      "reputation": 0.0001,
+      "percentage": 0.004461803027093157
+    },
+    {
+      "category": "SocialFi",
+      "reputation": 0.0001,
+      "percentage": 0.004461803027093157
+    },
+    {
+      "category": "Web3",
+      "reputation": 0.0005,
+      "percentage": 0.004461803027093157
+    },
+    {
+      "category": "3D Printing",
+      "reputation": 0.0005,
+      "percentage": 0.31232621189652104
+    },
+    {
+      "category": "Aged Care",
+      "reputation": 0.0005,
+      "percentage": 0.31232621189652104
+    },
+    {
+      "category": "Space",
+      "reputation": 0.0006000000000000001,
+      "percentage": 0.04015622724383842
+    },
+    {
+      "category": "Life",
+      "reputation": 0.0005,
+      "percentage": 0.03346352270319868
+    },
+    {
+      "category": "nuclear",
+      "reputation": 0.0001,
+      "percentage": 0.006692704540639736
+    },
+    {
+      "category": "Crypto Mining",
+      "reputation": 0.0001,
+      "percentage": 0.006692704540639736
+    },
+    {
+      "category": "Cryptocurrencies",
+      "reputation": 0.0011,
+      "percentage": 0.006692704540639736
+    },
+    {
+      "category": "Future",
+      "reputation": 0.0007000000000000001,
+      "percentage": 0.006692704540639736
+    },
+    {
+      "category": "Brain-computer Interfacing",
+      "reputation": 0.0005,
+      "percentage": 0.022309015135465786
+    },
+    {
+      "category": "Neuroscience",
+      "reputation": 0.0005,
+      "percentage": 0.022309015135465786
+    }
+  ],
+  "Interaction Breakdown Lists": {
+    "User Emoji Interaction By Type Percentage Breakdown": {
+      "Emoji Reaction Breakdown": {
+        "Positive Reaction": {
+          "This content is perfect!": 46.15384615384615,
+          "This content is excellent!": 8.461538461538462,
+          "This Content is very good.": 9.230769230769232,
+          "This content is well done.": 9.230769230769232,
+          "This content is at least interesting.": 5.384615384615385,
+          "This content is not bad.": 12.307692307692308
+        },
+        "Negative Reaction": {
+          "This content is useless and mostly wrong": 0.7692307692307693,
+          "This content is so bad.": 0.7692307692307693,
+          "This content has some errors.": 2.307692307692308,
+          "This content is provocative and might be factually and logically wrong.": 0.0,
+          "This content is boring.": 1.5384615384615385,
+          "This content is badly presented.": 3.8461538461538463
+        }
+      }
+    },
+    "User Comment Interaction By Type Percentage Breakdown": {
+      "User Comment Interaction Percentages Breakdown": {
+        "Percentage of Comment": {
+          "Percentage of All Best": 6.25,
+          "Percentage of All Good": 12.5,
+          "Percentage of All Average": 56.25,
+          "Percentage of All Expedient": 12.5,
+          "Percentage of Hate Speech": 12.5,
+          "Percentage of Bullying": 0.0,
+          "Percentage of Vulgar": 0.0,
+          "Percentage of Spamming": 0.0
+        }
+      }
+    },
+    "User Like Interaction By Type Breakdown": {
+      "User Like Interaction By Type": {
+        "Percentages": {
+          "Percentage of Thumbs Up": 93.49112426035504,
+          "Percentage of Thumbs Down": 6.508875739644971
+        },
+        "Breakdown by Quality": {
+          "Percentage of Thumbs Up": {
+            "No. of Best Quality Int.": 6,
+            "No. of Good Quality Int.": 1,
+            "No. of Average Quality Int.": 5,
+            "No. of Low Quality Int.": 146
+          },
+          "Percentage of Thumbs Down": {
+            "No. of Best Quality Int.": 0,
+            "No. of Good Quality Int.": 0,
+            "No. of Average Quality Int.": 0,
+            "No. of Low Quality Int.": 11
+          }
+        }
+      }
+    },
+    "User Interaction by Quality Breakdown": {
+      "User Interaction by Quality Breakdown": {
+        "No. of Best Quality Int.": 12,
+        "No. of Good Quality Int.": 13,
+        "No. of Average Quality Int.": 12,
+        "No. of Low Quality Int.": 308
+      }
+    }
+  }
+}
         ]
 
 
-        
+
         // functions for user graphs//
         const categoricalReputationBreakdown = (data) => {
 
@@ -869,6 +1223,9 @@
                     left: 'center'
                 },
                 legend: {
+                    type: 'scroll',
+                    orient: 'horizontal',
+
                     textStyle: {
                         color: '#fff'
                     },
@@ -1416,7 +1773,7 @@
             });
         }
 
-        
+
 
         async function fetchedUserById(userId) {
 
@@ -1455,7 +1812,7 @@
                 console.error("Error when fetching the data:", error);
             }
         }
-        
+
         fetchedUserById(2);
 
 
