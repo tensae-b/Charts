@@ -1,145 +1,258 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <script src=" https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js "></script>
-    <style>
+  <script src=" https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js "></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .modal-overlay {
+      visibility: hidden;
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 1000;
+
+    }
+
+
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #015240;
+      color: white;
+
+      padding: 50px 70px 0px 70px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1001;
+      max-width: 1000px;
+      width: 90%;
+      max-height: 90vh;
+      /* Prevent it from going off-screen */
+      overflow-y: auto;
+      /* Allow scrolling if content is too much */
+
+    }
+
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: none;
+      background: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+    }
+
+
+    .modal-header {
+      margin-bottom: 15px;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+
+    .modal-body {
+
+      display: flex;
+      flex-direction: column;
+      width: 100%
+        /* margin-bottom: 20px;
+            
+            width:100% */
+
+    }
+
+
+    .modal p {
+      font-size: 47px;
+      width: 100%;
+      text-align: center;
+
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      max-height: 150px;
+      gap: 50px;
+      width: 100%;
+      flex-wrap: wrap;
+      margin-bottom: 90px;
+
+
+    }
+
+
+    .open-modal-btn {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .open-modal-btn:hover {
+      background: #0056b3;
+    }
+
+    .modal-graph {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-top: 50px;
+
+
+
+    }
+
+    .heading {
+      background: #457071;
+      padding: 10px 10px;
+      border-radius: 15px;
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      max-width: 100%;
+      max-height: 400px;
+
+
+
+    }
+
+    .heading h3 {
+      font-size: 20px;
+    }
+
+    .heading p {
+      font-size: 11px;
+      text-align: left;
+    }
+
+    .interaction-type-count-with-interaction-name-for-article {
+      width: 100%
+    }
+    #interaction-type-count-with-name{
+      width: 100%;
+    }
+
+    .article-total-read-time-completion-rate{
+      width:100%
+    }
+    #article-read-time-chart{
+      width:100%;
+    }
+
+    @media (min-width: 1100px) {
+       .top{
+        flex-wrap: nowrap; 
+        justify-content: space-between;
+        
+         width:100%;
        
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            z-index: 1000;
-        }
-
-      
-        .modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #015240;
-            color: white;
-            
-            padding: 50px 70px 0px 70px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1001;
-            max-width: 1000px;
-            width: 90%;
-        }
-
-      
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            border: none;
-            background: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #666;
-        }
-
-        
-        .modal-header {
-            margin-bottom: 15px;
-        }
-
-        .modal-title {
-            margin: 0;
-            font-size: 1.5em;
-        }
-
-        
-        .modal-body {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            width:100%
-
-        }
-
-        .modal-body h3{
-            font-size: 47px;
-        }
-
-        .modal p{
-            font-size: 47px;
-            width: 100%;
-            text-align: center;
-            
-        }
-
-        
-        .open-modal-btn {
-            padding: 10px 20px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .open-modal-btn:hover {
-            background: #0056b3;
-        }
-        
-        #post-engagement-summary {
-            width: 500px;
-            min-height: 500px;
-            background-color: transparent;
-        }
-       .modal-graph{
-        display:flex;
-        flex-direction:column;
        }
 
-       /* .total-readed-time {
+       .modal-graph {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: 100%;
+      margin-top: 50px;
+
+
+
+    }
+
+       .heading {
+        max-width: 200px;
+        max-height: 100px;
+      padding: 20px 10px;
+       }
+    }
+
+     #post-engagement-summary {
+      width: 100%;
+    }
+
+    .engagement-summary {
+      width: 100%;
+    } 
+   
+
+    /* .total-readed-time {
         max-width: 30%;
         max-height: 30%;
        } */
-        
-    </style>
+  </style>
 </head>
+
 <body>
-    
-    <button class="open-modal-btn" onclick="openModal()">Open Modal</button>
 
-  
-    <div class="modal-overlay" id="modalOverlay">
-       
-        <div class="modal">
-            <button class="close-button" onclick="closeModal()">&times;</button>
-           
-            <div class="modal-body" id="modal-body">
-              <div class="modal-graph">
-                <h3>513 MPXR</h3>
-                <div class="total-readed-time chart">
-                  <div id="readed-time-chart" class="total-readed-time-chart" ></div>
-                </div>
-              </div>
-                
-                
-                    <div class="engagement-summary">
-                        <div id="post-engagement-summary" class="post-engagement-summary" ></div>
-                      </div>
-                
-                
-            </div>
-            <p>expand or see more</p>
+  <button class="open-modal-btn" onclick="openModal()">Open Modal</button>
+
+
+  <div class="modal-overlay" id="modalOverlay">
+
+    <div class="modal">
+      <button class="close-button" onclick="closeModal()">&times;</button>
+
+      <div class="modal-body" id="modal-body">
+        <div class="top">
+          <div class="heading">
+            <h3>513 MPXR</h3>
+            <p>Spent on post</p>
+          </div>
+
+          <div class="engagement-summary">
+            <div id="post-engagement-summary" style="height: 150px; "></div>
+          </div>
+
         </div>
+
+        <div class="modal-graph">
+          <div class="interaction-type-count-with-interaction-name-for-article">
+            <div id="interaction-type-count-with-name"
+              
+              style=" height: 300px; ">
+            </div>
+          </div>
+          <div class="article-total-read-time-completion-rate ">
+            <div id="article-read-time-chart"  style=" height: 400px;"></div>
+          </div>
+        </div>
+
+
+
+      </div>
+      <p>expand or see more</p>
     </div>
+  </div>
 
-    <script>
+  <script>
 
-const options = {
+    const options = {
       articleReadTimeChartOptions: {
         tooltip: {
           formatter: "{a} <br/>{b} : {c} mins",
@@ -157,14 +270,14 @@ const options = {
             type: "gauge",
             color: ['#ffffff'],
             splitLine: {
-                        show: false
-                    },
-                    axisTick: {
-                        show: false
-                    },
-                    axisLabel: {
-                        show: false
-                    },
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            },
 
             detail: {
               formatter: "{value} read time",
@@ -181,14 +294,22 @@ const options = {
         ],
       },
     }
-let selectors = {
-      
+    let selectors = {
+
       engagementSummary: document.getElementById(
         "post-engagement-summary"
       ),
+      articleReadTimeChart: document.getElementById("article-read-time-chart"),
 
-      articleTotalReadTimeChart: document.getElementById("readed-time-chart"),
-      
+      // articleTotalReadTimeChart: document.getElementById("readed-time-chart"),
+      interactionTypeCountWithName: document.getElementById(
+        "interaction-type-count-with-name"
+      ),
+
+      completionRateForArticleChart: document.getElementById(
+        "completion-rate-for-article-chart"
+      ),
+
     };
     let posts = [
       {
@@ -348,7 +469,7 @@ let selectors = {
             react: 14.285714285714285,
             time_spent: 57.14285714285714,
             comment: 14.285714285714285,
-           
+
           },
           "Total Read Completion Rate": {
             "Total completion_rate": 88.75,
@@ -406,83 +527,10 @@ let selectors = {
       },
     ];
 
-    const initArticleReadTimeChart = (data) => {
-      let chart = echarts.init(selectors.articleTotalReadTimeChart, null, {
-        height: 350,
-        width:350
-
-      });
-     const readTime=data.read_time
-      
-     
-      let series = {
-        name: "",
-        type: 'gauge',
-                    startAngle: -1,
-                    endAngle: 10,
-                    radius: '70%',
-                    progress: {
-                        show: true,
-                        overlap: false,
-                        roundCap: true,
-                        clip: false,
-                        itemStyle: {
-                            color: '#00FF99'
-                        }
-                    },
-                    pointer: {
-                        show: false
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            width: 30,
-                            color: [[1, '#303A52']]
-                        }
-                    },
-                    splitLine: {
-                        show: false
-                    },
-                    axisTick: {
-                        show: false
-                    },
-                    axisLabel: {
-                        show: false
-                    },
-                    detail: {
-                      valueAnimation: true,
-                        formatter: function (value) {
-                            return `{value|${value}}\n{unit|mins read}`;
-                        },
-                        rich: {
-                            value: {
-                                fontSize: 40, 
-                                fontWeight: 'bold',
-                                color: '#fff'
-                            },
-                            unit: {
-                                fontSize: 16,
-                                fontWeight: 'bold',
-                                color: '#fff'
-                            }
-                        },
-                        offsetCenter: [0, 0] 
-                    },
-        data: [
-          {
-            value: readTime,
-            name: "",
-
-          },
-        ],
-      };
-
-      chart.setOption({ ...options.articleReadTimeChartOptions, series } );
-    };
-const initEngagementSummary = (data) => {
-      const chart = echarts.init(selectors.engagementSummary, null, {
-        height: 130
-      });
-      console.log('here',data)
+  
+    const initEngagementSummary = (data) => {
+      const chart = echarts.init(selectors.engagementSummary);
+      console.log('here', data)
       const datas = data.percentages
       const categories = Object.keys(datas["Total interaction in Percentages"]);
       const values = Object.values(datas["Total interaction in Percentages"]);
@@ -494,24 +542,25 @@ const initEngagementSummary = (data) => {
           text: 'Engagement Summary',
           textStyle: {
             color: '#ffffff',
-            fontSize:20
+            fontSize: 20
           }
         },
-        
+
         grid: {
-          top: '5%',
+          top: '0%',
           left: '3%',
           right: '3%',
-          bottom: '20%',
+          bottom: '0%',
           containLabel: true
         },
         legend: {
           orient: 'horizontal',
           bottom: 0,
+          
           left: 'center',
           itemGap: 10,
           icon: 'circle',
-          padding:0,
+          padding: 0,
           textStyle: {
             color: '#ffffff',
             fontSize: 14
@@ -557,33 +606,243 @@ const initEngagementSummary = (data) => {
         }))
 
       };
-      
+
       chart.setOption(option)
+      window.addEventListener('resize', () => {
+        chart.resize();
+      });
     }
-       
-        function openModal() {
-            const data = posts.find((u) => u.post_id == parseInt(2));
-            initEngagementSummary(data)
-            initArticleReadTimeChart(data)
-            document.getElementById('modalOverlay').style.display = 'block';
-            document.body.style.overflow = 'hidden'; 
-        }
 
-        
-        function closeModal() {
-            document.getElementById('modalOverlay').style.display = 'none';
-            document.body.style.overflow = 'auto'; 
-        }
+    const initArticleTotalReadTimeChart = (data) => {
+      let chart = echarts.init(selectors.articleReadTimeChart);
 
-       
-        document.getElementById('modalOverlay').addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeModal();
-            }
+      function structureData(data) {
+        data = Object.entries(data);
+        let tempValue = [];
+        data.forEach((element, index) => {
+          tempValue.push({
+            value: element[1].toFixed(2),
+            name: element[0],
+
+            title: {
+              offsetCenter: ["-25%", `-${index * 20}%`],
+            },
+            detail: {
+              valueAnimation: true,
+              offsetCenter: ["25%", `-${index * 20} % `],
+            },
+          });
         });
 
-       
-       
-    </script>
+        return tempValue;
+      }
+
+      let structuredData = structureData(
+        data.percentages["Total Read Completion Rate"][
+        "Total Completion rate breakdown"
+        ]
+      );
+
+      const options = {
+        title: {
+          text: 'Total article read time Completion Rate',
+          textStyle: {
+            color: "#ffffff",
+
+          },
+          center: ['40%', '60%'],
+        },
+        series: [
+
+          {
+
+            type: "gauge",
+            startAngle: 90,
+            endAngle: -270,
+            center: ['50%', '50%'],
+            color: ['#7F6DFF', '#79FF8D', '#FF9B5C'],
+
+
+            pointer: {
+              show: false,
+            },
+            progress: {
+              show: true,
+              overlap: false,
+              roundCap: true,
+
+              clip: false,
+              itemStyle: {
+                borderWidth: 1,
+                borderColor: "#464646",
+              },
+            },
+            axisLine: {
+              lineStyle: {
+                width: 40,
+                color: '#032c46'
+              },
+
+              roundCap: true
+            },
+            splitLine: {
+              show: false,
+              distance: 0,
+              length: 10,
+            },
+            axisTick: {
+              show: false,
+            },
+            axisLabel: {
+              show: false,
+              distance: 50,
+            },
+            title: {
+              fontSize: 14,
+              color: '#fff'
+            },
+            detail: {
+              width: 50,
+              height: 14,
+              fontSize: 14,
+              color: "inherit",
+              borderColor: "inherit",
+              borderRadius: 20,
+              borderWidth: 1,
+              formatter: "{value}%",
+            },
+          },
+        ],
+      }
+      const series = options.series[0];
+      chart.setOption({
+        ...options,
+        series: { ...series, data: structuredData },
+      });
+      window.addEventListener('resize', () => {
+        chart.resize();
+      });
+    };
+
+    const initInteractionTypeCountWithName = (data) => {
+    
+      const chart = echarts.init(selectors.interactionTypeCountWithName);
+      const interactionData = data.percentages["Total Interaction Counts"];
+      const includedKeys = ["emoji", "react", "time_spent", "comment"];
+      const categories = [];
+      const seriesData = [];
+
+      for (const key of includedKeys) {
+        if (interactionData[key]) {
+          categories.push(key);
+          seriesData.push(interactionData[key].count);
+        }
+      }
+      console.log(categories, seriesData, 'heres')
+
+
+      let xAxis = [
+        {
+          type: "category",
+          data: categories,
+          axisTick: {
+            alignWithLabel: true,
+          },
+          axisLabel: {
+
+            textStyle: {
+              color: '#fff',
+              fontSize: 14,
+
+            },
+            interval: 0,
+          }
+        },
+      ];
+
+      let yAxis = [
+        {
+          axisLabel: {
+            textStyle: {
+              color: '#fff'
+            }
+          },
+        }
+      ]
+
+      let series = [
+        {
+          name: "Count",
+          type: "bar",
+          barWidth: "60%",
+
+          data: seriesData,
+        },
+      ];
+      let options = {
+        title: {
+          text: 'Interaction type count with interaction name',
+          textStyle: {
+            color: '#ffffff',
+            fontSize: 16,
+          }
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow",
+          },
+        },
+
+        xAxis: [
+
+        ],
+        yAxis: [
+          {
+            type: "value",
+          },
+        ],
+        series: [],
+      }
+
+      chart.setOption({
+        ...options,
+        xAxis: xAxis,
+        yAxis: yAxis,
+        series: series,
+      });
+      window.addEventListener('resize', () => {
+        chart.resize();
+      });
+    };
+    function openModal() {
+      
+      
+      document.getElementById('modalOverlay').style.visibility = 'unset';
+      document.getElementById('modalOverlay').style.pointerEvents = 'all';
+      document.body.style.overflow = 'hidden';
+    }
+    const data = posts.find((u) => u.post_id == parseInt(2));
+    initEngagementSummary(data)
+      // initArticleReadTimeChart(data)
+      initInteractionTypeCountWithName(data);
+      initArticleTotalReadTimeChart(data)
+
+    function closeModal() {
+     
+      document.body.style.overflow = 'auto';
+    }
+
+
+    document.getElementById('modalOverlay').addEventListener('click', function (event) {
+      if (event.target === this) {
+        closeModal();
+      }
+    });
+
+
+
+  </script>
 </body>
+
 </html>
