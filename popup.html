@@ -829,7 +829,8 @@
       initArticleTotalReadTimeChart(data)
 
     function closeModal() {
-     
+      document.getElementById('modalOverlay').style.visibility = 'hidden';
+      document.getElementById('modalOverlay').style.pointerEvents = 'none';
       document.body.style.overflow = 'auto';
     }
 
