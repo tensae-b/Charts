@@ -284,8 +284,10 @@ body {
   }
   .reputation-chart{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap:10px;
+    width:100%
+
     
   }
   
