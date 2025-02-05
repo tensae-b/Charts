@@ -345,6 +345,7 @@
               "Advanced Audience": 0.0,
               "Expert Audience": 50.0,
             },
+            counts:{
             emoji: {
               count: 21,
             },
@@ -356,7 +357,7 @@
             },
             comment: {
               count: 5,
-            },
+            },}
           },
           "Total interaction in Percentages": {
             emoji: 14.285714285714285,
@@ -451,6 +452,7 @@
               "Advanced Audience": 0.0,
               "Expert Audience": 50.0,
             },
+            counts:{
             emoji: {
               count: 21,
             },
@@ -462,7 +464,7 @@
             },
             comment: {
               count: 5,
-            },
+            },},
           },
           "Total interaction in Percentages": {
             emoji: 14.285714285714285,
@@ -727,7 +729,7 @@
     const initInteractionTypeCountWithName = (data) => {
     
       const chart = echarts.init(selectors.interactionTypeCountWithName);
-      const interactionData = data.percentages["Total Interaction Counts"];
+      const interactionData = data.percentages["Total Interaction Counts"].counts;
       const includedKeys = ["emoji", "react", "time_spent", "comment"];
       const categories = [];
       const seriesData = [];
